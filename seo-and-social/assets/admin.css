@@ -1,0 +1,346 @@
+.sas-admin-page {
+  max-width: 1120px;
+}
+
+.sas-settings-form {
+  margin-top: 16px;
+}
+
+.sas-howto {
+  background: #fff;
+  border: 1px solid #dcdcde;
+  border-radius: 4px;
+  margin: 18px 0;
+  padding: 14px 16px;
+}
+
+.sas-howto > summary,
+.sas-howto-toggle > summary {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-weight: 600;
+  gap: 8px;
+  list-style: none;
+}
+
+.sas-howto > summary::-webkit-details-marker,
+.sas-howto-toggle > summary::-webkit-details-marker {
+  display: none;
+}
+
+.sas-howto > summary::before,
+.sas-howto-toggle > summary::before {
+  content: "\25B8";
+  display: inline-block;
+  font-size: 26px;
+  line-height: 1;
+}
+
+.sas-howto[open] > summary::before,
+.sas-howto-toggle[open] > summary::before {
+  content: "\25BE";
+}
+
+.sas-howto-content {
+  margin-top: 14px;
+}
+
+.sas-howto-toggle {
+  border-top: 1px solid #dcdcde;
+  padding: 12px 0;
+}
+
+.sas-howto-toggle:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+
+.sas-howto-toggle-content {
+  max-width: 900px;
+  padding: 8px 0 0 34px;
+}
+
+.sas-howto-toggle-content p {
+  margin: 0 0 12px;
+}
+
+.sas-panel {
+  background: #fff;
+  border: 1px solid #dcdcde;
+  box-sizing: border-box;
+  margin: 16px 0;
+  padding: 18px;
+}
+
+.sas-panel-summary {
+  align-items: center;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 1.3em;
+  font-weight: 600;
+  gap: 8px;
+  line-height: 1.4;
+  list-style: none;
+}
+
+.sas-panel-summary::-webkit-details-marker {
+  display: none;
+}
+
+.sas-panel-summary::before {
+  content: "\25B8";
+  display: inline-block;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.sas-panel[open] > .sas-panel-summary::before {
+  content: "\25BE";
+}
+
+.sas-panel-content {
+  margin-top: 16px;
+}
+
+.sas-field {
+  margin: 0 0 18px;
+  max-width: 860px;
+}
+
+.sas-label-row {
+  align-items: center;
+  display: flex;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.sas-label-row label,
+.sas-field > label {
+  font-weight: 600;
+}
+
+.sas-input-row {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.sas-field textarea.large-text {
+  max-width: 860px;
+}
+
+.sas-info-button {
+  align-items: center;
+  background: #f6f7f7;
+  border: 1px solid #8c8f94;
+  border-radius: 50%;
+  color: #1d2327;
+  cursor: pointer;
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 700;
+  height: 20px;
+  justify-content: center;
+  line-height: 1;
+  padding: 0;
+  width: 20px;
+}
+
+.sas-info-button:hover,
+.sas-info-button:focus,
+.sas-info-button[aria-expanded="true"] {
+  background: #2271b1;
+  border-color: #2271b1;
+  color: #fff;
+}
+
+.sas-info-panel {
+  background: #f6f7f7;
+  border-left: 3px solid #2271b1;
+  margin: 8px 0 0;
+  max-width: 760px;
+  padding: 8px 10px;
+}
+
+.sas-warning-note {
+  background: #fff8e5;
+  border-left: 3px solid #dba617;
+  margin: -8px 0 18px;
+  max-width: 760px;
+  padding: 8px 10px;
+}
+
+.sas-repeatable {
+  display: grid;
+  gap: 12px;
+}
+
+.sas-repeatable-rows {
+  display: grid;
+  gap: 10px;
+}
+
+.sas-row {
+  align-items: start;
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  display: grid;
+  gap: 10px;
+  grid-template-columns: minmax(120px, 1fr) minmax(160px, 1fr) minmax(220px, 2fr) auto;
+  padding: 12px;
+}
+
+.sas-schema-row {
+  grid-template-columns: minmax(150px, 1fr) 120px minmax(280px, 2fr) auto;
+}
+
+.sas-llms-page-row {
+  grid-template-columns: minmax(160px, 1fr) minmax(220px, 1.4fr) minmax(240px, 1.6fr) auto;
+}
+
+.sas-llms-ignored-row {
+  grid-template-columns: minmax(180px, 1fr) minmax(320px, 2fr) auto;
+}
+
+.sas-row input,
+.sas-row select,
+.sas-row textarea {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.sas-row label span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.sas-inline-check {
+  padding-top: 24px;
+}
+
+.sas-inline-check input {
+  width: auto;
+}
+
+.sas-faq-row {
+  background: #fff;
+  display: block;
+  gap: 0;
+  margin: 0 0 14px;
+  padding: 0;
+}
+
+.sas-faq-row-header {
+  align-items: center;
+  background: #f6f7f7;
+  border: 0;
+  color: #1d2327;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  min-height: 44px;
+  padding: 10px 12px;
+  text-align: left;
+  width: 100%;
+}
+
+.sas-faq-row-header:hover,
+.sas-faq-row-header:focus {
+  background: #f0f0f1;
+}
+
+.sas-faq-row-title {
+  overflow: hidden;
+  padding-right: 16px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sas-faq-row-toggle {
+  color: #2271b1;
+  flex: 0 0 auto;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.sas-faq-row-body {
+  border-top: 1px solid #dcdcde;
+  padding: 12px;
+}
+
+.sas-faq-row-body p {
+  margin-top: 0;
+}
+
+.sas-faq-row.is-collapsed .sas-faq-row-body {
+  display: none;
+}
+
+.sas-faq-row-options {
+  align-items: end;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin: 0 0 12px;
+}
+
+.sas-faq-row-options label {
+  max-width: 160px;
+}
+
+.sas-check-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.sas-check-grid label {
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+}
+
+.sas-check-grid code {
+  margin-left: auto;
+}
+
+.sas-danger-zone {
+  border-left: 4px solid #b32d2e;
+}
+
+.sas-danger-zone p {
+  max-width: 760px;
+}
+
+.sas-llms-preview {
+  background: #f6f7f7;
+  border: 1px solid #dcdcde;
+  box-sizing: border-box;
+  max-width: 900px;
+  overflow: auto;
+  padding: 14px;
+  white-space: pre-wrap;
+}
+
+.sas-delete-data-button {
+  font-weight: 600;
+}
+
+@media (max-width: 900px) {
+  .sas-row,
+  .sas-schema-row,
+  .sas-llms-page-row,
+  .sas-llms-ignored-row,
+  .sas-faq-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sas-inline-check {
+    padding-top: 0;
+  }
+}

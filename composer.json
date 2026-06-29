@@ -1,0 +1,20 @@
+{
+  "name": "seo-and-social/wordpress-plugin",
+  "description": "Headless WordPress plugin for SEO, social, schema, and FAQ REST API data.",
+  "type": "wordpress-plugin",
+  "license": "GPL-2.0-or-later",
+  "require-dev": {
+    "dealerdirect/phpcodesniffer-composer-installer": "^1.1",
+    "squizlabs/php_codesniffer": "^3.10",
+    "wp-coding-standards/wpcs": "^3.1"
+  },
+  "scripts": {
+    "lint:php": "phpcs"
+  },
+  "config": {
+    "allow-plugins": {
+      "dealerdirect/phpcodesniffer-composer-installer": true
+    }
+  }
+}
+

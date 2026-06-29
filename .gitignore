@@ -1,0 +1,13 @@
+.DS_Store
+node_modules/
+vendor/
+dist/
+.phpcs-cache
+
+# Local testing workflow files.
+TO-DO.md
+DATABASE.md
+MANUAL-TESTING.md
+scripts/install-local.mjs
+.local/
+local-install.log

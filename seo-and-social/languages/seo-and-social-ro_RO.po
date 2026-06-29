@@ -1,0 +1,1080 @@
+# Romanian translations for Seo & Social package.
+# Copyright (C) 2026 THE Seo & Social'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Seo & Social package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Seo & Social 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-29 11:12+0300\n"
+"PO-Revision-Date: 2026-06-29 11:00+0300\n"
+"Last-Translator: Caius <noreply@example.com>\n"
+"Language-Team: Romanian\n"
+"Language: ro_RO\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#: seo-and-social/includes/admin/admin-menu.php:161
+msgid ""
+"<code>seo_overrides</code> contains only what was saved on that specific "
+"page, post, or CPT item. <code>seo_resolved</code> is the final SEO payload: "
+"local overrides first, then global defaults as fallback. Frontends should "
+"usually render metadata from <code>seo_resolved</code>."
+msgstr ""
+"<code>seo_overrides</code> conține doar ce a fost salvat pe acea pagină, "
+"pos\n"
+"tare sau element CPT. <code>seo_resolved</code> este payload-ul SEO final: "
+"m\n"
+"ai întâi valorile locale, apoi valorile globale ca fallback. Frontendurile "
+"a\n"
+"r trebui, de obicei, să randese metadatele din <code>seo_resolved</code>."
+
+#: seo-and-social/includes/admin/admin-menu.php:156
+msgid "API and frontend usage"
+msgstr "Utilizare API și frontend"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:57
+msgid "Add FAQ item"
+msgstr "Adaugă întrebare FAQ"
+
+#: seo-and-social/includes/admin/admin-menu.php:228
+#: seo-and-social/includes/admin/admin-menu.php:248
+#: seo-and-social/includes/admin/admin-menu.php:357
+#: seo-and-social/includes/admin/admin-menu.php:584
+msgid "Add row"
+msgstr "Adaugă rând"
+
+#: seo-and-social/includes/admin/admin-menu.php:495
+msgid "Address"
+msgstr "Adresă"
+
+#: seo-and-social/includes/admin/admin-menu.php:150
+msgid ""
+"Administrators can access the global Seo & Social admin pages, configure "
+"plugin settings, choose enabled post types, manage REST names, control "
+"public endpoint behavior, and run generated-image maintenance tools. Editors "
+"do not see the global plugin menu by default, but they can still use the SEO/"
+"FAQ boxes on content they are allowed to edit."
+msgstr ""
+"Administratorii pot accesa paginile globale de administrare Seo & Social, "
+"po\n"
+"t configura setările pluginului, pot alege tipurile de conținut active, "
+"pot \n"
+"gestiona numele REST, comportamentul endpointurilor publice și uneltele "
+"pent\n"
+"ru imaginile generate. Editorii nu văd meniul global al pluginului în mod "
+"im\n"
+"plicit, dar pot folosi în continuare casetele SEO/FAQ pe conținutul pe "
+"care \n"
+"au voie să îl editeze."
+
+#: seo-and-social/includes/admin/admin-menu.php:148
+msgid ""
+"After that, edit individual pages, posts, or CPT items. Fill only the fields "
+"that should override the global defaults. Empty local SEO fields are treated "
+"as “use the global value”. FAQ items are saved per content item and exposed "
+"only when enabled."
+msgstr ""
+"După aceea, editează pagini, postări sau elemente CPT individuale. "
+"Completea\n"
+"ză doar câmpurile care trebuie să suprascrie valorile globale. Câmpurile "
+"SEO\n"
+" locale goale sunt tratate ca „folosește valoarea globală”. Întrebările "
+"FAQ \n"
+"sunt salvate per element de conținut și expuse doar când sunt activate."
+
+#: seo-and-social/includes/admin/admin-menu.php:70
+msgid "All Seo & Social plugin data was deleted."
+msgstr "Toate datele pluginului Seo & Social au fost șterse."
+
+#: seo-and-social/includes/admin/admin-menu.php:620
+msgid "Allow basic HTML in FAQ answers"
+msgstr "Permite HTML de bază în răspunsurile FAQ"
+
+#: seo-and-social/includes/admin/admin-menu.php:218
+msgid "Allowed / recommended pages"
+msgstr "Pagini permise / recomandate"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:106
+msgid "Answer"
+msgstr "Răspuns"
+
+#: seo-and-social/includes/admin/admin-menu.php:459
+msgid "Business / organization schema type"
+msgstr "Tip schema pentru afacere / organizație"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:73
+msgid "Canonical URL"
+msgstr "URL canonic"
+
+#: seo-and-social/includes/admin/admin-menu.php:490
+msgid ""
+"Canonical public website URL for this organization. Usually the frontend "
+"site URL."
+msgstr ""
+"URL-ul public canonic al site-ului pentru această organizație. De obicei "
+"est\n"
+"e URL-ul site-ului frontend."
+
+#: seo-and-social/includes/admin/admin-menu.php:943
+#: seo-and-social/includes/helpers/assets.php:53
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:67
+msgid "Choose image"
+msgstr "Alege imaginea"
+
+#: seo-and-social/includes/admin/admin-menu.php:503
+msgid "City"
+msgstr "Oraș"
+
+#: seo-and-social/includes/admin/admin-menu.php:506
+msgid "City or locality for the organization address."
+msgstr "Orașul sau localitatea pentru adresa organizației."
+
+#: seo-and-social/includes/admin/admin-menu.php:511
+msgid "Country"
+msgstr "Țară"
+
+#: seo-and-social/includes/admin/admin-menu.php:514
+msgid ""
+"Country for the organization address. Use the public-facing country name or "
+"ISO code your frontend expects."
+msgstr ""
+"Țara pentru adresa organizației. Folosește numele public al țării sau "
+"codul \n"
+"ISO așteptat de frontend."
+
+#: seo-and-social/includes/admin/admin-menu.php:263
+msgid "Custom content"
+msgstr "Conținut personalizat"
+
+#: seo-and-social/includes/admin/admin-menu.php:258
+msgid "Custom raw llms.txt content"
+msgstr "Conținut llms.txt brut personalizat"
+
+#: seo-and-social/includes/admin/admin-menu.php:561
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:89
+msgid "Custom schema JSON"
+msgstr "JSON schema personalizat"
+
+#: seo-and-social/includes/admin/admin-menu.php:708
+msgid "Danger zone"
+msgstr "Zonă de risc"
+
+#: seo-and-social/includes/admin/admin-menu.php:440
+msgid "Default OG image URL"
+msgstr "URL imagine OG implicită"
+
+#: seo-and-social/includes/admin/admin-menu.php:675
+msgid ""
+"Default endpoint namespace. Changing it changes the public settings URL."
+msgstr ""
+"Namespace-ul implicit al endpointului. Schimbarea lui modifică URL-ul "
+"public\n"
+" al setărilor."
+
+#: seo-and-social/includes/admin/admin-menu.php:446
+msgid ""
+"Default image URL for social sharing when content does not provide its own "
+"image."
+msgstr ""
+"URL-ul imaginii implicite pentru distribuire socială când conținutul nu "
+"are \n"
+"propria imagine."
+
+#: seo-and-social/includes/admin/admin-menu.php:411
+msgid "Default meta description"
+msgstr "Meta descriere implicită"
+
+#: seo-and-social/includes/admin/admin-menu.php:403
+msgid "Default meta title"
+msgstr "Meta titlu implicit"
+
+#: seo-and-social/includes/admin/admin-menu.php:421
+msgid "Default robots"
+msgstr "Robots implicit"
+
+#: seo-and-social/includes/admin/admin-menu.php:712
+msgid "Delete all plugin data"
+msgstr "Șterge toate datele pluginului"
+
+#: seo-and-social/includes/admin/admin-menu.php:645
+msgid "Delete generated WebP images"
+msgstr "Șterge imaginile WebP generate"
+
+#: seo-and-social/includes/admin/admin-menu.php:238
+msgid "Disallowed / ignored sections"
+msgstr "Secțiuni nepermise / ignorate"
+
+#: seo-and-social/includes/admin/admin-menu.php:610
+msgid "Enable FAQ meta box"
+msgstr "Activează caseta meta FAQ"
+
+#: seo-and-social/includes/admin/admin-menu.php:198
+msgid "Enable LLMs.txt data"
+msgstr "Activează datele LLMs.txt"
+
+#: seo-and-social/includes/admin/admin-menu.php:619
+msgid "Enable REST fields on content items"
+msgstr "Activează câmpurile REST pe elementele de conținut"
+
+#: seo-and-social/includes/admin/admin-menu.php:609
+msgid "Enable SEO meta box"
+msgstr "Activează caseta meta SEO"
+
+#: seo-and-social/includes/admin/admin-menu.php:613
+msgid "Enable public REST endpoint"
+msgstr "Activează endpointul REST public"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:122
+msgid "Enabled"
+msgstr "Activat"
+
+#: seo-and-social/includes/admin/admin-menu.php:326
+msgid "Exposed as the primary contact email for the frontend."
+msgstr "Expus ca email principal de contact pentru frontend."
+
+#: seo-and-social/includes/admin/admin-menu.php:574
+msgid "Extra schema properties"
+msgstr "Proprietăți schema suplimentare"
+
+#: seo-and-social/includes/admin/admin-menu.php:347
+msgid "Extra social links"
+msgstr "Linkuri sociale suplimentare"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:27
+msgid "FAQ"
+msgstr "FAQ"
+
+#: seo-and-social/includes/admin/admin-menu.php:697
+msgid "FAQ REST field name"
+msgstr "Numele câmpului REST pentru FAQ"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:47
+msgid ""
+"FAQ is per content item. Use the editor for simple formatting. Only enabled "
+"rows are exposed in REST, sorted by position."
+msgstr ""
+"FAQ este per element de conținut. Folosește editorul pentru formatare "
+"simplă\n"
+". Doar rândurile activate sunt expuse în REST, sortate după poziție."
+
+#: seo-and-social/includes/admin/admin-menu.php:659
+msgid "FAQ post types"
+msgstr "Tipuri de conținut pentru FAQ"
+
+#: seo-and-social/includes/admin/admin-menu.php:338
+msgid "Facebook URL"
+msgstr "URL Facebook"
+
+#: seo-and-social/includes/admin/admin-menu.php:415
+msgid ""
+"Fallback description when content does not provide a custom SEO description."
+msgstr ""
+"Descriere de fallback când conținutul nu oferă o descriere SEO "
+"personalizată\n"
+"."
+
+#: seo-and-social/includes/admin/admin-menu.php:406
+msgid "Fallback title when content does not provide a custom SEO title."
+msgstr "Titlu de fallback când conținutul nu oferă un titlu SEO personalizat."
+
+#: seo-and-social/includes/admin/admin-menu.php:1159
+msgid "Field information"
+msgstr "Informații despre câmp"
+
+#: seo-and-social/includes/admin/admin-menu.php:692
+msgid ""
+"Field name for local per-content SEO overrides. The resolved final SEO "
+"payload is always exposed separately as seo_resolved."
+msgstr ""
+"Numele câmpului pentru suprascrierile SEO locale per conținut. Payload-ul "
+"SE\n"
+"O final rezolvat este expus întotdeauna separat ca seo_resolved."
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:53
+msgid ""
+"Fill in only the fields that should override global Seo & Social settings."
+msgstr ""
+"Completează doar câmpurile care trebuie să suprascrie setările globale Seo "
+"&\n"
+" Social."
+
+#: seo-and-social/includes/admin/admin-menu.php:162
+msgid ""
+"For OG images, use <code>og_image_url</code> as the preferred final URL. "
+"Keep <code>og_image_original_url</code> as the source/fallback reference, "
+"and use <code>og_image_optimized</code> when you need width, height, or MIME "
+"details for the generated WebP."
+msgstr ""
+"Pentru imaginile OG, folosește <code>og_image_url</code> ca URL final "
+"prefer\n"
+"at. Păstrează <code>og_image_original_url</code> ca referință sursă/"
+"fallback\n"
+" și folosește <code>og_image_optimized</code> când ai nevoie de lățime, "
+"înăl\n"
+"țime sau detalii MIME pentru WebP-ul generat."
+
+#: seo-and-social/includes/admin/admin-menu.php:142
+msgid "General setup"
+msgstr "Configurare generală"
+
+#: seo-and-social/includes/admin/admin-menu.php:173
+msgid ""
+"Generated OG WebP metadata is stored on the source attachment under "
+"<code>_sas_og_image_1200x630</code>. The generated WebP file is saved beside "
+"the original upload file. Deleting the source attachment, deleting generated "
+"WebP images, or deleting all plugin data removes the generated file metadata "
+"and files."
+msgstr ""
+"Metadatele WebP OG generate sunt salvate pe atașamentul sursă sub "
+"<code>_sas\n"
+"_og_image_1200x630</code>. Fișierul WebP generat este salvat lângă "
+"fișierul \n"
+"original încărcat. Ștergerea atașamentului sursă, ștergerea imaginilor "
+"WebP \n"
+"generate sau ștergerea tuturor datelor pluginului elimină metadatele și "
+"fiși\n"
+"erele generate."
+
+#. translators: %d: deleted image count.
+#: seo-and-social/includes/admin/admin-menu.php:847
+#, php-format
+msgid "Generated WebP OG images deleted: %d."
+msgstr "Imagini WebP OG generate șterse: %d."
+
+#: seo-and-social/includes/admin/admin-menu.php:171
+msgid ""
+"Global plugin settings are stored in <code>wp_options</code> under "
+"<code>sas_settings</code>, with autoload disabled. This includes Social "
+"fields, global SEO/schema fields, enabled post types, REST names, and "
+"feature toggles."
+msgstr ""
+"Setările globale ale pluginului sunt salvate în <code>wp_options</code> "
+"sub \n"
+"<code>sas_settings</code>, cu autoload dezactivat. Aici intră câmpurile "
+"Soci\n"
+"al, câmpurile globale SEO/schema, tipurile de conținut active, numele REST "
+"ș\n"
+"i opțiunile funcționale."
+
+#: seo-and-social/includes/admin/admin-menu.php:168
+msgid "How data is handled in the database"
+msgstr "Cum sunt gestionate datele în baza de date"
+
+#: seo-and-social/includes/admin/admin-menu.php:138
+msgid "How to use"
+msgstr "Cum se folosește"
+
+#: seo-and-social/includes/admin/admin-menu.php:149
+msgid ""
+"If OG image optimization is enabled, images selected through the plugin can "
+"get a separate 1200x630 WebP copy. Originals remain untouched. Use "
+"<strong>Regenerate OG images</strong> after enabling optimization on an "
+"existing site, and <strong>Delete generated WebP images</strong> when you "
+"want to clear only those generated files."
+msgstr ""
+"Dacă optimizarea imaginilor OG este activată, imaginile selectate prin "
+"plugi\n"
+"n pot primi o copie WebP separată de 1200x630. Originalele rămân "
+"neschimbate\n"
+". Folosește <strong>Regenerate OG images</strong> după activarea "
+"optimizării\n"
+" pe un site existent și <strong>Delete generated WebP images</strong> când "
+"v\n"
+"rei să cureți doar acele fișiere generate."
+
+#: seo-and-social/includes/admin/admin-menu.php:163
+msgid ""
+"If the public endpoint is enabled, unauthenticated frontend requests can "
+"read the settings endpoint and are protected by a lightweight rate limit. If "
+"it is disabled, the settings endpoint requires an authenticated "
+"administrator."
+msgstr ""
+"Dacă endpointul public este activat, cererile frontend neautentificate pot "
+"c\n"
+"iti endpointul de setări și sunt protejate de un rate limit ușor. Dacă "
+"este \n"
+"dezactivat, endpointul de setări necesită un administrator autentificat."
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:61
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:70
+msgid "Image for social sharing. The frontend decides how to render it."
+msgstr "Imagine pentru distribuire socială. Frontendul decide cum o randază."
+
+#: seo-and-social/includes/admin/admin-menu.php:422
+#: seo-and-social/includes/admin/admin-menu.php:429
+msgid ""
+"In SEO, if you do not send a robots meta tag at all, the normal search "
+"engine behavior is effectively index,follow. Leave this empty for that "
+"default behavior. This is useful for testing or staging websites where you "
+"may need noindex generally."
+msgstr ""
+"În SEO, dacă nu trimiți deloc un meta tag robots, comportamentul normal al "
+"m\n"
+"otoarelor de căutare este practic index,follow. Lasă gol pentru acest "
+"compor\n"
+"tament implicit. Este util pentru site-uri de test sau staging unde poți "
+"ave\n"
+"a nevoie de noindex general."
+
+#: seo-and-social/includes/admin/admin-menu.php:339
+msgid "Instagram URL"
+msgstr "URL Instagram"
+
+#: seo-and-social/includes/admin/admin-menu.php:569
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:90
+msgid ""
+"Invalid JSON is automatically deleted and will not be saved, to prevent "
+"breaking the API."
+msgstr ""
+"JSON-ul invalid este șters automat și nu va fi salvat, pentru a preveni "
+"stri\n"
+"carea API-ului."
+
+#: seo-and-social/includes/admin/admin-menu.php:85
+msgid "LLMs.txt"
+msgstr "LLMs.txt"
+
+#: seo-and-social/includes/admin/admin-menu.php:193
+msgid "LLMs.txt content"
+msgstr "Conținut LLMs.txt"
+
+#: seo-and-social/includes/admin/admin-menu.php:1050
+#: seo-and-social/includes/admin/admin-menu.php:1110
+msgid "Label"
+msgstr "Etichetă"
+
+#: seo-and-social/includes/admin/admin-menu.php:527
+msgid "Latitude"
+msgstr "Latitudine"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:78
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:85
+msgid "Leave empty to let the frontend use its default robots behavior."
+msgstr ""
+"Lasă gol pentru ca frontendul să folosească propriul comportament implicit "
+"p\n"
+"entru robots."
+
+#: seo-and-social/includes/admin/admin-menu.php:476
+msgid "Logo URL"
+msgstr "URL logo"
+
+#: seo-and-social/includes/admin/admin-menu.php:481
+msgid ""
+"Logo image URL for structured data. Use a clear brand mark from the Media "
+"Library when possible."
+msgstr ""
+"URL-ul imaginii logo pentru date structurate. Folosește, când este "
+"posibil, \n"
+"un logo clar din Media Library."
+
+#: seo-and-social/includes/admin/admin-menu.php:535
+msgid "Longitude"
+msgstr "Longitudine"
+
+#: seo-and-social/includes/admin/admin-menu.php:680
+msgid "Main settings endpoint path"
+msgstr "Calea endpointului principal de setări"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:84
+msgid "New question"
+msgstr "Întrebare nouă"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:60
+msgid "OG image"
+msgstr "Imagine OG"
+
+#: seo-and-social/includes/admin/admin-menu.php:626
+#: seo-and-social/includes/admin/admin-menu.php:631
+msgid "OG image optimization"
+msgstr "Optimizare imagine OG"
+
+#. translators: 1: generated count, 2: failed count, 3: skipped count.
+#: seo-and-social/includes/admin/admin-menu.php:812
+#, php-format
+msgid "OG images regenerated. Generated: %1$d. Failed: %2$d. Skipped: %3$d."
+msgstr "Imagini OG regenerate. Generate: %1$d. Eșuate: %2$d. Sărite: %3$d."
+
+#: seo-and-social/includes/admin/admin-menu.php:349
+msgid "Only rows with key, label, and valid URL are exposed in the public API."
+msgstr ""
+"Doar rândurile cu cheie, etichetă și URL valid sunt expuse în API-ul public."
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:90
+msgid "Open"
+msgstr "Deschide"
+
+#: seo-and-social/includes/admin/admin-menu.php:543
+msgid "Opening hours"
+msgstr "Program"
+
+#: seo-and-social/includes/admin/admin-menu.php:547
+msgid ""
+"Opening hours in a compact schema-friendly format, for example Mo-Fr "
+"09:00-18:00."
+msgstr ""
+"Program într-un format compact prietenos pentru schema, de exemplu Mo-Fr "
+"09:\n"
+"00-18:00."
+
+#: seo-and-social/includes/admin/admin-menu.php:565
+msgid ""
+"Optional advanced JSON merged into the schema payload by the frontend. "
+"Invalid JSON is deleted and not saved."
+msgstr ""
+"JSON avansat opțional, îmbinat în payload-ul schema de către frontend. "
+"JSON-\n"
+"ul invalid este șters și nu este salvat."
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:73
+msgid "Optional canonical URL override."
+msgstr "Suprascriere opțională pentru URL-ul canonic."
+
+#: seo-and-social/includes/admin/admin-menu.php:530
+msgid ""
+"Optional geographic latitude for LocalBusiness schema. Use decimal degrees, "
+"for example 40.7128."
+msgstr ""
+"Latitudine geografică opțională pentru schema LocalBusiness. Folosește "
+"grade\n"
+" decimale, de exemplu 40.7128."
+
+#: seo-and-social/includes/admin/admin-menu.php:538
+msgid ""
+"Optional geographic longitude for LocalBusiness schema. Use decimal degrees, "
+"for example -74.0060."
+msgstr ""
+"Longitudine geografică opțională pentru schema LocalBusiness. Folosește "
+"grad\n"
+"e decimale, de exemplu -74.0060."
+
+#: seo-and-social/includes/admin/admin-menu.php:1112
+msgid "Optional note"
+msgstr "Notă opțională"
+
+#: seo-and-social/includes/admin/admin-menu.php:556
+msgid ""
+"Optional price range indicator for local business schema, such as $, $$, or $"
+"$$."
+msgstr ""
+"Indicator opțional de interval de preț pentru schema local business, cum "
+"ar \n"
+"fi $, $$ sau $$$."
+
+#: seo-and-social/includes/admin/admin-menu.php:267
+msgid ""
+"Optional raw Markdown-style text appended to the generated llms.txt preview "
+"and API payload."
+msgstr ""
+"Text brut opțional în stil Markdown, adăugat la preview-ul llms.txt "
+"generat \n"
+"și la payload-ul API."
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:89
+msgid ""
+"Optional valid JSON for advanced frontend schema handling. Invalid JSON is "
+"not exposed."
+msgstr ""
+"JSON valid opțional pentru gestionare schema avansată în frontend. JSON-ul "
+"i\n"
+"nvalid nu este expus."
+
+#: seo-and-social/includes/admin/admin-menu.php:468
+msgid "Organization name"
+msgstr "Numele organizației"
+
+#: seo-and-social/includes/admin/admin-menu.php:454
+msgid "Organization schema data"
+msgstr "Date schema organizație"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:56
+msgid "Overrides the frontend SEO description for this content item."
+msgstr ""
+"Suprascrie descrierea SEO din frontend pentru acest element de conținut."
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:55
+msgid "Overrides the frontend SEO title for this content item."
+msgstr "Suprascrie titlul SEO din frontend pentru acest element de conținut."
+
+#: seo-and-social/includes/admin/admin-menu.php:220
+msgid "Pages the frontend should include as recommended resources in llms.txt."
+msgstr ""
+"Pagini pe care frontendul ar trebui să le includă ca resurse recomandate "
+"în \n"
+"llms.txt."
+
+#: seo-and-social/includes/admin/admin-menu.php:160
+msgid ""
+"Per-content REST responses expose <code>seo_overrides</code>, "
+"<code>seo_resolved</code>, and <code>faq_items</code> by default. The "
+"override and FAQ field names can be changed in Settings, but "
+"<code>seo_resolved</code> is reserved and always uses that name."
+msgstr ""
+"Răspunsurile REST per conținut expun implicit <code>seo_overrides</code>, "
+"<c\n"
+"ode>seo_resolved</code> și <code>faq_items</code>. Numele câmpurilor "
+"pentru \n"
+"suprascrieri și FAQ pot fi schimbate în Setări, dar <code>seo_resolved</"
+"code\n"
+"> este rezervat și folosește întotdeauna acest nume."
+
+#: seo-and-social/includes/admin/admin-menu.php:172
+msgid ""
+"Per-content SEO data is stored in <code>wp_postmeta</code> under "
+"<code>_sas_seo_overrides</code>. Per-content FAQ data is stored in "
+"<code>wp_postmeta</code> under <code>_sas_faq_items</code>. "
+"<code>seo_resolved</code> is not stored; it is computed when the REST "
+"response is requested."
+msgstr ""
+"Datele SEO per conținut sunt salvate în <code>wp_postmeta</code> sub "
+"<code>_\n"
+"sas_seo_overrides</code>. Datele FAQ per conținut sunt salvate în "
+"<code>wp_p\n"
+"ostmeta</code> sub <code>_sas_faq_items</code>. <code>seo_resolved</code> "
+"nu\n"
+" este salvat; este calculat când este cerut răspunsul REST."
+
+#: seo-and-social/includes/admin/admin-menu.php:331
+msgid "Phone / WhatsApp"
+msgstr "Telefon / WhatsApp"
+
+#: seo-and-social/includes/admin/admin-menu.php:606
+msgid "Plugin behavior"
+msgstr "Comportamentul pluginului"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:117
+msgid "Position"
+msgstr "Poziție"
+
+#: seo-and-social/includes/admin/admin-menu.php:519
+msgid "Postal code"
+msgstr "Cod poștal"
+
+#: seo-and-social/includes/admin/admin-menu.php:522
+msgid "Postal or ZIP code for the organization address."
+msgstr "Cod poștal sau ZIP pentru adresa organizației."
+
+#: seo-and-social/includes/admin/admin-menu.php:275
+msgid "Preview"
+msgstr "Preview"
+
+#: seo-and-social/includes/admin/admin-menu.php:552
+msgid "Price range"
+msgstr "Interval de preț"
+
+#: seo-and-social/includes/admin/admin-menu.php:322
+msgid "Primary email"
+msgstr "Email principal"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:95
+msgid "Question"
+msgstr "Întrebare"
+
+#: seo-and-social/includes/admin/admin-menu.php:666
+msgid "REST names"
+msgstr "Nume REST"
+
+#: seo-and-social/includes/admin/admin-menu.php:671
+msgid "REST namespace"
+msgstr "Namespace REST"
+
+#: seo-and-social/includes/admin/admin-menu.php:1136
+msgid "Reason or description"
+msgstr "Motiv sau descriere"
+
+#: seo-and-social/includes/admin/admin-menu.php:640
+msgid "Regenerate OG images"
+msgstr "Regenerare imagini OG"
+
+#: seo-and-social/includes/admin/admin-menu.php:1052
+#: seo-and-social/includes/admin/admin-menu.php:1087
+#: seo-and-social/includes/admin/admin-menu.php:1113
+#: seo-and-social/includes/admin/admin-menu.php:1137
+msgid "Remove"
+msgstr "Șterge"
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:126
+msgid "Remove question"
+msgstr "Șterge întrebarea"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:77
+msgid "Robots"
+msgstr "Robots"
+
+#: seo-and-social/includes/admin/admin-menu.php:84
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:27
+msgid "SEO"
+msgstr "SEO"
+
+#: seo-and-social/includes/admin/admin-menu.php:688
+msgid "SEO REST field name"
+msgstr "Numele câmpului REST SEO"
+
+#: seo-and-social/includes/admin/admin-menu.php:390
+msgid "SEO defaults"
+msgstr "Valori SEO implicite"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:56
+msgid "SEO description"
+msgstr "Descriere SEO"
+
+#: seo-and-social/includes/admin/admin-menu.php:652
+msgid "SEO post types"
+msgstr "Tipuri de conținut pentru SEO"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:55
+msgid "SEO title"
+msgstr "Titlu SEO"
+
+#: seo-and-social/includes/admin/admin-menu.php:108
+msgid "Save settings"
+msgstr "Salvează setările"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:88
+msgid "Schema type"
+msgstr "Tip schema"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:88
+msgid ""
+"Schema.org type for this content item, such as WebPage, AboutPage, "
+"ContactPage, or FAQPage."
+msgstr ""
+"Tip Schema.org pentru acest element de conținut, cum ar fi WebPage, "
+"AboutPag\n"
+"e, ContactPage sau FAQPage."
+
+#: seo-and-social/includes/admin/admin-menu.php:463
+msgid ""
+"Schema.org type such as Organization, LocalBusiness, MedicalBusiness, or "
+"Dentist. The frontend decides how to render JSON-LD."
+msgstr ""
+"Tip Schema.org precum Organization, LocalBusiness, MedicalBusiness sau "
+"Denti\n"
+"st. Frontendul decide cum randază JSON-LD."
+
+#: seo-and-social/includes/admin/admin-menu.php:1135
+msgid "Section label"
+msgstr "Eticheta secțiunii"
+
+#: seo-and-social/includes/admin/admin-menu.php:240
+msgid ""
+"Sections that should be described as ignored, low priority, private, "
+"duplicated, or not useful for AI context."
+msgstr ""
+"Secțiuni care ar trebui descrise ca ignorate, cu prioritate mică, private, "
+"d\n"
+"uplicate sau neutile pentru context AI."
+
+#: seo-and-social/includes/admin/admin-menu.php:19
+#: seo-and-social/includes/admin/admin-menu.php:20
+#: seo-and-social/includes/admin/admin-menu.php:58
+msgid "Seo & Social"
+msgstr "Seo & Social"
+
+#: seo-and-social/includes/admin/admin-menu.php:82
+msgid "Seo & Social tabs"
+msgstr "Taburi Seo & Social"
+
+#: seo-and-social/includes/admin/admin-menu.php:87
+msgid "Settings"
+msgstr "Setări"
+
+#: seo-and-social/includes/admin/admin-menu.php:66
+msgid ""
+"Settings saved, but one or more invalid JSON values were removed from public "
+"output."
+msgstr ""
+"Setările au fost salvate, dar una sau mai multe valori JSON invalide au "
+"fost\n"
+" eliminate din outputul public."
+
+#: seo-and-social/includes/admin/admin-menu.php:62
+msgid "Settings saved."
+msgstr "Setările au fost salvate."
+
+#: seo-and-social/includes/admin/admin-menu.php:210
+msgid ""
+"Short human-readable summary of what this site offers and what AI tools "
+"should understand about it."
+msgstr ""
+"Rezumat scurt, ușor de citit, despre ce oferă site-ul și ce ar trebui să "
+"înț\n"
+"eleagă uneltele AI despre el."
+
+#: seo-and-social/includes/admin/admin-menu.php:395
+msgid "Site name"
+msgstr "Numele site-ului"
+
+#: seo-and-social/includes/admin/admin-menu.php:206
+msgid "Site summary"
+msgstr "Rezumatul site-ului"
+
+#: seo-and-social/includes/admin/admin-menu.php:83
+msgid "Social"
+msgstr "Social"
+
+#: seo-and-social/includes/admin/admin-menu.php:317
+msgid "Social links"
+msgstr "Linkuri sociale"
+
+#: seo-and-social/includes/helpers/og-image.php:77
+msgid "Source image file is missing."
+msgstr "Fișierul imaginii sursă lipsește."
+
+#: seo-and-social/includes/admin/admin-menu.php:145
+msgid ""
+"Start in <strong>Settings</strong>. Enable the modules you want to expose, "
+"choose the post types that should receive SEO and FAQ boxes, and keep Media "
+"unchecked unless you intentionally want plugin fields on attachments."
+msgstr ""
+"Începe din <strong>Setări</strong>. Activează modulele pe care vrei să le "
+"ex\n"
+"pui, alege tipurile de conținut care trebuie să primească boxurile SEO și "
+"FA\n"
+"Q și lasă Media debifat dacă nu vrei intenționat câmpuri de plugin pe "
+"atașam\n"
+"ente."
+
+#: seo-and-social/includes/admin/admin-menu.php:498
+msgid ""
+"Street address or public location address used in local business schema."
+msgstr ""
+"Adresa stradală sau adresa publică a locației folosită în schema local "
+"busin\n"
+"ess."
+
+#: seo-and-social/includes/admin/admin-menu.php:174
+msgid ""
+"The Danger zone button deletes <code>sas_settings</code>, plugin SEO/FAQ "
+"post meta, and generated WebP OG files. It does not delete posts, pages, CPT "
+"items, users, terms, or original Media Library files."
+msgstr ""
+"Butonul din Zona de risc șterge <code>sas_settings</code>, metadatele SEO/"
+"FA\n"
+"Q ale pluginului și fișierele WebP OG generate. Nu șterge postări, pagini, "
+"e\n"
+"lemente CPT, utilizatori, termeni sau fișierele originale din Media Library."
+
+#: seo-and-social/includes/admin/admin-menu.php:159
+msgid ""
+"The global settings endpoint defaults to <code>/wp-json/headless-seo/v1/site-"
+"settings</code>. It returns <code>social</code> and global <code>seo</code> "
+"data for the frontend."
+msgstr ""
+"Endpointul global de setări este implicit <code>/wp-json/headless-seo/v1/"
+"sit\n"
+"e-settings</code>. Returnează date <code>social</code> și <code>seo</code> "
+"g\n"
+"lobale pentru frontend."
+
+#: seo-and-social/includes/admin/admin-menu.php:471
+msgid ""
+"The public business or organization name used in Organization or "
+"LocalBusiness schema."
+msgstr ""
+"Numele public al afacerii sau organizației folosit în schema Organization "
+"sa\n"
+"u LocalBusiness."
+
+#: seo-and-social/includes/rest/settings-endpoint.php:78
+msgid "This endpoint requires authentication."
+msgstr "Acest endpoint necesită autentificare."
+
+#: seo-and-social/includes/admin/admin-menu.php:277
+msgid ""
+"This is the current rendered_txt value that the JSON endpoint returns for "
+"the frontend."
+msgstr ""
+"Aceasta este valoarea curentă rendered_txt returnată de endpointul JSON "
+"pent\n"
+"ru frontend."
+
+#: seo-and-social/includes/admin/admin-menu.php:710
+msgid ""
+"This permanently deletes all Seo & Social settings, all SEO and FAQ post "
+"meta saved by this plugin, and all generated WebP OG images. Original media "
+"files are not deleted. This cannot be undone."
+msgstr ""
+"Această acțiune șterge permanent toate setările Seo & Social, toate "
+"metadate\n"
+"le SEO și FAQ salvate de plugin și toate imaginile WebP OG generate. "
+"Fișiere\n"
+"le media originale nu sunt șterse. Acțiunea nu poate fi anulată."
+
+#: seo-and-social/includes/helpers/og-image.php:81
+msgid "This server does not support WebP generation."
+msgstr "Acest server nu suportă generarea WebP."
+
+#: seo-and-social/includes/helpers/assets.php:56
+msgid ""
+"This will delete all generated WebP OG images created by Seo & Social. "
+"Settings, SEO/FAQ post meta, and original media files will not be deleted. "
+"Continue?"
+msgstr ""
+"Această acțiune va șterge toate imaginile WebP OG generate de Seo & "
+"Social. \n"
+"Setările, metadatele SEO/FAQ și fișierele media originale nu vor fi "
+"șterse. \n"
+"Continui?"
+
+#: seo-and-social/includes/helpers/assets.php:55
+msgid ""
+"This will permanently delete all Seo & Social settings, all SEO/FAQ post "
+"meta saved by this plugin, and all generated WebP OG images. Original media "
+"files will not be deleted. This cannot be undone. Continue?"
+msgstr ""
+"Această acțiune va șterge permanent toate setările Seo & Social, toate "
+"metad\n"
+"atele SEO/FAQ salvate de plugin și toate imaginile WebP OG generate. "
+"Fișiere\n"
+"le media originale nu vor fi șterse. Acțiunea nu poate fi anulată. Continui?"
+
+#: seo-and-social/includes/admin/admin-menu.php:340
+msgid "TikTok URL"
+msgstr "URL TikTok"
+
+#: seo-and-social/includes/rest/settings-endpoint.php:180
+msgid "Too many requests. Please try again shortly."
+msgstr "Prea multe cereri. Te rugăm să încerci din nou în scurt timp."
+
+#: seo-and-social/includes/admin/admin-menu.php:335
+msgid ""
+"Use an international phone format. The frontend can decide whether to render "
+"a call or WhatsApp link."
+msgstr ""
+"Folosește un format internațional pentru telefon. Frontendul poate decide "
+"da\n"
+"că randază link de apel sau WhatsApp."
+
+#: seo-and-social/includes/admin/admin-menu.php:576
+msgid ""
+"Use structured rows for schema data that does not have a dedicated field."
+msgstr ""
+"Folosește rânduri structurate pentru date schema care nu au un câmp dedicat."
+
+#: seo-and-social/includes/admin/admin-menu.php:147
+msgid ""
+"Use the <strong>LLMs.txt</strong> tab to manage structured content that your "
+"frontend can use to serve a public <code>/llms.txt</code> file."
+msgstr ""
+"Folosește tabul <strong>LLMs.txt</strong> pentru a gestiona conținut "
+"structu\n"
+"rat pe care frontendul îl poate folosi pentru a servi un fișier public "
+"<code\n"
+">/llms.txt</code>."
+
+#: seo-and-social/includes/admin/admin-menu.php:146
+msgid ""
+"Use the <strong>Social</strong> tab for public contact and social profile "
+"data. Use the <strong>SEO</strong> tab for global fallbacks such as site "
+"name, default meta title, default description, default OG image, "
+"organization fields, and schema defaults."
+msgstr ""
+"Folosește tabul <strong>Social</strong> pentru date publice de contact și "
+"pr\n"
+"ofiluri sociale. Folosește tabul <strong>SEO</strong> pentru fallbackuri "
+"glo\n"
+"bale precum numele site-ului, meta titlul implicit, descrierea implicită, "
+"im\n"
+"aginea OG implicită, câmpurile organizației și valorile schema implicite."
+
+#: seo-and-social/includes/helpers/assets.php:54
+msgid "Use this image"
+msgstr "Folosește această imagine"
+
+#: seo-and-social/includes/admin/admin-menu.php:398
+msgid "Used as a global site name fallback for frontend metadata."
+msgstr ""
+"Folosit ca fallback global pentru numele site-ului în metadatele "
+"frontendulu\n"
+"i."
+
+#: seo-and-social/includes/admin/admin-menu.php:1086
+msgid "Value"
+msgstr "Valoare"
+
+#: seo-and-social/includes/admin/admin-menu.php:486
+msgid "Website URL"
+msgstr "URL site web"
+
+#: seo-and-social/includes/admin/admin-menu.php:634
+msgid ""
+"When enabled, OG images selected through Seo & Social get a separate "
+"1200x630 WebP generated with cover crop. Originals are not changed and "
+"remain the API fallback if optimization fails. Transparent originals keep "
+"transparency where the server WebP encoder supports it."
+msgstr ""
+"Când este activată, imaginile OG selectate prin Seo & Social primesc un "
+"WebP\n"
+" separat de 1200x630 generat cu cover crop. Originalele nu sunt modificate "
+"ș\n"
+"i rămân fallback în API dacă optimizarea eșuează. Originalele transparente "
+"î\n"
+"și păstrează transparența acolo unde encoderul WebP al serverului suportă "
+"as\n"
+"ta."
+
+#: seo-and-social/includes/admin/admin-menu.php:201
+msgid ""
+"When enabled, the JSON API marks the LLMs.txt payload as enabled. The "
+"frontend should use this to decide whether to serve /llms.txt publicly."
+msgstr ""
+"Când este activat, API-ul JSON marchează payload-ul LLMs.txt ca activ. "
+"Front\n"
+"endul ar trebui să folosească asta pentru a decide dacă servește public /"
+"llm\n"
+"s.txt."
+
+#: seo-and-social/includes/admin/admin-menu.php:616
+msgid ""
+"When enabled, the settings endpoint is public for headless frontends and "
+"protected by a lightweight unauthenticated rate limit. When disabled, the "
+"endpoint requires an authenticated administrator."
+msgstr ""
+"Când este activat, endpointul de setări este public pentru frontenduri "
+"headl\n"
+"ess și este protejat de un rate limit ușor pentru cereri neautentificate. "
+"Câ\n"
+"nd este dezactivat, endpointul necesită un administrator autentificat."
+
+#: seo-and-social/includes/admin/admin-menu.php:839
+msgid "You do not have permission to delete generated OG images."
+msgstr "Nu ai permisiunea de a șterge imaginile OG generate."
+
+#: seo-and-social/includes/admin/admin-menu.php:773
+msgid "You do not have permission to delete this plugin data."
+msgstr "Nu ai permisiunea de a șterge datele acestui plugin."
+
+#: seo-and-social/includes/admin/admin-menu.php:736
+msgid "You do not have permission to manage plugin settings."
+msgstr "Nu ai permisiunea de a gestiona setările pluginului."
+
+#: seo-and-social/includes/admin/admin-menu.php:36
+#: seo-and-social/includes/admin/admin-menu.php:726
+msgid "You do not have permission to manage these settings."
+msgstr "Nu ai permisiunea de a gestiona aceste setări."
+
+#: seo-and-social/includes/admin/admin-menu.php:803
+msgid "You do not have permission to regenerate OG images."
+msgstr "Nu ai permisiunea de a regenera imaginile OG."
+
+#: seo-and-social/includes/admin/admin-menu.php:341
+msgid "YouTube URL"
+msgstr "URL YouTube"
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:262
+msgid "empty/fallback"
+msgstr "gol/fallback"
+
+#: seo-and-social/includes/admin/admin-menu.php:1049
+msgid "key"
+msgstr "cheie"
+
+#: seo-and-social/includes/admin/admin-menu.php:1080
+msgid "propertyKey"
+msgstr "cheieProprietate"

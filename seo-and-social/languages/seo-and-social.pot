@@ -1,0 +1,843 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the Seo & Social package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Seo & Social 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-29 11:12+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: seo-and-social/includes/admin/admin-menu.php:161
+msgid ""
+"<code>seo_overrides</code> contains only what was saved on that specific "
+"page, post, or CPT item. <code>seo_resolved</code> is the final SEO payload: "
+"local overrides first, then global defaults as fallback. Frontends should "
+"usually render metadata from <code>seo_resolved</code>."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:156
+msgid "API and frontend usage"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:57
+msgid "Add FAQ item"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:228
+#: seo-and-social/includes/admin/admin-menu.php:248
+#: seo-and-social/includes/admin/admin-menu.php:357
+#: seo-and-social/includes/admin/admin-menu.php:584
+msgid "Add row"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:495
+msgid "Address"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:150
+msgid ""
+"Administrators can access the global Seo & Social admin pages, configure "
+"plugin settings, choose enabled post types, manage REST names, control "
+"public endpoint behavior, and run generated-image maintenance tools. Editors "
+"do not see the global plugin menu by default, but they can still use the SEO/"
+"FAQ boxes on content they are allowed to edit."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:148
+msgid ""
+"After that, edit individual pages, posts, or CPT items. Fill only the fields "
+"that should override the global defaults. Empty local SEO fields are treated "
+"as “use the global value”. FAQ items are saved per content item and exposed "
+"only when enabled."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:70
+msgid "All Seo & Social plugin data was deleted."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:620
+msgid "Allow basic HTML in FAQ answers"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:218
+msgid "Allowed / recommended pages"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:106
+msgid "Answer"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:459
+msgid "Business / organization schema type"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:73
+msgid "Canonical URL"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:490
+msgid ""
+"Canonical public website URL for this organization. Usually the frontend "
+"site URL."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:943
+#: seo-and-social/includes/helpers/assets.php:53
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:67
+msgid "Choose image"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:503
+msgid "City"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:506
+msgid "City or locality for the organization address."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:511
+msgid "Country"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:514
+msgid ""
+"Country for the organization address. Use the public-facing country name or "
+"ISO code your frontend expects."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:263
+msgid "Custom content"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:258
+msgid "Custom raw llms.txt content"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:561
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:89
+msgid "Custom schema JSON"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:708
+msgid "Danger zone"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:440
+msgid "Default OG image URL"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:675
+msgid ""
+"Default endpoint namespace. Changing it changes the public settings URL."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:446
+msgid ""
+"Default image URL for social sharing when content does not provide its own "
+"image."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:411
+msgid "Default meta description"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:403
+msgid "Default meta title"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:421
+msgid "Default robots"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:712
+msgid "Delete all plugin data"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:645
+msgid "Delete generated WebP images"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:238
+msgid "Disallowed / ignored sections"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:610
+msgid "Enable FAQ meta box"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:198
+msgid "Enable LLMs.txt data"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:619
+msgid "Enable REST fields on content items"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:609
+msgid "Enable SEO meta box"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:613
+msgid "Enable public REST endpoint"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:122
+msgid "Enabled"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:326
+msgid "Exposed as the primary contact email for the frontend."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:574
+msgid "Extra schema properties"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:347
+msgid "Extra social links"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:27
+msgid "FAQ"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:697
+msgid "FAQ REST field name"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:47
+msgid ""
+"FAQ is per content item. Use the editor for simple formatting. Only enabled "
+"rows are exposed in REST, sorted by position."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:659
+msgid "FAQ post types"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:338
+msgid "Facebook URL"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:415
+msgid ""
+"Fallback description when content does not provide a custom SEO description."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:406
+msgid "Fallback title when content does not provide a custom SEO title."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1159
+msgid "Field information"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:692
+msgid ""
+"Field name for local per-content SEO overrides. The resolved final SEO "
+"payload is always exposed separately as seo_resolved."
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:53
+msgid ""
+"Fill in only the fields that should override global Seo & Social settings."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:162
+msgid ""
+"For OG images, use <code>og_image_url</code> as the preferred final URL. "
+"Keep <code>og_image_original_url</code> as the source/fallback reference, "
+"and use <code>og_image_optimized</code> when you need width, height, or MIME "
+"details for the generated WebP."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:142
+msgid "General setup"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:173
+msgid ""
+"Generated OG WebP metadata is stored on the source attachment under "
+"<code>_sas_og_image_1200x630</code>. The generated WebP file is saved beside "
+"the original upload file. Deleting the source attachment, deleting generated "
+"WebP images, or deleting all plugin data removes the generated file metadata "
+"and files."
+msgstr ""
+
+#. translators: %d: deleted image count.
+#: seo-and-social/includes/admin/admin-menu.php:847
+#, php-format
+msgid "Generated WebP OG images deleted: %d."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:171
+msgid ""
+"Global plugin settings are stored in <code>wp_options</code> under "
+"<code>sas_settings</code>, with autoload disabled. This includes Social "
+"fields, global SEO/schema fields, enabled post types, REST names, and "
+"feature toggles."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:168
+msgid "How data is handled in the database"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:138
+msgid "How to use"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:149
+msgid ""
+"If OG image optimization is enabled, images selected through the plugin can "
+"get a separate 1200x630 WebP copy. Originals remain untouched. Use "
+"<strong>Regenerate OG images</strong> after enabling optimization on an "
+"existing site, and <strong>Delete generated WebP images</strong> when you "
+"want to clear only those generated files."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:163
+msgid ""
+"If the public endpoint is enabled, unauthenticated frontend requests can "
+"read the settings endpoint and are protected by a lightweight rate limit. If "
+"it is disabled, the settings endpoint requires an authenticated "
+"administrator."
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:61
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:70
+msgid "Image for social sharing. The frontend decides how to render it."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:422
+#: seo-and-social/includes/admin/admin-menu.php:429
+msgid ""
+"In SEO, if you do not send a robots meta tag at all, the normal search "
+"engine behavior is effectively index,follow. Leave this empty for that "
+"default behavior. This is useful for testing or staging websites where you "
+"may need noindex generally."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:339
+msgid "Instagram URL"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:569
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:90
+msgid ""
+"Invalid JSON is automatically deleted and will not be saved, to prevent "
+"breaking the API."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:85
+msgid "LLMs.txt"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:193
+msgid "LLMs.txt content"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1050
+#: seo-and-social/includes/admin/admin-menu.php:1110
+msgid "Label"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:527
+msgid "Latitude"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:78
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:85
+msgid "Leave empty to let the frontend use its default robots behavior."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:476
+msgid "Logo URL"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:481
+msgid ""
+"Logo image URL for structured data. Use a clear brand mark from the Media "
+"Library when possible."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:535
+msgid "Longitude"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:680
+msgid "Main settings endpoint path"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:84
+msgid "New question"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:60
+msgid "OG image"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:626
+#: seo-and-social/includes/admin/admin-menu.php:631
+msgid "OG image optimization"
+msgstr ""
+
+#. translators: 1: generated count, 2: failed count, 3: skipped count.
+#: seo-and-social/includes/admin/admin-menu.php:812
+#, php-format
+msgid "OG images regenerated. Generated: %1$d. Failed: %2$d. Skipped: %3$d."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:349
+msgid "Only rows with key, label, and valid URL are exposed in the public API."
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:90
+msgid "Open"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:543
+msgid "Opening hours"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:547
+msgid ""
+"Opening hours in a compact schema-friendly format, for example Mo-Fr "
+"09:00-18:00."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:565
+msgid ""
+"Optional advanced JSON merged into the schema payload by the frontend. "
+"Invalid JSON is deleted and not saved."
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:73
+msgid "Optional canonical URL override."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:530
+msgid ""
+"Optional geographic latitude for LocalBusiness schema. Use decimal degrees, "
+"for example 40.7128."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:538
+msgid ""
+"Optional geographic longitude for LocalBusiness schema. Use decimal degrees, "
+"for example -74.0060."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1112
+msgid "Optional note"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:556
+msgid ""
+"Optional price range indicator for local business schema, such as $, $$, or $"
+"$$."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:267
+msgid ""
+"Optional raw Markdown-style text appended to the generated llms.txt preview "
+"and API payload."
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:89
+msgid ""
+"Optional valid JSON for advanced frontend schema handling. Invalid JSON is "
+"not exposed."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:468
+msgid "Organization name"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:454
+msgid "Organization schema data"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:56
+msgid "Overrides the frontend SEO description for this content item."
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:55
+msgid "Overrides the frontend SEO title for this content item."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:220
+msgid "Pages the frontend should include as recommended resources in llms.txt."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:160
+msgid ""
+"Per-content REST responses expose <code>seo_overrides</code>, "
+"<code>seo_resolved</code>, and <code>faq_items</code> by default. The "
+"override and FAQ field names can be changed in Settings, but "
+"<code>seo_resolved</code> is reserved and always uses that name."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:172
+msgid ""
+"Per-content SEO data is stored in <code>wp_postmeta</code> under "
+"<code>_sas_seo_overrides</code>. Per-content FAQ data is stored in "
+"<code>wp_postmeta</code> under <code>_sas_faq_items</code>. "
+"<code>seo_resolved</code> is not stored; it is computed when the REST "
+"response is requested."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:331
+msgid "Phone / WhatsApp"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:606
+msgid "Plugin behavior"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:117
+msgid "Position"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:519
+msgid "Postal code"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:522
+msgid "Postal or ZIP code for the organization address."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:275
+msgid "Preview"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:552
+msgid "Price range"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:322
+msgid "Primary email"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:95
+msgid "Question"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:666
+msgid "REST names"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:671
+msgid "REST namespace"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1136
+msgid "Reason or description"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:640
+msgid "Regenerate OG images"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1052
+#: seo-and-social/includes/admin/admin-menu.php:1087
+#: seo-and-social/includes/admin/admin-menu.php:1113
+#: seo-and-social/includes/admin/admin-menu.php:1137
+msgid "Remove"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/faq-meta-box.php:126
+msgid "Remove question"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:77
+msgid "Robots"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:84
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:27
+msgid "SEO"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:688
+msgid "SEO REST field name"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:390
+msgid "SEO defaults"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:56
+msgid "SEO description"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:652
+msgid "SEO post types"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:55
+msgid "SEO title"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:108
+msgid "Save settings"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:88
+msgid "Schema type"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:88
+msgid ""
+"Schema.org type for this content item, such as WebPage, AboutPage, "
+"ContactPage, or FAQPage."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:463
+msgid ""
+"Schema.org type such as Organization, LocalBusiness, MedicalBusiness, or "
+"Dentist. The frontend decides how to render JSON-LD."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1135
+msgid "Section label"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:240
+msgid ""
+"Sections that should be described as ignored, low priority, private, "
+"duplicated, or not useful for AI context."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:19
+#: seo-and-social/includes/admin/admin-menu.php:20
+#: seo-and-social/includes/admin/admin-menu.php:58
+msgid "Seo & Social"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:82
+msgid "Seo & Social tabs"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:87
+msgid "Settings"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:66
+msgid ""
+"Settings saved, but one or more invalid JSON values were removed from public "
+"output."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:62
+msgid "Settings saved."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:210
+msgid ""
+"Short human-readable summary of what this site offers and what AI tools "
+"should understand about it."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:395
+msgid "Site name"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:206
+msgid "Site summary"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:83
+msgid "Social"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:317
+msgid "Social links"
+msgstr ""
+
+#: seo-and-social/includes/helpers/og-image.php:77
+msgid "Source image file is missing."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:145
+msgid ""
+"Start in <strong>Settings</strong>. Enable the modules you want to expose, "
+"choose the post types that should receive SEO and FAQ boxes, and keep Media "
+"unchecked unless you intentionally want plugin fields on attachments."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:498
+msgid ""
+"Street address or public location address used in local business schema."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:174
+msgid ""
+"The Danger zone button deletes <code>sas_settings</code>, plugin SEO/FAQ "
+"post meta, and generated WebP OG files. It does not delete posts, pages, CPT "
+"items, users, terms, or original Media Library files."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:159
+msgid ""
+"The global settings endpoint defaults to <code>/wp-json/headless-seo/v1/site-"
+"settings</code>. It returns <code>social</code> and global <code>seo</code> "
+"data for the frontend."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:471
+msgid ""
+"The public business or organization name used in Organization or "
+"LocalBusiness schema."
+msgstr ""
+
+#: seo-and-social/includes/rest/settings-endpoint.php:78
+msgid "This endpoint requires authentication."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:277
+msgid ""
+"This is the current rendered_txt value that the JSON endpoint returns for "
+"the frontend."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:710
+msgid ""
+"This permanently deletes all Seo & Social settings, all SEO and FAQ post "
+"meta saved by this plugin, and all generated WebP OG images. Original media "
+"files are not deleted. This cannot be undone."
+msgstr ""
+
+#: seo-and-social/includes/helpers/og-image.php:81
+msgid "This server does not support WebP generation."
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php:56
+msgid ""
+"This will delete all generated WebP OG images created by Seo & Social. "
+"Settings, SEO/FAQ post meta, and original media files will not be deleted. "
+"Continue?"
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php:55
+msgid ""
+"This will permanently delete all Seo & Social settings, all SEO/FAQ post "
+"meta saved by this plugin, and all generated WebP OG images. Original media "
+"files will not be deleted. This cannot be undone. Continue?"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:340
+msgid "TikTok URL"
+msgstr ""
+
+#: seo-and-social/includes/rest/settings-endpoint.php:180
+msgid "Too many requests. Please try again shortly."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:335
+msgid ""
+"Use an international phone format. The frontend can decide whether to render "
+"a call or WhatsApp link."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:576
+msgid ""
+"Use structured rows for schema data that does not have a dedicated field."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:147
+msgid ""
+"Use the <strong>LLMs.txt</strong> tab to manage structured content that your "
+"frontend can use to serve a public <code>/llms.txt</code> file."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:146
+msgid ""
+"Use the <strong>Social</strong> tab for public contact and social profile "
+"data. Use the <strong>SEO</strong> tab for global fallbacks such as site "
+"name, default meta title, default description, default OG image, "
+"organization fields, and schema defaults."
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php:54
+msgid "Use this image"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:398
+msgid "Used as a global site name fallback for frontend metadata."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1086
+msgid "Value"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:486
+msgid "Website URL"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:634
+msgid ""
+"When enabled, OG images selected through Seo & Social get a separate "
+"1200x630 WebP generated with cover crop. Originals are not changed and "
+"remain the API fallback if optimization fails. Transparent originals keep "
+"transparency where the server WebP encoder supports it."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:201
+msgid ""
+"When enabled, the JSON API marks the LLMs.txt payload as enabled. The "
+"frontend should use this to decide whether to serve /llms.txt publicly."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:616
+msgid ""
+"When enabled, the settings endpoint is public for headless frontends and "
+"protected by a lightweight unauthenticated rate limit. When disabled, the "
+"endpoint requires an authenticated administrator."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:839
+msgid "You do not have permission to delete generated OG images."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:773
+msgid "You do not have permission to delete this plugin data."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:736
+msgid "You do not have permission to manage plugin settings."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:36
+#: seo-and-social/includes/admin/admin-menu.php:726
+msgid "You do not have permission to manage these settings."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:803
+msgid "You do not have permission to regenerate OG images."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:341
+msgid "YouTube URL"
+msgstr ""
+
+#: seo-and-social/includes/meta-boxes/seo-meta-box.php:262
+msgid "empty/fallback"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1049
+msgid "key"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1080
+msgid "propertyKey"
+msgstr ""
