@@ -16,6 +16,35 @@ The implementation focuses on:
 - Conservative security defaults for public endpoints, role access, data deletion, and generated media.
 - A clean plugin ZIP build that excludes repository-only documentation and development files.
 
+
+## Seo & Social Plugin Walkthrough
+https://github.com/user-attachments/assets/0b1adc56-9d54-4366-b7a4-8fd6f281fb83
+
+
+## Screenshots
+
+### General Settings
+<img width="2518" height="2892" alt="General-Settings" src="https://github.com/user-attachments/assets/2d6ebe96-bbba-4c38-9f8b-c9928c6debdd" />
+
+
+### Social Settings
+
+<img width="4738" height="2514" alt="General-Setting-Social" src="https://github.com/user-attachments/assets/1c31f2c7-bba7-4e61-b874-970da821c898" />
+
+
+### Global SEO Settings
+
+<img width="4702" height="2928" alt="General-Setting-SEO" src="https://github.com/user-attachments/assets/f64389dc-f27f-457d-a72d-972e87e8f708" />
+
+
+### Page-Specific SEO & FAQ 
+
+<img width="5936" height="2784" alt="Page-Specifc-SEO-FAQ" src="https://github.com/user-attachments/assets/a963bc5d-ddc8-40c9-a881-6e2fdff43d02" />
+
+
+
+
+
 ## What The Plugin Does
 
 - Stores global social/contact links.
@@ -159,20 +188,6 @@ The upload ZIP contains only the runtime `seo-and-social/` plugin files. Reposit
 - Uninstall is intentionally non-destructive; data deletion is a manual Administrator action.
 
 See [SECURITY.md](SECURITY.md) for the full policy.
-
-## Screenshots And Video Placeholders
-
-- `<Screenshot placeholder: Seo & Social global admin page with How to use accordion above the tabs>`
-- `<Screenshot placeholder: Social tab with contact fields and extra social links>`
-- `<Screenshot placeholder: SEO tab with defaults, default robots, OG image controls, and organization schema fields>`
-- `<Screenshot placeholder: Settings tab with enabled modules, post type selection, REST names, OG image optimization, and danger zone>`
-- `<Screenshot placeholder: LLMs.txt tab with structured fields and rendered preview>`
-- `<Screenshot placeholder: Per-content SEO meta box on a page or custom post type>`
-- `<Screenshot placeholder: FAQ meta box with collapsible FAQ rows and basic editor controls>`
-- `<Screenshot placeholder: Example site-settings JSON response showing social, seo, and optimized OG image fields>`
-- `<Screenshot placeholder: Example WordPress page REST response showing seo_overrides, seo_resolved, and faq_items>`
-- `<Video placeholder: Short walkthrough from plugin settings to frontend API output>`
-- `<Video placeholder: OG image optimization regenerate/delete flow>`
 
 ## Forking Or Adapting
 
