@@ -218,7 +218,7 @@ class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_C
 			array(
 				array(
 					'question' => '<b>Safe question?</b>',
-					'answer' => '<strong>Safe answer</strong><script>alert(1)</script>',
+					'answer' => '<strong>Safe answer</strong><a href="javascript:alert(2)" onclick="alert(3)">Unsafe link</a><script>alert(1)</script>',
 					'enabled' => '1',
 				),
 			)
@@ -227,6 +227,8 @@ class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_C
 		$this->assertSame( 'Safe question?', $items[0]['question'] );
 		$this->assertStringContainsString( '<strong>Safe answer</strong>', $items[0]['answer'] );
 		$this->assertStringNotContainsString( '<script>', $items[0]['answer'] );
+		$this->assertStringNotContainsString( 'javascript:', $items[0]['answer'] );
+		$this->assertStringNotContainsString( 'onclick=', $items[0]['answer'] );
 	}
 
 	/**
