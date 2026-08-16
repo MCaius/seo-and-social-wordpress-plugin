@@ -107,11 +107,6 @@ npm run test:e2e:selectors
 Generated `test-results/`, `playwright-report/`, authentication state, traces,
 screenshots, and videos must remain outside Git.
 
-The FAQ E2E group is temporarily marked `fixme` while
-[GitHub issue #1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1)
-is open. A green run with skipped FAQ tests is not sufficient for release. Fix
-the issue, remove the quarantine, and retest the FAQ scenarios before release.
-
 ## Manual QA
 
 Use these documents together:
@@ -211,5 +206,4 @@ npm run env:package:stop
 ```
 
 Before release, also complete all manual P0 and P1 scenarios, resolve or accept
-every release blocker explicitly, run the compatibility smoke test, and confirm
-that the FAQ E2E quarantine has been removed.
+every release blocker explicitly, and run the compatibility smoke test.

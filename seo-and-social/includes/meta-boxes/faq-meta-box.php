@@ -82,7 +82,8 @@ function sas_render_faq_row( $index, $item ) {
 		)
 	);
 	$label = $item['question'] !== '' ? $item['question'] : __( 'New question', 'seo-and-social' );
-	$editor_id = 'sas_faq_answer_' . sanitize_key( (string) $index );
+	$editor_index = '__INDEX__' === $index ? $index : sanitize_key( (string) $index );
+	$editor_id    = 'sas_faq_answer_' . $editor_index;
 	?>
 	<div class="sas-row sas-faq-row is-collapsed" data-testid="sas-faq-row">
 		<button type="button" class="sas-faq-row-header" data-sas-toggle-faq-row data-testid="sas-toggle-faq-row">

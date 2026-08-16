@@ -98,9 +98,9 @@ Add findings only after execution. Use one entry per observation.
 - Steps: Open a published Page, expand Meta Boxes and FAQ, then add two or more FAQ items.
 - Expected: Every FAQ answer receives a unique DOM ID and an independent TinyMCE editor.
 - Actual: Every dynamic answer uses `sas_faq_answer___index__`; only the first row initializes TinyMCE and later rows remain plain textareas.
-- Evidence: Two manual browser reproductions, sanitized screenshots attached to the GitHub issue, and quarantined Playwright coverage in `tests/e2e/faq-meta-box.spec.mjs`.
+- Evidence: Two manual browser reproductions, sanitized screenshots attached to the GitHub issue, and Playwright regression coverage in `tests/e2e/faq-meta-box.spec.mjs`.
 - GitHub issue: [#1 — Dynamic FAQ rows reuse the same editor ID and only the first row initializes TinyMCE](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1)
-- Release status: Open release blocker. The FAQ E2E group remains marked `fixme` until the issue is fixed and manually retested.
+- Release status: Resolved and manually verified on `fix/faq-editor-unique-ids`. Focused FAQ coverage passes `3/3`, the complete Playwright suite passes `18/18`, and the manual browser retest confirms unique initialized TinyMCE editors with persisted values. The fix must be merged before release.
 
 ### F-002 — Schemeless schema-property URLs are normalized automatically
 
@@ -152,3 +152,5 @@ Do not edit the original result table to represent a later fix. Add retests here
 | 16-08-2026 | `QA-012` | `qa-admin-e2e` | Not run | Pass | Manual editor reload and REST inspection confirmed the plain-text and allowed-HTML policies. Allowed formatting was preserved when enabled, `<script>` was stripped, and no executable payload was exposed through `faq_items`. |
 | 16-08-2026 | `QA-007` | `qa-admin-e2e` | Not run | Pass | Manual settings reload and public REST inspection confirmed property type handling and sanitization. Non-blocking URL-normalization and duplicate-row observations are documented as `F-002` and `F-003`. |
 | 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `qa-admin-e2e` | Open | Fail | The dynamic FAQ editor defect remains reproducible: rows reuse the same editor ID and only the first dynamic row initializes TinyMCE. Retest after the fix is required before release. |
+| 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `fix/faq-editor-unique-ids` | Fail | Partial | The regression now requires three distinct editor IDs and initialized TinyMCE instances. Focused FAQ tests pass `3/3`, the complete Playwright suite passes `18/18` with no skipped tests, and PHPUnit passes `66 tests, 262 assertions`. Manual browser retest and issue closure remain pending. |
+| 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `fix/faq-editor-unique-ids` | Partial | Pass | Manual browser retest confirmed that three dynamic FAQ rows receive distinct IDs, initialize independent TinyMCE editors, accept different content, and preserve their values after save and reload. Issue #1 is ready to close after the fix is published. |
