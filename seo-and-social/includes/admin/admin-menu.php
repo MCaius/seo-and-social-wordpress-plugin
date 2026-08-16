@@ -640,12 +640,12 @@ function sas_render_settings_tab( $settings ) {
 		);
 		?>
 		<p>
-			<button type="submit" class="button" form="sas-regenerate-og-images-form">
+			<button type="submit" class="button" form="sas-regenerate-og-images-form" data-testid="sas-regenerate-og-images">
 				<?php echo esc_html__( 'Regenerate OG images', 'seo-and-social' ); ?>
 			</button>
 		</p>
 		<p>
-			<button type="submit" class="button button-link-delete" form="sas-delete-optimized-og-images-form" data-sas-confirm-delete-og-images>
+			<button type="submit" class="button button-link-delete" form="sas-delete-optimized-og-images-form" data-sas-confirm-delete-og-images data-testid="sas-delete-og-images">
 				<?php echo esc_html__( 'Delete generated WebP images', 'seo-and-social' ); ?>
 			</button>
 		</p>
