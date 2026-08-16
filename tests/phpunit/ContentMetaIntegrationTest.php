@@ -9,6 +9,52 @@ require_once __DIR__ . '/TestCase.php';
 
 class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_Case {
 	/**
+	 * WordPress autosave requests must preserve existing SEO and FAQ metadata.
+	 *
+	 * @runInSeparateProcess
+	 * @preserveGlobalState disabled
+	 *
+	 * @return void
+	 */
+	public function test_autosave_does_not_overwrite_content_metadata() {
+		define( 'DOING_AUTOSAVE', true );
+		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		$post_id = self::factory()->post->create( array( 'post_type' => 'post' ) );
+		wp_set_current_user( $administrator );
+		$this->set_plugin_settings( sas_get_default_settings() );
+
+		$original_seo = array( 'seo_title' => 'Original SEO title' );
+		$original_faq = array(
+			array(
+				'question' => 'Original?',
+				'answer' => 'Original answer',
+				'enabled' => true,
+				'position' => 1,
+			),
+		);
+		update_post_meta( $post_id, SAS_SEO_META_KEY, $original_seo );
+		update_post_meta( $post_id, SAS_FAQ_META_KEY, $original_faq );
+
+		$_POST['sas_seo_nonce'] = wp_create_nonce( 'sas_save_seo_overrides' );
+		$_POST['sas_seo'] = array( 'seo_title' => 'Autosaved SEO title' );
+		$_POST['sas_faq_nonce'] = wp_create_nonce( 'sas_save_faq_items' );
+		$_POST['sas_faq'] = array(
+			array(
+				'question' => 'Autosaved?',
+				'answer' => 'Autosaved answer',
+				'enabled' => '1',
+				'position' => '1',
+			),
+		);
+
+		sas_save_seo_meta_box( $post_id );
+		sas_save_faq_meta_box( $post_id );
+
+		$this->assertSame( $original_seo, get_post_meta( $post_id, SAS_SEO_META_KEY, true ) );
+		$this->assertSame( $original_faq, get_post_meta( $post_id, SAS_FAQ_META_KEY, true ) );
+	}
+
+	/**
 	 * Missing and invalid SEO nonces must preserve existing metadata.
 	 *
 	 * @dataProvider seo_nonce_provider
