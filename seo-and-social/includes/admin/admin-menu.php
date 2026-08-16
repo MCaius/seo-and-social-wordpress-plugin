@@ -29,7 +29,7 @@ function sas_register_admin_menu() {
 /**
  * Render admin settings page.
  *
- * @return void
+ * @return void|false False when the redirect was cancelled.
  */
 function sas_render_admin_page() {
 	if ( ! current_user_can( 'sas_access_plugin' ) ) {
@@ -719,7 +719,7 @@ function sas_render_settings_tab( $settings ) {
 /**
  * Handle settings save.
  *
- * @return void
+ * @return void|false False when the redirect was cancelled.
  */
 function sas_handle_save_settings() {
 	if ( ! current_user_can( 'sas_access_plugin' ) ) {
@@ -759,14 +759,13 @@ function sas_handle_save_settings() {
 		admin_url( 'admin.php' )
 	);
 
-	wp_safe_redirect( $redirect );
-	exit;
+	return wp_safe_redirect( $redirect );
 }
 
 /**
  * Delete all plugin data from the WordPress database.
  *
- * @return void
+ * @return void|false False when the redirect was cancelled.
  */
 function sas_handle_delete_all_data() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -789,14 +788,13 @@ function sas_handle_delete_all_data() {
 		admin_url( 'admin.php' )
 	);
 
-	wp_safe_redirect( $redirect );
-	exit;
+	return wp_safe_redirect( $redirect );
 }
 
 /**
  * Regenerate optimized OG images for currently used image attachments.
  *
- * @return void
+ * @return void|false False when the redirect was cancelled.
  */
 function sas_handle_regenerate_og_images() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -825,14 +823,13 @@ function sas_handle_regenerate_og_images() {
 		admin_url( 'admin.php' )
 	);
 
-	wp_safe_redirect( $redirect );
-	exit;
+	return wp_safe_redirect( $redirect );
 }
 
 /**
  * Delete generated optimized OG images without deleting settings.
  *
- * @return void
+ * @return void|false False when the redirect was cancelled.
  */
 function sas_handle_delete_optimized_og_images() {
 	if ( ! current_user_can( 'manage_options' ) ) {
@@ -858,8 +855,7 @@ function sas_handle_delete_optimized_og_images() {
 		admin_url( 'admin.php' )
 	);
 
-	wp_safe_redirect( $redirect );
-	exit;
+	return wp_safe_redirect( $redirect );
 }
 
 /**
