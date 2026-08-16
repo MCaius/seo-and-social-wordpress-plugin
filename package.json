@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "build:zip": "node scripts/build-zip.mjs",
+    "verify:zip": "node scripts/verify-package.mjs",
     "env:start": "wp-env --config=.wp-env.json start",
     "env:stop": "wp-env --config=.wp-env.json stop",
     "env:destroy": "wp-env --config=.wp-env.json destroy",
@@ -14,9 +15,11 @@
     "env:e2e:stop": "wp-env --config=.wp-env.e2e.json stop",
     "env:package:start": "wp-env --config=.wp-env.package.json start",
     "env:package:stop": "wp-env --config=.wp-env.package.json stop",
+    "env:package:destroy": "wp-env --config=.wp-env.package.json destroy",
+    "test:package": "wp-env --config=.wp-env.package.json run cli wp plugin is-active seo-and-social && wp-env --config=.wp-env.package.json run cli wp eval '$plugin = get_plugin_data( WP_PLUGIN_DIR . \"/seo-and-social/seo-and-social.php\" ); if ( \"0.1.0\" !== $plugin[\"Version\"] ) { fwrite( STDERR, \"Unexpected Seo & Social version.\\n\" ); exit( 1 ); } echo \"Seo & Social 0.1.0 is active.\\n\";'",
     "syntax:php": "find seo-and-social -name '*.php' -print0 | xargs -0 -n1 php -l",
     "lint:php": "composer lint:php",
-    "validate": "npm run syntax:php && npm run test:php && npm run build:zip"
+    "validate": "npm run syntax:php && npm run test:php && npm run build:zip && npm run verify:zip"
   },
   "devDependencies": {
     "@wordpress/env": "^11.13.0"

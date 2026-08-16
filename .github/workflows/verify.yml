@@ -60,6 +60,19 @@ jobs:
       - name: Build plugin zip
         run: npm run build:zip
 
+      - name: Verify plugin zip contents
+        run: npm run verify:zip
+
+      - name: Start clean packaged-plugin environment
+        run: npm run env:package:start -- --update
+
+      - name: Verify packaged plugin activation and version
+        run: npm run test:package
+
+      - name: Stop packaged-plugin environment
+        if: always()
+        run: npm run env:package:stop
+
       - name: Upload verified plugin package
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:
