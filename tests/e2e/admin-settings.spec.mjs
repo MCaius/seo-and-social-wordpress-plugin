@@ -3,6 +3,8 @@ import { expect, test } from '@playwright/test';
 const adminPage = '/wp-admin/admin.php?page=seo-and-social';
 
 test.describe('Seo & Social admin settings', () => {
+  test.describe.configure({ mode: 'serial' });
+
   test('opens every settings tab through stable test ids', async ({ page }) => {
     await page.goto(adminPage);
     await expect(page.getByTestId('sas-admin-page')).toBeVisible();
