@@ -9,6 +9,7 @@
     "env:destroy": "wp-env --config=.wp-env.json destroy",
     "env:phpunit:start": "wp-env --config=.wp-env.phpunit.json start",
     "env:phpunit:stop": "wp-env --config=.wp-env.phpunit.json stop",
+    "test:php": "wp-env --config=.wp-env.phpunit.json run cli php wp-content/plugins/seo-and-social/vendor/bin/phpunit -c wp-content/plugins/seo-and-social/phpunit.xml.dist --do-not-cache-result",
     "env:e2e:start": "wp-env --config=.wp-env.e2e.json start",
     "env:e2e:stop": "wp-env --config=.wp-env.e2e.json stop",
     "env:package:start": "wp-env --config=.wp-env.package.json start",

@@ -3,6 +3,7 @@ node_modules/
 vendor/
 dist/
 .phpcs-cache
+.phpunit.result.cache
 .wp-env.override.json
 local-secrets/
 *.pem

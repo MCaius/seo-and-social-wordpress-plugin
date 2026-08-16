@@ -3,6 +3,11 @@
   "plugins": ["./seo-and-social"],
   "port": 8892,
   "testsEnvironment": false,
+  "mappings": {
+    "wp-content/plugins/seo-and-social/tests": "./tests/phpunit",
+    "wp-content/plugins/seo-and-social/phpunit.xml.dist": "./phpunit.xml.dist",
+    "wp-content/plugins/seo-and-social/vendor": "./vendor"
+  },
   "config": {
     "WP_DEBUG": true,
     "WP_DEBUG_LOG": true,
