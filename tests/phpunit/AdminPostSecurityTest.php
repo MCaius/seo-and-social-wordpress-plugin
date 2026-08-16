@@ -83,6 +83,26 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 	}
 
 	/**
+	 * An Administrator is stopped when the handler nonce is missing.
+	 *
+	 * @dataProvider handler_provider
+	 *
+	 * @param string $action     Admin-post action.
+	 * @param string $handler    Handler function.
+	 * @param string $nonce_name POST nonce field.
+	 * @return void
+	 */
+	public function test_administrator_cannot_execute_handler_without_nonce( $action, $handler, $nonce_name ) {
+		$this->assertSame( 10, has_action( 'admin_post_' . $action, $handler ) );
+		$this->assertArrayNotHasKey( $nonce_name, $_REQUEST );
+		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		wp_set_current_user( $administrator );
+
+		$this->expectException( 'WPDieException' );
+		$handler();
+	}
+
+	/**
 	 * An Administrator is stopped when the handler nonce is invalid.
 	 *
 	 * @dataProvider handler_provider
