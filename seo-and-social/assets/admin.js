@@ -45,9 +45,16 @@
       const content = document.querySelector(`[data-testid="${contentTestId}"]`);
       const postbox = content ? content.closest(".postbox") : null;
       const toggle = postbox ? postbox.querySelector(".handlediv") : null;
+      const metaBoxesLiner = postbox ? postbox.closest(".edit-post-meta-boxes-main__liner") : null;
+      const metaBoxesPresenter = metaBoxesLiner ? metaBoxesLiner.previousElementSibling : null;
+      const metaBoxesToggle = metaBoxesPresenter ? metaBoxesPresenter.querySelector('button[aria-expanded]') : null;
 
       if (toggle) {
         toggle.dataset.testid = toggleTestId;
+      }
+
+      if (metaBoxesToggle) {
+        metaBoxesToggle.dataset.testid = "sas-toggle-meta-boxes-area";
       }
     });
   }

@@ -19,7 +19,19 @@ test.describe('SEO meta box', () => {
     const metaBox = page.getByTestId('sas-seo-meta-box');
 
     if (!(await metaBox.isVisible())) {
-      await page.getByTestId('sas-toggle-seo-meta-box').click();
+      const metaBoxesAreaToggle = page.getByTestId('sas-toggle-meta-boxes-area');
+
+      if (await metaBoxesAreaToggle.isVisible()) {
+        await metaBoxesAreaToggle.click();
+      }
+    }
+
+    if (!(await metaBox.isVisible())) {
+      const seoMetaBoxToggle = page.getByTestId('sas-toggle-seo-meta-box');
+
+      if (await seoMetaBoxToggle.isVisible()) {
+        await seoMetaBoxToggle.click();
+      }
     }
 
     await expect(metaBox).toBeVisible();
