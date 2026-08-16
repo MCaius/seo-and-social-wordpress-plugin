@@ -107,6 +107,10 @@ npm run test:e2e:selectors
 Generated `test-results/`, `playwright-report/`, authentication state, traces,
 screenshots, and videos must remain outside Git.
 
+The same complete suite runs as a separate CI job. Failure reports, traces,
+screenshots, and videos are retained as short-lived workflow artifacts only when
+the CI run fails.
+
 ## Manual QA
 
 Use these documents together:
@@ -174,14 +178,14 @@ branch are cancelled automatically. The reusable workflow audits locked
 dependencies, checks PHP syntax and coding standards, runs PHPUnit, validates
 the Romanian translation, builds and verifies the ZIP, runs WordPress Plugin
 Check, performs a clean packaged-plugin smoke test, and runs the compatibility
-matrix.
+matrix. A separate job runs the complete Playwright admin E2E suite.
 
 The release workflow runs the same verification before publishing artifacts.
 Only tags matching `v*` or a deliberate manual workflow dispatch can publish a
 GitHub release. Pushing a normal branch does not release the plugin.
 
-Playwright remains a local gate at this stage and must be run before merging
-changes that affect the WordPress administration interface.
+Playwright is both a local and CI gate for changes that affect the WordPress
+administration interface.
 
 ## Recommended pre-push sequence
 
