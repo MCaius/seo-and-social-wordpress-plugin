@@ -44,7 +44,7 @@ Allowed results: `Pass`, `Fail`, `Partial`, `Blocked`, `Not run`.
 | QA-008 | LLMs data enabled, disabled, and dynamic rows | P0 | Not run | — | — |
 | QA-009 | Meta-box registration by post type | P1 | Not run | — | — |
 | QA-010 | SEO overrides and global fallback resolution | P0 | Not run | — | — |
-| QA-011 | FAQ rows, enabled state, and ordering | P1 | Not run | — | — |
+| QA-011 | FAQ rows, enabled state, and ordering | P1 | Pass | Manual editor reload and `faq_items` REST inspection | Complete enabled rows were preserved and returned in position order `10`, `20`, `30`; the disabled and incomplete rows were excluded from the public REST value. A separate UI defect was observed while adding dynamic rows; it is tracked in [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) and documented as `F-001`, but does not invalidate the QA-011 acceptance criteria. |
 | QA-012 | FAQ HTML policy and stored XSS boundary | P0 | Not run | — | — |
 | QA-013 | Autosave, revisions, and unauthorized metadata changes | P0 | Not run | — | — |
 | QA-014 | Public settings and LLMs endpoints enabled | P0 | Not run | — | — |
@@ -63,11 +63,11 @@ Allowed results: `Pass`, `Fail`, `Partial`, `Blocked`, `Not run`.
 
 | Result | Count |
 | --- | ---: |
-| Pass | 0 |
+| Pass | 7 |
 | Fail | 0 |
 | Partial | 0 |
 | Blocked | 0 |
-| Not run | 24 |
+| Not run | 17 |
 
 ## Findings
 
@@ -87,6 +87,21 @@ Add findings only after execution. Use one entry per observation.
 - Evidence:
 - GitHub issue:
 
+### F-001 — Dynamic FAQ rows reuse the same editor ID
+
+- Finding ID: `F-001`
+- Related scenarios: `QA-011`, `QA-012`
+- Classification: Bug
+- Priority or severity: Medium
+- Reproduction frequency: Always, reproduced `2/2` times after independent disposable-fixture resets
+- Environment: Seo & Social `0.1.0`; WordPress `7.0.4`; PHP `8.3.33`; Chrome `151.0.7922.138`; local Docker via `wp-env`; macOS
+- Steps: Open a published Page, expand Meta Boxes and FAQ, then add two or more FAQ items.
+- Expected: Every FAQ answer receives a unique DOM ID and an independent TinyMCE editor.
+- Actual: Every dynamic answer uses `sas_faq_answer___index__`; only the first row initializes TinyMCE and later rows remain plain textareas.
+- Evidence: Two manual browser reproductions, sanitized screenshots attached to the GitHub issue, and quarantined Playwright coverage in `tests/e2e/faq-meta-box.spec.mjs`.
+- GitHub issue: [#1 — Dynamic FAQ rows reuse the same editor ID and only the first row initializes TinyMCE](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1)
+- Release status: Open release blocker. The FAQ E2E group remains marked `fixme` until the issue is fixed and manually retested.
+
 ## Exit assessment
 
 - [ ] All 24 scenarios have an executed result.
@@ -95,7 +110,7 @@ Add findings only after execution. Use one entry per observation.
 - [ ] Observations were not presented as confirmed bugs.
 - [ ] Sensitive data was removed from all evidence.
 
-Status: Baseline not executed.
+Status: Baseline execution in progress (`7/24` scenarios executed).
 
 ## Follow-up retests
 
@@ -103,4 +118,5 @@ Do not edit the original result table to represent a later fix. Add retests here
 
 | Date | Scenario / issue | Branch or commit | Previous result | Retest result | Evidence and notes |
 | --- | --- | --- | --- | --- | --- |
-| — | — | — | — | — | — |
+| 16-08-2026 | `QA-011` | `qa-admin-e2e` | Not run | Pass | Manual editor reload and REST inspection confirmed persistence, enabled-state filtering, exclusion of incomplete rows, and ordering by positions `10`, `20`, `30`. The related editor UI defect is tracked separately as [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1). |
+| 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `qa-admin-e2e` | Open | Fail | The dynamic FAQ editor defect remains reproducible: rows reuse the same editor ID and only the first dynamic row initializes TinyMCE. Retest after the fix is required before release. |
