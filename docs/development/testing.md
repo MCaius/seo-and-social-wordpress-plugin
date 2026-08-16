@@ -168,11 +168,13 @@ npm run env:compat:stop
 
 ## CI and release gates
 
-Every push and pull request calls `.github/workflows/verify.yml`. The reusable
-workflow audits locked dependencies, checks PHP syntax and coding standards,
-runs PHPUnit, validates the Romanian translation, builds and verifies the ZIP,
-runs WordPress Plugin Check, performs a clean packaged-plugin smoke test, and
-runs the compatibility matrix.
+Pull requests targeting `main`, pushes to `main`, and manual CI dispatches call
+`.github/workflows/verify.yml`. Superseded runs for the same pull request or
+branch are cancelled automatically. The reusable workflow audits locked
+dependencies, checks PHP syntax and coding standards, runs PHPUnit, validates
+the Romanian translation, builds and verifies the ZIP, runs WordPress Plugin
+Check, performs a clean packaged-plugin smoke test, and runs the compatibility
+matrix.
 
 The release workflow runs the same verification before publishing artifacts.
 Only tags matching `v*` or a deliberate manual workflow dispatch can publish a
