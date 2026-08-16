@@ -18,6 +18,7 @@ abstract class Seo_And_Social_Test_Case extends WP_UnitTestCase {
 		wp_set_current_user( 0 );
 		$_POST = array();
 		$_GET = array();
+		$_REQUEST = array();
 		unset( $_SERVER['HTTP_X_FORWARDED_FOR'], $_SERVER['HTTP_CF_CONNECTING_IP'] );
 		$_SERVER['REMOTE_ADDR'] = '203.0.113.10';
 	}
@@ -38,6 +39,7 @@ abstract class Seo_And_Social_Test_Case extends WP_UnitTestCase {
 		delete_option( SAS_OPTION_NAME );
 		$_POST = array();
 		$_GET = array();
+		$_REQUEST = array();
 
 		parent::tear_down();
 	}

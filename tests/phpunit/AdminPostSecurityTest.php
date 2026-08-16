@@ -96,7 +96,7 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 		$this->assertSame( 10, has_action( 'admin_post_' . $action, $handler ) );
 		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
 		wp_set_current_user( $administrator );
-		$_POST[ $nonce_name ] = 'invalid-admin-post-nonce';
+		$this->setRequestNonce( $nonce_name, 'invalid-admin-post-nonce' );
 
 		$this->expectException( 'WPDieException' );
 		$handler();
@@ -109,7 +109,7 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 	 */
 	public function test_administrator_can_save_settings_with_valid_nonce() {
 		$this->set_administrator();
-		$_POST['sas_settings_nonce'] = wp_create_nonce( 'sas_save_settings' );
+		$this->setRequestNonce( 'sas_settings_nonce', wp_create_nonce( 'sas_save_settings' ) );
 		$_POST['sas_active_tab'] = 'social';
 		$_POST['sas_settings'] = array(
 			'social' => array(
@@ -140,7 +140,7 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 		$this->set_plugin_settings( sas_get_default_settings() );
 		update_post_meta( $post_id, SAS_SEO_META_KEY, array( 'seo_title' => 'Delete me' ) );
 		update_post_meta( $post_id, SAS_FAQ_META_KEY, array( array( 'question' => 'Delete me?' ) ) );
-		$_POST['sas_delete_all_data_nonce'] = wp_create_nonce( 'sas_delete_all_data' );
+		$this->setRequestNonce( 'sas_delete_all_data_nonce', wp_create_nonce( 'sas_delete_all_data' ) );
 
 		sas_handle_delete_all_data();
 
@@ -162,7 +162,7 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 	 */
 	public function test_administrator_can_regenerate_og_images_with_valid_nonce() {
 		$this->set_administrator();
-		$_POST['sas_regenerate_og_images_nonce'] = wp_create_nonce( 'sas_regenerate_og_images' );
+		$this->setRequestNonce( 'sas_regenerate_og_images_nonce', wp_create_nonce( 'sas_regenerate_og_images' ) );
 
 		sas_handle_regenerate_og_images();
 
@@ -182,7 +182,7 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 	 */
 	public function test_administrator_can_delete_optimized_og_images_with_valid_nonce() {
 		$this->set_administrator();
-		$_POST['sas_delete_optimized_og_images_nonce'] = wp_create_nonce( 'sas_delete_optimized_og_images' );
+		$this->setRequestNonce( 'sas_delete_optimized_og_images_nonce', wp_create_nonce( 'sas_delete_optimized_og_images' ) );
 
 		sas_handle_delete_optimized_og_images();
 
@@ -204,6 +204,18 @@ class Seo_And_Social_Admin_Post_Security_Test extends Seo_And_Social_Test_Case {
 		$user_id = self::factory()->user->create( array( 'role' => 'administrator' ) );
 		wp_set_current_user( $user_id );
 		return $user_id;
+	}
+
+	/**
+	 * Populate the nonce as PHP would for a real form request.
+	 *
+	 * @param string $name  Nonce field name.
+	 * @param string $value Nonce value.
+	 * @return void
+	 */
+	private function setRequestNonce( $name, $value ) {
+		$_POST[ $name ] = $value;
+		$_REQUEST[ $name ] = $value;
 	}
 
 	/**
