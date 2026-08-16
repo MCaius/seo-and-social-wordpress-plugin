@@ -13,6 +13,12 @@
     "test:php": "wp-env --config=.wp-env.phpunit.json run cli php wp-content/plugins/seo-and-social/vendor/bin/phpunit -c wp-content/plugins/seo-and-social/phpunit.xml.dist --do-not-cache-result",
     "env:e2e:start": "wp-env --config=.wp-env.e2e.json start",
     "env:e2e:stop": "wp-env --config=.wp-env.e2e.json stop",
+    "env:e2e:destroy": "wp-env --config=.wp-env.e2e.json destroy",
+    "e2e:fixtures": "wp-env --config=.wp-env.e2e.json run cli wp eval-file wp-content/qa-e2e/setup-fixtures.php",
+    "test:e2e:selectors": "node scripts/check-e2e-selectors.mjs",
+    "test:e2e": "npm run test:e2e:selectors && playwright test",
+    "test:e2e:headed": "npm run test:e2e:selectors && playwright test --headed",
+    "test:e2e:report": "playwright show-report",
     "env:package:start": "wp-env --config=.wp-env.package.json start",
     "env:package:stop": "wp-env --config=.wp-env.package.json stop",
     "env:package:destroy": "wp-env --config=.wp-env.package.json destroy",
@@ -28,6 +34,7 @@
     "validate": "npm run syntax:php && npm run test:php && npm run build:zip && npm run verify:zip"
   },
   "devDependencies": {
+    "@playwright/test": "^1.62.1",
     "@wordpress/env": "^11.13.0"
   },
   "overrides": {

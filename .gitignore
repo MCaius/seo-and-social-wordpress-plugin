@@ -11,6 +11,7 @@ local-secrets/
 test-results/
 playwright-report/
 blob-report/
+tests/e2e/.auth/
 
 # Local testing workflow files.
 TO-DO.md

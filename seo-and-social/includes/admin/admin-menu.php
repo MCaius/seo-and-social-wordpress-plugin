@@ -58,32 +58,32 @@ function sas_render_admin_page() {
 		$notice_status = 'success';
 	}
 	?>
-	<div class="wrap sas-admin-page">
+	<div class="wrap sas-admin-page" data-testid="sas-admin-page">
 		<h1><?php echo esc_html__( 'Seo & Social', 'seo-and-social' ); ?></h1>
 
 		<?php if ( $message === 'saved' ) : ?>
-			<div class="notice notice-success is-dismissible">
+			<div class="notice notice-success is-dismissible" data-testid="sas-notice-saved">
 				<p><?php echo esc_html__( 'Settings saved.', 'seo-and-social' ); ?></p>
 			</div>
 		<?php elseif ( $message === 'json_error' ) : ?>
-			<div class="notice notice-warning is-dismissible">
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-json-error">
 				<p><?php echo esc_html__( 'Settings saved, but one or more invalid JSON values were removed from public output.', 'seo-and-social' ); ?></p>
 			</div>
 		<?php elseif ( $message === 'deleted' ) : ?>
-			<div class="notice notice-success is-dismissible">
+			<div class="notice notice-success is-dismissible" data-testid="sas-notice-deleted">
 				<p><?php echo esc_html__( 'All Seo & Social plugin data was deleted.', 'seo-and-social' ); ?></p>
 			</div>
 		<?php endif; ?>
 
 		<?php if ( $notice ) : ?>
-			<div class="notice notice-<?php echo esc_attr( $notice_status ); ?> is-dismissible">
+			<div class="notice notice-<?php echo esc_attr( $notice_status ); ?> is-dismissible" data-testid="sas-maintenance-notice">
 				<p><?php echo esc_html( $notice ); ?></p>
 			</div>
 		<?php endif; ?>
 
 		<?php sas_render_how_to_use(); ?>
 
-		<nav class="nav-tab-wrapper" aria-label="<?php echo esc_attr__( 'Seo & Social tabs', 'seo-and-social' ); ?>">
+		<nav class="nav-tab-wrapper" aria-label="<?php echo esc_attr__( 'Seo & Social tabs', 'seo-and-social' ); ?>" data-testid="sas-admin-tabs">
 			<?php sas_render_admin_tab_link( 'social', __( 'Social', 'seo-and-social' ), $active_tab ); ?>
 			<?php sas_render_admin_tab_link( 'seo', __( 'SEO', 'seo-and-social' ), $active_tab ); ?>
 			<?php sas_render_admin_tab_link( 'llms', __( 'LLMs.txt', 'seo-and-social' ), $active_tab ); ?>
@@ -92,7 +92,7 @@ function sas_render_admin_page() {
 			<?php endif; ?>
 		</nav>
 
-		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="sas-settings-form">
+		<form method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>" class="sas-settings-form" data-testid="sas-settings-form">
 			<input type="hidden" name="action" value="sas_save_settings">
 			<input type="hidden" name="sas_active_tab" value="<?php echo esc_attr( $active_tab ); ?>">
 			<?php wp_nonce_field( 'sas_save_settings', 'sas_settings_nonce' ); ?>
@@ -109,7 +109,7 @@ function sas_render_admin_page() {
 			}
 			?>
 
-			<?php submit_button( __( 'Save settings', 'seo-and-social' ) ); ?>
+			<?php submit_button( __( 'Save settings', 'seo-and-social' ), 'primary', 'submit', true, array( 'data-testid' => 'sas-save-settings' ) ); ?>
 		</form>
 
 		<form id="sas-delete-all-data-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
@@ -228,7 +228,7 @@ function sas_render_llms_tab( $settings ) {
 						<?php sas_render_llms_recommended_page_row( (string) $index, $row ); ?>
 					<?php endforeach; ?>
 				</div>
-				<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-llms-recommended-page-row">
+			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-llms-recommended-page-row" data-testid="sas-add-llms-recommended-page">
 					<?php echo esc_html__( 'Add row', 'seo-and-social' ); ?>
 				</button>
 			</div>
@@ -248,7 +248,7 @@ function sas_render_llms_tab( $settings ) {
 						<?php sas_render_llms_ignored_section_row( (string) $index, $row ); ?>
 					<?php endforeach; ?>
 				</div>
-				<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-llms-ignored-section-row">
+			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-llms-ignored-section-row" data-testid="sas-add-llms-ignored-section">
 					<?php echo esc_html__( 'Add row', 'seo-and-social' ); ?>
 				</button>
 			</div>
@@ -302,7 +302,7 @@ function sas_render_admin_tab_link( $tab, $label, $active_tab ) {
 		admin_url( 'admin.php' )
 	);
 	?>
-	<a class="nav-tab <?php echo $active_tab === $tab ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( $url ); ?>">
+	<a class="nav-tab <?php echo $active_tab === $tab ? 'nav-tab-active' : ''; ?>" href="<?php echo esc_url( $url ); ?>" data-testid="sas-tab-<?php echo esc_attr( $tab ); ?>">
 		<?php echo esc_html( $label ); ?>
 	</a>
 	<?php
@@ -357,7 +357,7 @@ function sas_render_social_tab( $settings ) {
 					<?php sas_render_extra_social_row( (string) $index, $row ); ?>
 				<?php endforeach; ?>
 			</div>
-			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-extra-social-row">
+			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-extra-social-row" data-testid="sas-add-extra-social-link">
 				<?php echo esc_html__( 'Add row', 'seo-and-social' ); ?>
 			</button>
 		</div>
@@ -425,7 +425,7 @@ function sas_render_seo_tab( $settings ) {
 				<label for="sas_settings_seo_default_robots"><?php echo esc_html__( 'Default robots', 'seo-and-social' ); ?></label>
 				<?php sas_info_button( 'sas_settings_seo_default_robots', __( 'In SEO, if you do not send a robots meta tag at all, the normal search engine behavior is effectively index,follow. Leave this empty for that default behavior. This is useful for testing or staging websites where you may need noindex generally.', 'seo-and-social' ) ); ?>
 			</div>
-			<select id="sas_settings_seo_default_robots" name="sas_settings[seo][default_robots]">
+			<select id="sas_settings_seo_default_robots" name="sas_settings[seo][default_robots]" data-testid="sas_settings_seo_default_robots">
 				<?php foreach ( sas_get_robots_options() as $value => $label ) : ?>
 					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $default_robots, $value ); ?>><?php echo esc_html( $label ); ?></option>
 				<?php endforeach; ?>
@@ -584,7 +584,7 @@ function sas_render_seo_tab( $settings ) {
 					<?php sas_render_extra_schema_row( (string) $index, $row ); ?>
 				<?php endforeach; ?>
 			</div>
-			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-extra-schema-row">
+			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-extra-schema-row" data-testid="sas-add-extra-schema-property">
 				<?php echo esc_html__( 'Add row', 'seo-and-social' ); ?>
 			</button>
 		</div>
@@ -927,6 +927,7 @@ function sas_text_field( $name, $label, $value, $args = array() ) {
 				value="<?php echo esc_attr( $value ); ?>"
 				placeholder="<?php echo esc_attr( $args['placeholder'] ); ?>"
 				class="regular-text"
+				data-testid="<?php echo esc_attr( $id ); ?>"
 				<?php if ( $args['media_id_target'] ) : ?>
 					data-sas-media-linked-id="<?php echo esc_attr( $args['media_id_target'] ); ?>"
 				<?php endif; ?>
@@ -973,7 +974,7 @@ function sas_textarea_field( $name, $label, $value, $args = array() ) {
 			<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
 			<?php sas_info_button( $id, $args['info'] ); ?>
 		</div>
-		<textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="<?php echo esc_attr( (string) $args['rows'] ); ?>" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
+		<textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="<?php echo esc_attr( (string) $args['rows'] ); ?>" class="large-text code" data-testid="<?php echo esc_attr( $id ); ?>"><?php echo esc_textarea( $value ); ?></textarea>
 		<?php sas_info_panel( $id, $args['info'] ); ?>
 	</div>
 	<?php
@@ -995,7 +996,7 @@ function sas_checkbox_field( $name, $label, $checked, $args = array() ) {
 	<div class="sas-field sas-checkbox-field">
 		<div class="sas-label-row">
 			<label for="<?php echo esc_attr( $id ); ?>">
-				<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="1" <?php checked( $checked ); ?>>
+				<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="1" data-testid="<?php echo esc_attr( $id ); ?>" <?php checked( $checked ); ?>>
 				<?php echo esc_html( $label ); ?>
 			</label>
 			<?php sas_info_button( $id, $args['info'] ); ?>
@@ -1019,7 +1020,7 @@ function sas_post_type_checkboxes( $name, $post_types, $selected ) {
 		<?php foreach ( $post_types as $post_type => $object ) : ?>
 			<?php $id = sas_field_id( $name . '_' . $post_type ); ?>
 			<label for="<?php echo esc_attr( $id ); ?>">
-				<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $post_type ); ?>" <?php checked( in_array( $post_type, (array) $selected, true ) ); ?>>
+				<input type="checkbox" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $post_type ); ?>" data-testid="<?php echo esc_attr( $id ); ?>" <?php checked( in_array( $post_type, (array) $selected, true ) ); ?>>
 				<?php echo esc_html( $object->labels->singular_name ); ?>
 				<code><?php echo esc_html( $post_type ); ?></code>
 			</label>
@@ -1045,11 +1046,11 @@ function sas_render_extra_social_row( $index, $row ) {
 		)
 	);
 	?>
-	<div class="sas-row">
-		<input type="text" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'key', 'seo-and-social' ); ?>">
-		<input type="text" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Label', 'seo-and-social' ); ?>">
-		<input type="url" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https://">
-		<button type="button" class="button-link-delete" data-sas-remove-row><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+	<div class="sas-row" data-testid="sas-extra-social-row">
+		<input type="text" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'key', 'seo-and-social' ); ?>" data-testid="sas-extra-social-key">
+		<input type="text" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Label', 'seo-and-social' ); ?>" data-testid="sas-extra-social-label">
+		<input type="url" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https://" data-testid="sas-extra-social-url">
+		<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-extra-social-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }
@@ -1076,15 +1077,15 @@ function sas_render_extra_schema_row( $index, $row ) {
 		$value = implode( "\n", $value );
 	}
 	?>
-	<div class="sas-row sas-schema-row">
-		<input type="text" name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'propertyKey', 'seo-and-social' ); ?>">
-		<select name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][type]">
+	<div class="sas-row sas-schema-row" data-testid="sas-extra-schema-row">
+		<input type="text" name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'propertyKey', 'seo-and-social' ); ?>" data-testid="sas-extra-schema-key">
+		<select name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][type]" data-testid="sas-extra-schema-type">
 			<?php foreach ( array( 'text', 'url', 'list', 'json' ) as $type ) : ?>
 				<option value="<?php echo esc_attr( $type ); ?>" <?php selected( $row['type'], $type ); ?>><?php echo esc_html( $type ); ?></option>
 			<?php endforeach; ?>
 		</select>
-		<textarea name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][value]" rows="3" placeholder="<?php echo esc_attr__( 'Value', 'seo-and-social' ); ?>"><?php echo esc_textarea( $value ); ?></textarea>
-		<button type="button" class="button-link-delete" data-sas-remove-row><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+		<textarea name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][value]" rows="3" placeholder="<?php echo esc_attr__( 'Value', 'seo-and-social' ); ?>" data-testid="sas-extra-schema-value"><?php echo esc_textarea( $value ); ?></textarea>
+		<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-extra-schema-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }

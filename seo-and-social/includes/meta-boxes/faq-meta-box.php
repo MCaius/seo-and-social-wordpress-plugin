@@ -42,7 +42,7 @@ function sas_render_faq_meta_box( $post ) {
 	$items = sas_get_faq_items( $post->ID );
 	wp_nonce_field( 'sas_save_faq_items', 'sas_faq_nonce' );
 	?>
-	<div class="sas-meta-box">
+	<div class="sas-meta-box" data-testid="sas-faq-meta-box">
 		<div class="notice notice-info inline">
 			<p><?php echo esc_html__( 'FAQ is per content item. Use the editor for simple formatting. Only enabled rows are exposed in REST, sorted by position.', 'seo-and-social' ); ?></p>
 		</div>
@@ -53,7 +53,7 @@ function sas_render_faq_meta_box( $post ) {
 					<?php sas_render_faq_row( (string) $index, $item ); ?>
 				<?php endforeach; ?>
 			</div>
-			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-faq-row">
+			<button type="button" class="button" data-sas-add-row data-template="tmpl-sas-faq-row" data-testid="sas-add-faq-item">
 				<?php echo esc_html__( 'Add FAQ item', 'seo-and-social' ); ?>
 			</button>
 		</div>
@@ -84,8 +84,8 @@ function sas_render_faq_row( $index, $item ) {
 	$label = $item['question'] !== '' ? $item['question'] : __( 'New question', 'seo-and-social' );
 	$editor_id = 'sas_faq_answer_' . sanitize_key( (string) $index );
 	?>
-	<div class="sas-row sas-faq-row is-collapsed">
-		<button type="button" class="sas-faq-row-header" data-sas-toggle-faq-row>
+	<div class="sas-row sas-faq-row is-collapsed" data-testid="sas-faq-row">
+		<button type="button" class="sas-faq-row-header" data-sas-toggle-faq-row data-testid="sas-toggle-faq-row">
 			<strong class="sas-faq-row-title"><?php echo esc_html( $label ); ?></strong>
 			<span class="sas-faq-row-toggle"><?php echo esc_html__( 'Open', 'seo-and-social' ); ?></span>
 		</button>
@@ -99,6 +99,7 @@ function sas_render_faq_row( $index, $item ) {
 					name="sas_faq[<?php echo esc_attr( $index ); ?>][question]"
 					value="<?php echo esc_attr( $item['question'] ); ?>"
 					class="widefat sas-faq-title-input"
+					data-testid="sas-faq-question"
 				>
 			</p>
 
@@ -109,21 +110,22 @@ function sas_render_faq_row( $index, $item ) {
 					name="sas_faq[<?php echo esc_attr( $index ); ?>][answer]"
 					rows="5"
 					class="widefat sas-faq-answer-editor"
+					data-testid="sas-faq-answer"
 				><?php echo esc_textarea( $item['answer'] ); ?></textarea>
 			</p>
 
 			<div class="sas-faq-row-options">
 				<label>
 					<span><?php echo esc_html__( 'Position', 'seo-and-social' ); ?></span>
-					<input type="number" min="0" step="1" name="sas_faq[<?php echo esc_attr( $index ); ?>][position]" value="<?php echo esc_attr( (string) $item['position'] ); ?>">
+					<input type="number" min="0" step="1" name="sas_faq[<?php echo esc_attr( $index ); ?>][position]" value="<?php echo esc_attr( (string) $item['position'] ); ?>" data-testid="sas-faq-position">
 				</label>
 				<label class="sas-inline-check">
-					<input type="checkbox" name="sas_faq[<?php echo esc_attr( $index ); ?>][enabled]" value="1" <?php checked( $item['enabled'] ); ?>>
+					<input type="checkbox" name="sas_faq[<?php echo esc_attr( $index ); ?>][enabled]" value="1" data-testid="sas-faq-enabled" <?php checked( $item['enabled'] ); ?>>
 					<?php echo esc_html__( 'Enabled', 'seo-and-social' ); ?>
 				</label>
 			</div>
 
-			<button type="button" class="button-link-delete" data-sas-remove-row><?php echo esc_html__( 'Remove question', 'seo-and-social' ); ?></button>
+			<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-faq-row"><?php echo esc_html__( 'Remove question', 'seo-and-social' ); ?></button>
 		</div>
 	</div>
 	<?php

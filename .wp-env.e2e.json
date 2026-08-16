@@ -1,6 +1,10 @@
 {
   "core": null,
   "plugins": ["./seo-and-social"],
+  "mappings": {
+    "wp-content/qa-e2e/setup-fixtures.php": "./tests/e2e/setup-fixtures.php",
+    "wp-content/mu-plugins/sas-e2e-access.php": "./tests/e2e/fixtures/sas-e2e-access.php"
+  },
   "port": 8893,
   "testsEnvironment": false,
   "config": {

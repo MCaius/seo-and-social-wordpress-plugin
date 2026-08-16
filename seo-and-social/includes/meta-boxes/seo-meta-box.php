@@ -49,7 +49,7 @@ function sas_render_seo_meta_box( $post ) {
 
 	wp_nonce_field( 'sas_save_seo_overrides', 'sas_seo_nonce' );
 	?>
-	<div class="sas-meta-box">
+	<div class="sas-meta-box" data-testid="sas-seo-meta-box">
 		<p class="description"><?php echo esc_html__( 'Fill in only the fields that should override global Seo & Social settings.', 'seo-and-social' ); ?></p>
 
 		<?php sas_meta_text_field( 'sas_seo[seo_title]', 'sas_seo_title', __( 'SEO title', 'seo-and-social' ), $seo['seo_title'], __( 'Overrides the frontend SEO title for this content item.', 'seo-and-social' ) ); ?>
@@ -62,8 +62,8 @@ function sas_render_seo_meta_box( $post ) {
 			</div>
 			<input type="hidden" id="sas_seo_og_image_id" name="sas_seo[og_image_id]" value="<?php echo esc_attr( (string) $seo['og_image_id'] ); ?>">
 			<div class="sas-input-row">
-				<input type="url" id="sas_seo_og_image_url" name="sas_seo[og_image_url]" value="<?php echo esc_attr( $og_image_url ); ?>" class="regular-text" data-sas-media-linked-id="sas_seo_og_image_id">
-				<button type="button" class="button" data-sas-media-id-target="sas_seo_og_image_id" data-sas-media-url-target="sas_seo_og_image_url">
+				<input type="url" id="sas_seo_og_image_url" name="sas_seo[og_image_url]" value="<?php echo esc_attr( $og_image_url ); ?>" class="regular-text" data-sas-media-linked-id="sas_seo_og_image_id" data-testid="sas_seo_og_image_url">
+				<button type="button" class="button" data-sas-media-id-target="sas_seo_og_image_id" data-sas-media-url-target="sas_seo_og_image_url" data-testid="sas-seo-choose-og-image">
 					<?php echo esc_html__( 'Choose image', 'seo-and-social' ); ?>
 				</button>
 			</div>
@@ -77,7 +77,7 @@ function sas_render_seo_meta_box( $post ) {
 				<label for="sas_seo_robots"><?php echo esc_html__( 'Robots', 'seo-and-social' ); ?></label>
 				<?php sas_info_button( 'sas_seo_robots', __( 'Leave empty to let the frontend use its default robots behavior.', 'seo-and-social' ) ); ?>
 			</div>
-			<select id="sas_seo_robots" name="sas_seo[robots]">
+			<select id="sas_seo_robots" name="sas_seo[robots]" data-testid="sas_seo_robots">
 				<?php foreach ( sas_get_robots_options() as $value => $label ) : ?>
 					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $seo['robots'], $value ); ?>><?php echo esc_html( $label ); ?></option>
 				<?php endforeach; ?>
@@ -285,7 +285,7 @@ function sas_meta_text_field( $name, $id, $label, $value, $info = '', $type = 't
 			<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
 			<?php sas_info_button( $id, $info ); ?>
 		</div>
-		<input type="<?php echo esc_attr( $type ); ?>" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" class="large-text">
+		<input type="<?php echo esc_attr( $type ); ?>" id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" value="<?php echo esc_attr( $value ); ?>" class="large-text" data-testid="<?php echo esc_attr( $id ); ?>">
 		<?php sas_info_panel( $id, $info ); ?>
 	</div>
 	<?php
@@ -309,7 +309,7 @@ function sas_meta_textarea_field( $name, $id, $label, $value, $info = '', $rows 
 			<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?></label>
 			<?php sas_info_button( $id, $info ); ?>
 		</div>
-		<textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="<?php echo esc_attr( (string) $rows ); ?>" class="large-text code"><?php echo esc_textarea( $value ); ?></textarea>
+		<textarea id="<?php echo esc_attr( $id ); ?>" name="<?php echo esc_attr( $name ); ?>" rows="<?php echo esc_attr( (string) $rows ); ?>" class="large-text code" data-testid="<?php echo esc_attr( $id ); ?>"><?php echo esc_textarea( $value ); ?></textarea>
 		<?php sas_info_panel( $id, $info ); ?>
 	</div>
 	<?php
