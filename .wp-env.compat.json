@@ -1,0 +1,12 @@
+{
+  "core": null,
+  "phpVersion": "8.0",
+  "plugins": ["./dist/package/seo-and-social"],
+  "port": 8894,
+  "testsEnvironment": false,
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_DEBUG_DISPLAY": false
+  }
+}
