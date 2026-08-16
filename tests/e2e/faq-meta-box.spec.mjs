@@ -71,19 +71,30 @@ test.describe('FAQ meta box', () => {
   }
 
   async function setAnswer(page, index, value) {
-    await page.getByTestId('sas-faq-answer').nth(index).evaluate((textarea, answer) => {
-      const editor = window.tinyMCE?.get(textarea.id);
+    const textarea = page.getByTestId('sas-faq-answer').nth(index);
+
+    await expect.poll(() => textarea.evaluate((element) => {
+      if (element.dataset.editorInitialized !== 'true') {
+        return true;
+      }
+
+      return Boolean(window.tinyMCE?.get(element.id)?.initialized);
+    })).toBe(true);
+
+    await textarea.evaluate((element, answer) => {
+      const editor = window.tinyMCE?.get(element.id);
+
+      element.value = answer;
+      element.dispatchEvent(new Event('input', { bubbles: true }));
+      element.dispatchEvent(new Event('change', { bubbles: true }));
 
       if (editor) {
         editor.setContent(answer);
         editor.save();
-        return;
       }
-
-      textarea.value = answer;
-      textarea.dispatchEvent(new Event('input', { bubbles: true }));
-      textarea.dispatchEvent(new Event('change', { bubbles: true }));
     }, value);
+
+    await expect(textarea).toHaveValue(value);
   }
 
   async function getRestFaq(request) {
@@ -115,6 +126,10 @@ test.describe('FAQ meta box', () => {
     await setAnswer(page, 2, '<p>Disabled answer</p>');
     await page.getByTestId('sas-faq-position').nth(2).fill('5');
     await page.getByTestId('sas-faq-enabled').nth(2).uncheck();
+
+    await expect(page.getByTestId('sas-faq-answer').nth(0)).toHaveValue('<p>Answer A</p>');
+    await expect(page.getByTestId('sas-faq-answer').nth(1)).toHaveValue('<p>Answer B</p>');
+    await expect(page.getByTestId('sas-faq-answer').nth(2)).toHaveValue('<p>Disabled answer</p>');
 
     await savePost(page);
     await page.reload();
