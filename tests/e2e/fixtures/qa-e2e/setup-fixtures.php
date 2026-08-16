@@ -56,4 +56,23 @@ if ( is_wp_error( $seo_post_id ) ) {
 
 delete_post_meta( $seo_post_id, '_sas_seo_overrides' );
 
+$faq_fixture = get_page_by_path( 'sas-e2e-faq', OBJECT, 'page' );
+$faq_post_id = wp_insert_post(
+	array(
+		'ID'           => $faq_fixture ? $faq_fixture->ID : 0,
+		'post_type'    => 'page',
+		'post_status'  => 'publish',
+		'post_title'   => 'Seo & Social E2E FAQ Fixture',
+		'post_name'    => 'sas-e2e-faq',
+		'post_content' => 'Deterministic content used by the Playwright FAQ meta-box suite.',
+	),
+	true
+);
+
+if ( is_wp_error( $faq_post_id ) ) {
+	WP_CLI::error( $faq_post_id->get_error_message() );
+}
+
+delete_post_meta( $faq_post_id, '_sas_faq_items' );
+
 WP_CLI::success( 'Seo & Social E2E fixtures are ready.' );
