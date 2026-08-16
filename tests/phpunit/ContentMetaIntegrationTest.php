@@ -78,6 +78,60 @@ class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_C
 	}
 
 	/**
+	 * Clearing the SEO form replaces previous values with safe empty defaults.
+	 *
+	 * @return void
+	 */
+	public function test_seo_meta_handler_clears_previous_values() {
+		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		$post_id = self::factory()->post->create( array( 'post_type' => 'post' ) );
+		wp_set_current_user( $administrator );
+		$this->set_plugin_settings( sas_get_default_settings() );
+		update_post_meta( $post_id, SAS_SEO_META_KEY, array( 'seo_title' => 'Previous title' ) );
+
+		$_POST['sas_seo_nonce'] = wp_create_nonce( 'sas_save_seo_overrides' );
+		$_POST['sas_seo'] = array();
+		sas_save_seo_meta_box( $post_id );
+
+		$this->assertSame( sas_get_default_post_seo_overrides(), get_post_meta( $post_id, SAS_SEO_META_KEY, true ) );
+	}
+
+	/**
+	 * SEO metadata is not saved for a disabled post type or a revision.
+	 *
+	 * @dataProvider disallowed_seo_post_provider
+	 *
+	 * @param string $post_type Post type to exercise.
+	 * @return void
+	 */
+	public function test_seo_meta_handler_rejects_disallowed_content_types( $post_type ) {
+		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		$post_id = self::factory()->post->create( array( 'post_type' => $post_type ) );
+		wp_set_current_user( $administrator );
+		$settings = sas_get_default_settings();
+		$settings['settings']['seo_post_types'] = array( 'page' );
+		$this->set_plugin_settings( $settings );
+
+		$_POST['sas_seo_nonce'] = wp_create_nonce( 'sas_save_seo_overrides' );
+		$_POST['sas_seo'] = array( 'seo_title' => 'Must not save' );
+		sas_save_seo_meta_box( $post_id );
+
+		$this->assertSame( '', get_post_meta( $post_id, SAS_SEO_META_KEY, true ) );
+	}
+
+	/**
+	 * Content types rejected by the SEO save handler.
+	 *
+	 * @return array
+	 */
+	public function disallowed_seo_post_provider() {
+		return array(
+			'disabled post type' => array( 'post' ),
+			'revision' => array( 'revision' ),
+		);
+	}
+
+	/**
 	 * FAQ output contains only complete enabled rows sorted by position.
 	 *
 	 * @return void
@@ -102,6 +156,54 @@ class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_C
 		$this->assertCount( 2, $public );
 		$this->assertSame( 'First?', $public[0]['question'] );
 		$this->assertSame( 'Third?', $public[1]['question'] );
+	}
+
+	/**
+	 * FAQ HTML follows the configured allow-list policy.
+	 *
+	 * @return void
+	 */
+	public function test_faq_html_policy_preserves_safe_html_and_removes_scripts() {
+		$settings = sas_get_default_settings();
+		$settings['settings']['faq_allow_html'] = true;
+		$this->set_plugin_settings( $settings );
+
+		$items = sas_sanitize_faq_items(
+			array(
+				array(
+					'question' => '<b>Safe question?</b>',
+					'answer' => '<strong>Safe answer</strong><script>alert(1)</script>',
+					'enabled' => '1',
+				),
+			)
+		);
+
+		$this->assertSame( 'Safe question?', $items[0]['question'] );
+		$this->assertStringContainsString( '<strong>Safe answer</strong>', $items[0]['answer'] );
+		$this->assertStringNotContainsString( '<script>', $items[0]['answer'] );
+	}
+
+	/**
+	 * FAQ answers become plain text when HTML is disabled.
+	 *
+	 * @return void
+	 */
+	public function test_faq_html_policy_strips_markup_when_disabled() {
+		$settings = sas_get_default_settings();
+		$settings['settings']['faq_allow_html'] = false;
+		$this->set_plugin_settings( $settings );
+
+		$items = sas_sanitize_faq_items(
+			array(
+				array(
+					'question' => 'Plain?',
+					'answer' => '<strong>Plain answer</strong>',
+					'enabled' => '1',
+				),
+			)
+		);
+
+		$this->assertSame( 'Plain answer', $items[0]['answer'] );
 	}
 
 	/**
@@ -173,5 +275,38 @@ class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_C
 
 		$saved = get_post_meta( $post_id, SAS_SEO_META_KEY, true );
 		$this->assertSame( 'Original title', $saved['seo_title'] );
+	}
+
+	/**
+	 * A user without edit permission cannot overwrite existing FAQ metadata.
+	 *
+	 * @return void
+	 */
+	public function test_unauthorized_user_cannot_overwrite_faq_meta() {
+		$post_id = self::factory()->post->create( array( 'post_type' => 'post' ) );
+		$original = array(
+			array(
+				'question' => 'Original?',
+				'answer' => 'Original answer',
+				'enabled' => true,
+				'position' => 1,
+			),
+		);
+		update_post_meta( $post_id, SAS_FAQ_META_KEY, $original );
+		$subscriber = self::factory()->user->create( array( 'role' => 'subscriber' ) );
+		wp_set_current_user( $subscriber );
+
+		$_POST['sas_faq_nonce'] = wp_create_nonce( 'sas_save_faq_items' );
+		$_POST['sas_faq'] = array(
+			array(
+				'question' => 'Unauthorized?',
+				'answer' => 'Unauthorized answer',
+				'enabled' => '1',
+				'position' => '1',
+			),
+		);
+		sas_save_faq_meta_box( $post_id );
+
+		$this->assertSame( $original, get_post_meta( $post_id, SAS_FAQ_META_KEY, true ) );
 	}
 }
