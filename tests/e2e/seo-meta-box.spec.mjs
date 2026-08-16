@@ -40,7 +40,7 @@ test.describe('SEO meta box', () => {
       const metaBoxesAreaToggle = page.getByTestId('sas-toggle-meta-boxes-area');
 
       await expect(metaBoxesAreaToggle).toBeVisible();
-      await metaBoxesAreaToggle.click();
+      await metaBoxesAreaToggle.press('Enter');
       await expect(metaBoxesAreaToggle).toHaveAttribute('aria-expanded', 'true');
     }
 
@@ -48,7 +48,7 @@ test.describe('SEO meta box', () => {
       const seoMetaBoxToggle = page.getByTestId('sas-toggle-seo-meta-box');
 
       await expect(seoMetaBoxToggle).toBeVisible();
-      await seoMetaBoxToggle.click();
+      await seoMetaBoxToggle.press('Enter');
     }
 
     await expect(metaBox).toBeVisible();
