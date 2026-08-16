@@ -9,6 +9,44 @@ require_once __DIR__ . '/TestCase.php';
 
 class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_Case {
 	/**
+	 * Missing and invalid SEO nonces must preserve existing metadata.
+	 *
+	 * @dataProvider seo_nonce_provider
+	 *
+	 * @param string|null $nonce Nonce value, or null when omitted.
+	 * @return void
+	 */
+	public function test_seo_meta_handler_rejects_missing_or_invalid_nonce( $nonce ) {
+		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		$post_id = self::factory()->post->create( array( 'post_type' => 'post' ) );
+		wp_set_current_user( $administrator );
+		$this->set_plugin_settings( sas_get_default_settings() );
+		update_post_meta( $post_id, SAS_SEO_META_KEY, array( 'seo_title' => 'Original title' ) );
+
+		if ( null !== $nonce ) {
+			$_POST['sas_seo_nonce'] = $nonce;
+		}
+		$_POST['sas_seo'] = array( 'seo_title' => 'Changed title' );
+
+		sas_save_seo_meta_box( $post_id );
+
+		$saved = get_post_meta( $post_id, SAS_SEO_META_KEY, true );
+		$this->assertSame( 'Original title', $saved['seo_title'] );
+	}
+
+	/**
+	 * SEO nonce cases rejected by the save handler.
+	 *
+	 * @return array
+	 */
+	public function seo_nonce_provider() {
+		return array(
+			'missing nonce' => array( null ),
+			'invalid nonce' => array( 'invalid-seo-nonce' ),
+		);
+	}
+
+	/**
 	 * SEO metadata is sanitized and saved by the real handler.
 	 *
 	 * @return void
@@ -64,6 +102,58 @@ class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_C
 		$this->assertCount( 2, $public );
 		$this->assertSame( 'First?', $public[0]['question'] );
 		$this->assertSame( 'Third?', $public[1]['question'] );
+	}
+
+	/**
+	 * Missing and invalid FAQ nonces must preserve existing metadata.
+	 *
+	 * @dataProvider faq_nonce_provider
+	 *
+	 * @param string|null $nonce Nonce value, or null when omitted.
+	 * @return void
+	 */
+	public function test_faq_meta_handler_rejects_missing_or_invalid_nonce( $nonce ) {
+		$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+		$post_id = self::factory()->post->create( array( 'post_type' => 'post' ) );
+		wp_set_current_user( $administrator );
+		$this->set_plugin_settings( sas_get_default_settings() );
+		$original = array(
+			array(
+				'question' => 'Original?',
+				'answer' => 'Original answer',
+				'enabled' => true,
+				'position' => 1,
+			),
+		);
+		update_post_meta( $post_id, SAS_FAQ_META_KEY, $original );
+
+		if ( null !== $nonce ) {
+			$_POST['sas_faq_nonce'] = $nonce;
+		}
+		$_POST['sas_faq'] = array(
+			array(
+				'question' => 'Changed?',
+				'answer' => 'Changed answer',
+				'enabled' => '1',
+				'position' => '1',
+			),
+		);
+
+		sas_save_faq_meta_box( $post_id );
+
+		$this->assertSame( $original, get_post_meta( $post_id, SAS_FAQ_META_KEY, true ) );
+	}
+
+	/**
+	 * FAQ nonce cases rejected by the save handler.
+	 *
+	 * @return array
+	 */
+	public function faq_nonce_provider() {
+		return array(
+			'missing nonce' => array( null ),
+			'invalid nonce' => array( 'invalid-faq-nonce' ),
+		);
 	}
 
 	/**

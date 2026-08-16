@@ -4,6 +4,7 @@ vendor/
 dist/
 .phpcs-cache
 .phpunit.result.cache
+/seo-and-social/phpunit.xml.dist
 .wp-env.override.json
 local-secrets/
 *.pem
