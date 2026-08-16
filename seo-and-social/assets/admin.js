@@ -35,6 +35,30 @@
     editor.dataset.editorInitialized = "true";
   }
 
+  function initializeMetaBoxTestIds() {
+    const metaBoxes = [
+      ["sas-seo-meta-box", "sas-toggle-seo-meta-box"],
+      ["sas-faq-meta-box", "sas-toggle-faq-meta-box"],
+    ];
+
+    metaBoxes.forEach(function ([contentTestId, toggleTestId]) {
+      const content = document.querySelector(`[data-testid="${contentTestId}"]`);
+      const postbox = content ? content.closest(".postbox") : null;
+      const toggle = postbox ? postbox.querySelector(".handlediv") : null;
+      const metaBoxesLiner = postbox ? postbox.closest(".edit-post-meta-boxes-main__liner") : null;
+      const metaBoxesPresenter = metaBoxesLiner ? metaBoxesLiner.previousElementSibling : null;
+      const metaBoxesToggle = metaBoxesPresenter ? metaBoxesPresenter.querySelector('button[aria-expanded]') : null;
+
+      if (toggle) {
+        toggle.dataset.testid = toggleTestId;
+      }
+
+      if (metaBoxesToggle) {
+        metaBoxesToggle.dataset.testid = "sas-toggle-meta-boxes-area";
+      }
+    });
+  }
+
   $(document).on("click", ".sas-info-button", function () {
     const button = $(this);
     const panel = $("#" + button.attr("aria-controls"));
@@ -163,4 +187,8 @@
   });
 
   document.querySelectorAll(".sas-faq-row").forEach(updateFaqRowToggle);
+  initializeMetaBoxTestIds();
+  window.setTimeout(initializeMetaBoxTestIds, 250);
+  window.setTimeout(initializeMetaBoxTestIds, 1000);
+  window.setTimeout(initializeMetaBoxTestIds, 2000);
 })(jQuery);

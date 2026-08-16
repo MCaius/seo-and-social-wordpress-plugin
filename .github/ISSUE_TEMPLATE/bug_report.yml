@@ -1,0 +1,163 @@
+name: Bug report
+description: Report a reproducible defect in Seo & Social.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a problem. Please include only sanitized evidence from a disposable or authorized environment. Do not include passwords, cookies, nonces, personal data, or production secrets.
+
+  - type: textarea
+    id: summary
+    attributes:
+      label: Summary
+      description: Describe the defect and its user or API impact in a few sentences.
+      placeholder: The plugin does..., which causes...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      description: Provide the smallest reliable sequence that reproduces the problem.
+      placeholder: |
+        1. Start from...
+        2. Configure...
+        3. Perform...
+        4. Observe...
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What should happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: What happens instead? Include exact controlled error messages where useful.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: test_layer
+    attributes:
+      label: Test layer
+      description: Where was the problem observed?
+      options:
+        - Local WordPress manual QA
+        - Existing PHP regression script
+        - WordPress PHPUnit integration
+        - WordPress admin E2E
+        - REST/API contract test
+        - Packaged ZIP verification
+        - GitHub Actions CI or Release
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: qa_scenario
+    attributes:
+      label: Related QA scenario
+      description: Add the scenario ID when the problem was found during the documented baseline or a retest.
+      placeholder: QA-012
+
+  - type: dropdown
+    id: reproducibility
+    attributes:
+      label: Reproducibility
+      options:
+        - Always
+        - Intermittent
+        - Once
+        - Unable to reproduce again
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: Select impact, not implementation difficulty.
+      options:
+        - Critical - security, data loss, or plugin unusable
+        - High - core workflow blocked without a reasonable workaround
+        - Medium - workflow disrupted but a workaround exists
+        - Low - limited impact or minor incorrect behavior
+    validations:
+      required: true
+
+  - type: input
+    id: plugin_version
+    attributes:
+      label: Seo & Social version
+      placeholder: 0.1.0
+    validations:
+      required: true
+
+  - type: input
+    id: wordpress_version
+    attributes:
+      label: WordPress version
+      placeholder: Exact version
+    validations:
+      required: true
+
+  - type: input
+    id: php_version
+    attributes:
+      label: PHP version
+      placeholder: Exact version
+    validations:
+      required: true
+
+  - type: input
+    id: browser_environment
+    attributes:
+      label: Browser and environment
+      description: Include the browser/version when relevant and identify the environment without exposing private infrastructure.
+      placeholder: Chrome 140, local Docker via wp-env, macOS
+    validations:
+      required: true
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Sanitized evidence
+      description: Add screenshots, REST excerpts, debug-log excerpts, content IDs, or links to QA reports. Remove all sensitive and unrelated data.
+      placeholder: Evidence and links...
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: List observable conditions that must be true before this issue can close.
+      placeholder: |
+        - [ ] The defect no longer reproduces using the documented steps.
+        - [ ] Regression coverage is added.
+        - [ ] Relevant manual scenarios pass on retest.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I searched existing issues for the same problem.
+          required: true
+        - label: I reproduced the problem at least twice, or clearly marked it as intermittent or not reproducible again.
+          required: true
+        - label: The behavior contradicts an expected requirement and is not only a feature request or documented limitation.
+          required: true
+        - label: I removed credentials, cookies, nonces, personal data, and other sensitive information.
+          required: true

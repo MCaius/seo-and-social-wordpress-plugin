@@ -5,16 +5,20 @@
   "license": "GPL-2.0-or-later",
   "require-dev": {
     "dealerdirect/phpcodesniffer-composer-installer": "^1.1",
-    "squizlabs/php_codesniffer": "^3.10",
-    "wp-coding-standards/wpcs": "^3.1"
+    "squizlabs/php_codesniffer": "^3.13.6",
+    "wp-coding-standards/wpcs": "^3.4.1",
+    "phpunit/phpunit": "^9.6",
+    "yoast/phpunit-polyfills": "^3.1"
   },
   "scripts": {
     "lint:php": "phpcs"
   },
   "config": {
+    "platform": {
+      "php": "7.4.0"
+    },
     "allow-plugins": {
       "dealerdirect/phpcodesniffer-composer-installer": true
     }
   }
 }
-

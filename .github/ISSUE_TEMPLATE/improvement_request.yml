@@ -1,0 +1,122 @@
+name: Improvement request
+description: Propose a focused enhancement to an existing Seo & Social workflow or contract.
+title: "[Improvement]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this form when the current behavior works as designed but could be safer, clearer, easier to test, or more useful. Use Bug report when the implementation contradicts an existing requirement.
+
+  - type: textarea
+    id: opportunity
+    attributes:
+      label: Problem or opportunity
+      description: Explain the limitation, friction, risk, or missed opportunity.
+      placeholder: Users or API consumers currently need to...
+    validations:
+      required: true
+
+  - type: textarea
+    id: current_behavior
+    attributes:
+      label: Current behavior
+      description: Describe what the plugin currently does and why it is valid but could be improved.
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposed_improvement
+    attributes:
+      label: Proposed improvement
+      description: Describe the desired outcome. Avoid prescribing unnecessary implementation details.
+    validations:
+      required: true
+
+  - type: textarea
+    id: value
+    attributes:
+      label: Expected value
+      description: Explain the benefit for users, headless frontend consumers, maintainers, QA, accessibility, security, or release confidence.
+    validations:
+      required: true
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - WordPress Admin and settings
+        - SEO metadata and resolution
+        - Social data
+        - Schema data
+        - FAQ data
+        - LLMs data
+        - REST/API contract
+        - OG image processing
+        - Roles, permissions, or security
+        - Testing or QA workflow
+        - CI, packaging, or release
+        - Documentation or localization
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Suggested priority
+      description: Select based on value and risk, not personal preference.
+      options:
+        - High - materially reduces product or release risk
+        - Medium - meaningful workflow or maintainability improvement
+        - Low - useful but safe to keep in backlog
+    validations:
+      required: true
+
+  - type: input
+    id: qa_scenario
+    attributes:
+      label: Related QA scenario or evidence
+      description: Add a scenario ID, baseline section, REST example, screenshot, or other observation when available.
+      placeholder: QA-016 or link to evidence
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Describe existing workarounds or other possible approaches.
+
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope boundaries
+      description: State what should not change as part of this improvement.
+      placeholder: Existing REST field names and headless behavior must remain unchanged.
+
+  - type: textarea
+    id: acceptance_criteria
+    attributes:
+      label: Acceptance criteria
+      description: List observable, testable conditions for completion.
+      placeholder: |
+        - [ ] The improved behavior is observable in the documented workflow.
+        - [ ] Existing authorization and REST contracts remain unchanged.
+        - [ ] Automated or manual regression coverage is updated.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-submission checks
+      options:
+        - label: I searched existing issues for a similar request.
+          required: true
+        - label: The current behavior works, and this request proposes an improvement rather than reporting a confirmed defect.
+          required: true
+        - label: I included the reason and expected value, not only a proposed technical solution.
+          required: true
+        - label: I removed credentials, personal data, and other sensitive information.
+          required: true

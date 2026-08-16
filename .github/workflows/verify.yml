@@ -1,0 +1,148 @@
+name: Verify
+
+on:
+  workflow_call:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # v2
+        with:
+          php-version: "8.2"
+          tools: composer
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install gettext
+        run: sudo apt-get update && sudo apt-get install -y gettext
+
+      - name: Install Composer dependencies
+        run: composer install --no-interaction --prefer-dist
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Audit Composer dependencies
+        run: composer audit --locked
+
+      - name: Audit Node dependencies
+        run: npm audit --audit-level=high
+
+      - name: Check PHP syntax
+        run: npm run syntax:php
+
+      - name: Start WordPress PHPUnit environment
+        run: npm run env:phpunit:start -- --update
+
+      - name: Run WordPress PHPUnit integration suite
+        run: npm run test:php
+
+      - name: Stop WordPress PHPUnit environment
+        if: always()
+        run: npm run env:phpunit:stop
+
+      - name: Lint PHP
+        run: composer lint:php
+
+      - name: Check Romanian translations
+        run: msgfmt --check --verbose -o /tmp/seo-and-social-ro_RO.mo seo-and-social/languages/seo-and-social-ro_RO.po
+
+      - name: Build plugin zip
+        run: npm run build:zip
+
+      - name: Verify plugin zip contents
+        run: npm run verify:zip
+
+      - name: Run WordPress Plugin Check on verified package
+        uses: wordpress/plugin-check-action@98a1788320d0add90df2d8183934ecccbc4e05d2 # v1.1.7
+        with:
+          build-dir: ./dist/package/seo-and-social
+          ignore-codes: PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
+
+      - name: Start clean packaged-plugin environment
+        run: npm run env:package:start -- --update
+
+      - name: Verify packaged plugin activation and version
+        run: npm run test:package
+
+      - name: Stop packaged-plugin environment
+        if: always()
+        run: npm run env:package:stop
+
+      - name: Upload verified plugin package
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: seo-and-social-package
+          path: |
+            dist/seo-and-social.zip
+            dist/seo-and-social.manifest.json
+          if-no-files-found: error
+
+  compatibility:
+    needs: verify
+    name: Compatibility (${{ matrix.name }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: WordPress 6.0 / PHP 8.0
+            wordpress: WordPress/WordPress#6.0
+            php: "8.0"
+          - name: WordPress latest / PHP 8.0
+            wordpress: ""
+            php: "8.0"
+          - name: WordPress latest / PHP 8.4
+            wordpress: ""
+            php: "8.4"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Download verified plugin package
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: seo-and-social-package
+          path: dist
+
+      - name: Verify and extract plugin package
+        run: npm run verify:zip
+
+      - name: Start compatibility environment
+        env:
+          WP_ENV_CORE: ${{ matrix.wordpress }}
+          WP_ENV_PHP_VERSION: ${{ matrix.php }}
+        run: npm run env:compat:start -- --update
+
+      - name: Verify WordPress, PHP, activation, and plugin version
+        env:
+          WP_ENV_CORE: ${{ matrix.wordpress }}
+          WP_ENV_PHP_VERSION: ${{ matrix.php }}
+        run: npm run test:compat
+
+      - name: Stop compatibility environment
+        if: always()
+        env:
+          WP_ENV_CORE: ${{ matrix.wordpress }}
+          WP_ENV_PHP_VERSION: ${{ matrix.php }}
+        run: npm run env:compat:stop

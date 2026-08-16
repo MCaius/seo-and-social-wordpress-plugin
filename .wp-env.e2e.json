@@ -1,0 +1,16 @@
+{
+  "core": null,
+  "plugins": ["./seo-and-social"],
+  "mappings": {
+    "wp-content/qa-e2e": "./tests/e2e/fixtures/qa-e2e",
+    "wp-content/mu-plugins": "./tests/e2e/fixtures/mu-plugins"
+  },
+  "port": 8893,
+  "testsEnvironment": false,
+  "config": {
+    "WP_DEBUG": true,
+    "WP_DEBUG_LOG": true,
+    "WP_DEBUG_DISPLAY": false,
+    "SCRIPT_DEBUG": true
+  }
+}
