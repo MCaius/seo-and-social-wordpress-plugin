@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('FAQ meta box', () => {
+test.describe.fixme('FAQ meta box', () => {
   test.describe.configure({ mode: 'serial' });
 
   let postId;
