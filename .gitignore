@@ -3,9 +3,17 @@ node_modules/
 vendor/
 dist/
 .phpcs-cache
+.wp-env.override.json
+local-secrets/
+*.pem
+test-results/
+playwright-report/
+blob-report/
 
 # Local testing workflow files.
 TO-DO.md
+TO-DO-2.md
+z-Notes-local.md
 DATABASE.md
 MANUAL-TESTING.md
 scripts/install-local.mjs

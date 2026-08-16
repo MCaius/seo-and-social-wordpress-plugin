@@ -4,6 +4,15 @@
   "private": true,
   "scripts": {
     "build:zip": "node scripts/build-zip.mjs",
+    "env:start": "wp-env --config=.wp-env.json start",
+    "env:stop": "wp-env --config=.wp-env.json stop",
+    "env:destroy": "wp-env --config=.wp-env.json destroy",
+    "env:phpunit:start": "wp-env --config=.wp-env.phpunit.json start",
+    "env:phpunit:stop": "wp-env --config=.wp-env.phpunit.json stop",
+    "env:e2e:start": "wp-env --config=.wp-env.e2e.json start",
+    "env:e2e:stop": "wp-env --config=.wp-env.e2e.json stop",
+    "env:package:start": "wp-env --config=.wp-env.package.json start",
+    "env:package:stop": "wp-env --config=.wp-env.package.json stop",
     "syntax:php": "find seo-and-social -name '*.php' -print0 | xargs -0 -n1 php -l",
     "test:settings": "php -d zend.assertions=1 -d assert.exception=1 tests/settings-save-regression.php",
     "test:rest-permission": "php -d zend.assertions=1 -d assert.exception=1 tests/settings-endpoint-permission.php",
@@ -11,5 +20,11 @@
     "test:llms": "php -d zend.assertions=1 -d assert.exception=1 tests/llms-public-output.php",
     "lint:php": "composer lint:php",
     "validate": "npm run syntax:php && npm run test:settings && npm run test:rest-permission && npm run test:access && npm run test:llms && npm run build:zip"
+  },
+  "devDependencies": {
+    "@wordpress/env": "^11.13.0"
+  },
+  "overrides": {
+    "adm-zip": "0.6.0"
   }
 }
