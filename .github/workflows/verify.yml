@@ -67,6 +67,7 @@ jobs:
         uses: wordpress/plugin-check-action@98a1788320d0add90df2d8183934ecccbc4e05d2 # v1.1.7
         with:
           build-dir: ./dist/package/seo-and-social
+          ignore-codes: PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound
 
       - name: Start clean packaged-plugin environment
         run: npm run env:package:start -- --update

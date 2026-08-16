@@ -38,6 +38,7 @@ function sas_render_admin_page() {
 
 	$settings = sas_get_settings();
 	$can_manage_settings = current_user_can( 'manage_options' );
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only tab selection does not change site state.
 	$active_tab = isset( $_GET['tab'] ) ? sanitize_key( wp_unslash( $_GET['tab'] ) ) : 'social';
 	$allowed_tabs = $can_manage_settings ? array( 'social', 'seo', 'llms', 'settings' ) : array( 'social', 'seo', 'llms' );
 
@@ -45,8 +46,11 @@ function sas_render_admin_page() {
 		$active_tab = 'social';
 	}
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only notice state is sanitized and escaped before display.
 	$message = isset( $_GET['sas_message'] ) ? sanitize_key( wp_unslash( $_GET['sas_message'] ) ) : '';
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only notice text is sanitized and escaped before display.
 	$notice = isset( $_GET['sas_notice'] ) ? sanitize_text_field( wp_unslash( $_GET['sas_notice'] ) ) : '';
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Read-only notice style is allow-listed before display.
 	$notice_status = isset( $_GET['sas_status'] ) ? sanitize_key( wp_unslash( $_GET['sas_status'] ) ) : 'success';
 	$allowed_notice_statuses = array( 'success', 'warning', 'error', 'info' );
 

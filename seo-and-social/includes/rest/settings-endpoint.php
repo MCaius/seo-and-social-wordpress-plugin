@@ -141,11 +141,13 @@ function sas_get_current_rest_route() {
 
 	$route = '';
 
+	// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress REST routing is read-only request context, not a state-changing form action.
 	if ( isset( $_GET['rest_route'] ) ) {
+		// phpcs:ignore WordPress.Security.NonceVerification.Recommended -- WordPress REST routing is read-only request context, not a state-changing form action.
 		$route = sanitize_text_field( wp_unslash( $_GET['rest_route'] ) );
 	} elseif ( isset( $_SERVER['REQUEST_URI'] ) ) {
 		$request_uri = sanitize_text_field( wp_unslash( $_SERVER['REQUEST_URI'] ) );
-		$request_path = parse_url( $request_uri, PHP_URL_PATH );
+		$request_path = wp_parse_url( $request_uri, PHP_URL_PATH );
 		$rest_prefix = '/' . trim( rest_get_url_prefix(), '/' ) . '/';
 		$prefix_position = strpos( (string) $request_path, $rest_prefix );
 

@@ -203,6 +203,7 @@ function sas_delete_all_optimized_og_images() {
 function sas_get_all_optimized_og_attachment_ids() {
 	global $wpdb;
 
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- One maintenance query finds plugin-owned attachment metadata; the result is consumed immediately and must not become stale.
 	$ids = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT post_id FROM {$wpdb->postmeta} WHERE meta_key = %s",
@@ -259,6 +260,7 @@ function sas_get_used_og_attachment_ids() {
 		$ids[] = absint( $settings['seo']['default_og_image_id'] );
 	}
 
+	// phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching -- One maintenance query finds structured OG references across content; the result is consumed immediately and must not become stale.
 	$rows = $wpdb->get_col(
 		$wpdb->prepare(
 			"SELECT meta_value FROM {$wpdb->postmeta} WHERE meta_key = %s",
