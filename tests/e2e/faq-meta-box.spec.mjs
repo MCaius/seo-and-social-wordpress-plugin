@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test';
 
-test.describe.fixme('FAQ meta box', () => {
+test.describe('FAQ meta box', () => {
   test.describe.configure({ mode: 'serial' });
 
   let postId;
@@ -40,8 +40,13 @@ test.describe.fixme('FAQ meta box', () => {
       const metaBoxesAreaToggle = page.getByTestId('sas-toggle-meta-boxes-area');
 
       await expect(metaBoxesAreaToggle).toBeVisible();
-      await metaBoxesAreaToggle.press('Enter');
-      await expect(metaBoxesAreaToggle).toHaveAttribute('aria-expanded', 'true');
+      await expect(async () => {
+        if ((await metaBoxesAreaToggle.getAttribute('aria-expanded')) !== 'true') {
+          await metaBoxesAreaToggle.press('Enter');
+        }
+
+        await expect(metaBoxesAreaToggle).toHaveAttribute('aria-expanded', 'true');
+      }).toPass();
     }
 
     if (!(await metaBox.isVisible())) {
@@ -52,6 +57,13 @@ test.describe.fixme('FAQ meta box', () => {
     }
 
     await expect(metaBox).toBeVisible();
+
+    const firstQuestion = page.getByTestId('sas-faq-question').first();
+
+    if ((await firstQuestion.count()) > 0 && !(await firstQuestion.isVisible())) {
+      await page.getByTestId('sas-toggle-faq-row').first().press('Enter');
+      await expect(firstQuestion).toBeVisible();
+    }
   }
 
   async function savePost(page) {
@@ -73,13 +85,10 @@ test.describe.fixme('FAQ meta box', () => {
   async function setAnswer(page, index, value) {
     const textarea = page.getByTestId('sas-faq-answer').nth(index);
 
-    await expect.poll(() => textarea.evaluate((element) => {
-      if (element.dataset.editorInitialized !== 'true') {
-        return true;
-      }
-
-      return Boolean(window.tinyMCE?.get(element.id)?.initialized);
-    })).toBe(true);
+    await expect.poll(() => textarea.evaluate((element) => (
+      element.dataset.editorInitialized === 'true'
+        && Boolean(window.tinyMCE?.get(element.id)?.initialized)
+    ))).toBe(true);
 
     await textarea.evaluate((element, answer) => {
       const editor = window.tinyMCE?.get(element.id);
@@ -113,6 +122,13 @@ test.describe.fixme('FAQ meta box', () => {
     }
 
     await expect(page.getByTestId('sas-faq-row')).toHaveCount(3);
+
+    const editorIds = await page.getByTestId('sas-faq-answer').evaluateAll(
+      (editors) => editors.map((editor) => editor.id),
+    );
+
+    expect(new Set(editorIds).size).toBe(3);
+    expect(editorIds.every((id) => !id.includes('__INDEX__') && !id.includes('__index__'))).toBe(true);
 
     await page.getByTestId('sas-faq-question').nth(0).fill('Question A');
     await setAnswer(page, 0, '<p>Answer A</p>');
