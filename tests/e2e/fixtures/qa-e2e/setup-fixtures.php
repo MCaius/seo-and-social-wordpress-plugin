@@ -37,4 +37,23 @@ foreach ( $users as $login => $fixture ) {
 	$user->set_role( $fixture['role'] );
 }
 
+$seo_fixture = get_page_by_path( 'sas-e2e-seo', OBJECT, 'page' );
+$seo_post_id = wp_insert_post(
+	array(
+		'ID'          => $seo_fixture ? $seo_fixture->ID : 0,
+		'post_type'   => 'page',
+		'post_status' => 'publish',
+		'post_title'  => 'Seo & Social E2E SEO Fixture',
+		'post_name'   => 'sas-e2e-seo',
+		'post_content' => 'Deterministic content used by the Playwright SEO meta-box suite.',
+	),
+	true
+);
+
+if ( is_wp_error( $seo_post_id ) ) {
+	WP_CLI::error( $seo_post_id->get_error_message() );
+}
+
+delete_post_meta( $seo_post_id, '_sas_seo_overrides' );
+
 WP_CLI::success( 'Seo & Social E2E fixtures are ready.' );
