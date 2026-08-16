@@ -43,4 +43,17 @@ test.describe('Seo & Social admin settings', () => {
 
     await expect(page.getByTestId('sas-notice-json-error')).toBeVisible();
   });
+
+  test('keeps stored untrusted settings inert in admin output', async ({ page }) => {
+    await page.goto(`${adminPage}&tab=seo`);
+    await page.getByTestId('sas_sas_settings_seo__site_name_').fill(
+      '<img src=x onerror="window.__sasAdminExecuted=true">Safe site name',
+    );
+    await page.getByTestId('sas-save-settings').click();
+
+    await expect(page.getByTestId('sas-notice-saved')).toBeVisible();
+    await page.reload();
+    await expect(page.getByTestId('sas_sas_settings_seo__site_name_')).toHaveValue('Safe site name');
+    expect(await page.evaluate(() => window.__sasAdminExecuted)).toBeUndefined();
+  });
 });
