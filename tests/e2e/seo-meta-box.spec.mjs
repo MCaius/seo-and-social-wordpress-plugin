@@ -16,7 +16,13 @@ test.describe('SEO meta box', () => {
 
   async function openEditor(page) {
     await page.goto(`/wp-admin/post.php?post=${postId}&action=edit`);
-    await expect(page.getByTestId('sas-seo-meta-box')).toBeVisible();
+    const metaBox = page.getByTestId('sas-seo-meta-box');
+
+    if (!(await metaBox.isVisible())) {
+      await page.getByTestId('sas-toggle-seo-meta-box').click();
+    }
+
+    await expect(metaBox).toBeVisible();
   }
 
   async function savePost(page) {
