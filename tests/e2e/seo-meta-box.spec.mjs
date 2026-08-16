@@ -16,6 +16,24 @@ test.describe('SEO meta box', () => {
 
   async function openEditor(page) {
     await page.goto(`/wp-admin/post.php?post=${postId}&action=edit`);
+
+    await page.evaluate(() => {
+      const preferences = window.wp?.data?.select('core/preferences');
+      const preferenceActions = window.wp?.data?.dispatch('core/preferences');
+
+      if (preferences?.get('core/edit-post', 'welcomeGuide')) {
+        preferenceActions.set('core/edit-post', 'welcomeGuide', false);
+        return;
+      }
+
+      const editPost = window.wp?.data?.select('core/edit-post');
+      const editPostActions = window.wp?.data?.dispatch('core/edit-post');
+
+      if (editPost?.isFeatureActive?.('welcomeGuide')) {
+        editPostActions.toggleFeature('welcomeGuide');
+      }
+    });
+
     const metaBox = page.getByTestId('sas-seo-meta-box');
 
     if (!(await metaBox.isVisible())) {
