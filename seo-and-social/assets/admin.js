@@ -188,4 +188,7 @@
 
   document.querySelectorAll(".sas-faq-row").forEach(updateFaqRowToggle);
   initializeMetaBoxTestIds();
+  window.setTimeout(initializeMetaBoxTestIds, 250);
+  window.setTimeout(initializeMetaBoxTestIds, 1000);
+  window.setTimeout(initializeMetaBoxTestIds, 2000);
 })(jQuery);

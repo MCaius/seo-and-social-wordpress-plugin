@@ -21,17 +21,16 @@ test.describe('SEO meta box', () => {
     if (!(await metaBox.isVisible())) {
       const metaBoxesAreaToggle = page.getByTestId('sas-toggle-meta-boxes-area');
 
-      if (await metaBoxesAreaToggle.isVisible()) {
-        await metaBoxesAreaToggle.click();
-      }
+      await expect(metaBoxesAreaToggle).toBeVisible();
+      await metaBoxesAreaToggle.click();
+      await expect(metaBoxesAreaToggle).toHaveAttribute('aria-expanded', 'true');
     }
 
     if (!(await metaBox.isVisible())) {
       const seoMetaBoxToggle = page.getByTestId('sas-toggle-seo-meta-box');
 
-      if (await seoMetaBoxToggle.isVisible()) {
-        await seoMetaBoxToggle.click();
-      }
+      await expect(seoMetaBoxToggle).toBeVisible();
+      await seoMetaBoxToggle.click();
     }
 
     await expect(metaBox).toBeVisible();
