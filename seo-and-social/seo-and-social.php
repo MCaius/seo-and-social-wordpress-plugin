@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Seo & Social
  * Description: Headless SEO, social, schema, and FAQ API settings for custom frontends.
- * Version: 0.1.0
+ * Version: 1.1.0
  * Requires at least: 6.0
  * Requires PHP: 8.0
  * Author: Caius

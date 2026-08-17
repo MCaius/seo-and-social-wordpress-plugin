@@ -1,6 +1,6 @@
 {
   "name": "seo-and-social-wordpress-plugin",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "build:zip": "node scripts/build-zip.mjs",
@@ -22,13 +22,13 @@
     "env:package:start": "wp-env --config=.wp-env.package.json start",
     "env:package:stop": "wp-env --config=.wp-env.package.json stop",
     "env:package:destroy": "wp-env --config=.wp-env.package.json destroy",
-    "test:package": "wp-env --config=.wp-env.package.json run cli wp plugin is-active seo-and-social && wp-env --config=.wp-env.package.json run cli wp eval '$plugin = get_plugin_data( WP_PLUGIN_DIR . \"/seo-and-social/seo-and-social.php\" ); if ( \"0.1.0\" !== $plugin[\"Version\"] ) { fwrite( STDERR, \"Unexpected Seo & Social version.\\n\" ); exit( 1 ); } echo \"Seo & Social 0.1.0 is active.\\n\";'",
+    "test:package": "wp-env --config=.wp-env.package.json run cli wp plugin is-active seo-and-social && wp-env --config=.wp-env.package.json run cli wp eval '$plugin = get_plugin_data( WP_PLUGIN_DIR . \"/seo-and-social/seo-and-social.php\" ); if ( \"1.1.0\" !== $plugin[\"Version\"] ) { fwrite( STDERR, \"Unexpected Seo & Social version.\\n\" ); exit( 1 ); } echo \"Seo & Social 1.1.0 is active.\\n\";'",
     "plugin-check:install": "wp-env --config=.wp-env.package.json run cli wp plugin install plugin-check --activate",
     "plugin-check": "wp-env --config=.wp-env.package.json run cli wp plugin check seo-and-social --require=./wp-content/plugins/plugin-check/cli.php --ignore-codes=PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound",
     "env:compat:start": "wp-env --config=.wp-env.compat.json start",
     "env:compat:stop": "wp-env --config=.wp-env.compat.json stop",
     "env:compat:destroy": "wp-env --config=.wp-env.compat.json destroy",
-    "test:compat": "wp-env --config=.wp-env.compat.json run cli wp core version && wp-env --config=.wp-env.compat.json run cli php -r 'echo PHP_VERSION, \"\\n\";' && wp-env --config=.wp-env.compat.json run cli wp plugin is-active seo-and-social && wp-env --config=.wp-env.compat.json run cli wp eval '$plugin = get_plugin_data( WP_PLUGIN_DIR . \"/seo-and-social/seo-and-social.php\" ); if ( \"0.1.0\" !== $plugin[\"Version\"] ) { fwrite( STDERR, \"Unexpected Seo & Social version.\\n\" ); exit( 1 ); } echo \"Seo & Social compatibility smoke test passed.\\n\";'",
+    "test:compat": "wp-env --config=.wp-env.compat.json run cli wp core version && wp-env --config=.wp-env.compat.json run cli php -r 'echo PHP_VERSION, \"\\n\";' && wp-env --config=.wp-env.compat.json run cli wp plugin is-active seo-and-social && wp-env --config=.wp-env.compat.json run cli wp eval '$plugin = get_plugin_data( WP_PLUGIN_DIR . \"/seo-and-social/seo-and-social.php\" ); if ( \"1.1.0\" !== $plugin[\"Version\"] ) { fwrite( STDERR, \"Unexpected Seo & Social version.\\n\" ); exit( 1 ); } echo \"Seo & Social compatibility smoke test passed.\\n\";'",
     "syntax:php": "find seo-and-social -name '*.php' -print0 | xargs -0 -n1 php -l",
     "lint:php": "composer lint:php",
     "validate": "npm run syntax:php && npm run test:php && npm run build:zip && npm run verify:zip"
