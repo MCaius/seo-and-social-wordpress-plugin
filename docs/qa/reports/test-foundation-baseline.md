@@ -46,28 +46,28 @@ Allowed results: `Pass`, `Fail`, `Partial`, `Blocked`, `Not run`.
 | QA-010 | SEO overrides and global fallback resolution | P0 | Pass | — | — |
 | QA-011 | FAQ rows, enabled state, and ordering | P1 | Pass | Manual editor reload and `faq_items` REST inspection | Complete enabled rows were preserved and returned in position order `10`, `20`, `30`; the disabled and incomplete rows were excluded from the public REST value. A separate UI defect was observed while adding dynamic rows; it is tracked in [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) and documented as `F-001`, but does not invalidate the QA-011 acceptance criteria. |
 | QA-012 | FAQ HTML policy and stored XSS boundary | P0 | Pass | Manual editor reload and `faq_items` REST inspection | With FAQ HTML disabled, submitted markup was escaped or reduced to inert text. With FAQ HTML enabled, allowed formatting such as `<p>` and `<strong>` was preserved while the `<script>` element was removed; the payload remained non-executable text in REST. |
-| QA-013 | Autosave, revisions, and unauthorized metadata changes | P0 | Not run | — | — |
-| QA-014 | Public settings and LLMs endpoints enabled | P0 | Not run | — | — |
-| QA-015 | Private endpoints and authenticated administration | P0 | Not run | — | — |
-| QA-016 | Custom REST names | P0 | Not run | — | — |
-| QA-017 | Public rate limit and recovery | P1 | Not run | — | — |
-| QA-018 | Content REST fields and contract shape | P0 | Not run | — | — |
-| QA-019 | OG image generation | P0 | Not run | — | — |
-| QA-020 | OG regeneration, deletion, and failures | P0 | Not run | — | — |
-| QA-021 | Headless frontend boundary | P0 | Not run | — | — |
-| QA-022 | Manual Delete all plugin data | P0 | Not run | — | — |
-| QA-023 | Direct uninstall preserves data | P1 | Not run | — | — |
-| QA-024 | Existing regression and localization smoke pass | P1 | Not run | — | — |
+| QA-013 | Autosave, revisions, and unauthorized metadata changes | P0 | Pass | — | Improvement idea: support restoring plugin metadata together with Page/CPT revisions. |
+| QA-014 | Public settings and LLMs endpoints enabled | P0 | Pass | — | — |
+| QA-015 | Private endpoints and authenticated administration | P0 | Pass | — | — |
+| QA-016 | Custom REST names | P0 | Pass | — | — |
+| QA-017 | Public rate limit and recovery | P1 | Pass | Direct rate-limit and request-IP checks plus HTTP recovery | The configured `5` request limit produced five allowed calls followed by `429`, access recovered after the `120`-second window, and untrusted XFF was ignored by the plugin. The local `wp-env` proxy may rewrite `REMOTE_ADDR` before PHP receives the request. |
+| QA-018 | Content REST fields and contract shape | P0 | Pass | — | — |
+| QA-019 | OG image generation | P0 | Pass | — | — |
+| QA-020 | OG regeneration, deletion, and failures | P0 | Pass | — | — |
+| QA-021 | Headless frontend boundary | P0 | Pass | — | — |
+| QA-022 | Manual Delete all plugin data | P0 | Pass | — | — |
+| QA-023 | Direct uninstall preserves data | P1 | Pass | — | — |
+| QA-024 | Existing regression and localization smoke pass | P1 | Pass | — | — |
 
 ## Summary
 
 | Result | Count |
 | --- | ---: |
-| Pass | 12 |
+| Pass | 24 |
 | Fail | 0 |
 | Partial | 0 |
 | Blocked | 0 |
-| Not run | 12 |
+| Not run | 0 |
 
 ## Findings
 
@@ -134,13 +134,13 @@ Add findings only after execution. Use one entry per observation.
 
 ## Exit assessment
 
-- [ ] All 24 scenarios have an executed result.
-- [ ] Every Fail has reproducible steps and evidence.
-- [ ] P0 failures are resolved or explicitly accepted.
-- [ ] Observations were not presented as confirmed bugs.
-- [ ] Sensitive data was removed from all evidence.
+- [x] All 24 scenarios have an executed result.
+- [x] Every Fail has reproducible steps and evidence.
+- [x] P0 failures are resolved or explicitly accepted.
+- [x] Observations were not presented as confirmed bugs.
+- [x] Sensitive data was removed from all evidence.
 
-Status: Baseline execution in progress (`12/24` scenarios executed).
+Status: Baseline execution complete (`24/24` scenarios passed). Finding `F-001` was fixed and passed automated and manual retesting.
 
 ## Follow-up retests
 
