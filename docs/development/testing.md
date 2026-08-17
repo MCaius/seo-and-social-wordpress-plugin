@@ -7,7 +7,7 @@ manual QA records, package checks, and release gates used by Seo & Social.
 
 - Docker Desktop or another Docker-compatible runtime.
 - Node.js 20 or newer and npm.
-- PHP 7.4 or newer and Composer.
+- PHP 8.0 or newer and Composer.
 - Gettext for translation validation.
 - Chromium for Playwright.
 
@@ -49,6 +49,42 @@ npm run env:destroy
 
 Never use production or personal site data in these environments. Keep local
 credentials and sensitive evidence outside Git.
+
+## Useful local WordPress commands
+
+Install the locked Node dependencies and start the manual development
+environment:
+
+```bash
+npm ci
+npm run env:start
+```
+
+Inspect the plugin, WordPress, and PHP versions running inside `wp-env`:
+
+```bash
+npx wp-env --config=.wp-env.json run cli wp plugin status seo-and-social
+npx wp-env --config=.wp-env.json run cli wp core version
+npx wp-env --config=.wp-env.json run cli php -v
+```
+
+### Quickly create test users
+
+These fixed credentials are only for the disposable local `wp-env`
+environment. Never reuse them on a public, shared, staging, or production site.
+
+```bash
+npx wp-env --config=.wp-env.json run cli wp user create qa-editor qa-editor@example.test --role=editor --user_pass='QaTest-2026!'
+npx wp-env --config=.wp-env.json run cli wp user create qa-author qa-author@example.test --role=author --user_pass='QaTest-2026!'
+npx wp-env --config=.wp-env.json run cli wp user create qa-contributor qa-contributor@example.test --role=contributor --user_pass='QaTest-2026!'
+npx wp-env --config=.wp-env.json run cli wp user create qa-subscriber qa-subscriber@example.test --role=subscriber --user_pass='QaTest-2026!'
+```
+
+List the available users and their roles:
+
+```bash
+npx wp-env --config=.wp-env.json run cli wp user list --fields=ID,user_login,user_email,roles
+```
 
 ## Static checks and dependency audits
 
@@ -181,8 +217,8 @@ Check, performs a clean packaged-plugin smoke test, and runs the compatibility
 matrix. A separate job runs the complete Playwright admin E2E suite.
 
 The release workflow runs the same verification before publishing artifacts.
-Only tags matching `v*` or a deliberate manual workflow dispatch can publish a
-GitHub release. Pushing a normal branch does not release the plugin.
+Only tags matching `v*` can publish a GitHub release. Pushing a normal branch,
+opening a pull request, or merging into `main` does not release the plugin.
 
 Playwright is both a local and CI gate for changes that affect the WordPress
 administration interface.
@@ -213,3 +249,22 @@ npm run env:package:stop
 
 Before release, also complete all manual P0 and P1 scenarios, resolve or accept
 every release blocker explicitly, and run the compatibility smoke test.
+
+## Release preparation checklist
+
+1. Create `release/<version>` from an up-to-date, clean `main` branch.
+2. Align the version in the plugin header, `readme.txt`, `package.json`,
+   `package-lock.json`, package/compatibility smoke checks, and translation
+   metadata.
+3. Add the release notes to `CHANGELOG.md` and the WordPress changelog in
+   `seo-and-social/readme.txt`.
+4. Confirm the manual QA report is complete and that all blocking findings are
+   resolved. Link non-blocking follow-up issues without presenting them as
+   release blockers.
+5. Run the complete pre-push sequence and compatibility smoke test.
+6. Open one release pull request targeting `main` and wait for all required CI
+   jobs to pass.
+7. Merge the release pull request, then create the matching `v<version>` tag on
+   the resulting `main` commit.
+8. Push the tag and verify that the GitHub release contains the ZIP and manifest
+   produced by the successful release workflow.

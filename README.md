@@ -15,35 +15,29 @@ The implementation focuses on:
 - Safe admin workflows for global settings, per-content overrides, FAQ data, and LLMs.txt source content.
 - Conservative security defaults for public endpoints, role access, data deletion, and generated media.
 - A clean plugin ZIP build that excludes repository-only documentation and development files.
-
+- A layered QA workflow covering PHPUnit integration, Playwright admin E2E, package verification, compatibility checks, and documented manual testing.
 
 ## Seo & Social Plugin Walkthrough
-https://github.com/user-attachments/assets/0b1adc56-9d54-4366-b7a4-8fd6f281fb83
 
+[Watch the plugin walkthrough](https://github.com/user-attachments/assets/0b1adc56-9d54-4366-b7a4-8fd6f281fb83).
 
 ## Screenshots
 
 ### General Settings
-<img width="2518" height="2892" alt="General-Settings" src="https://github.com/user-attachments/assets/2d6ebe96-bbba-4c38-9f8b-c9928c6debdd" />
 
+<img width="2518" height="2892" alt="General-Settings" src="https://github.com/user-attachments/assets/2d6ebe96-bbba-4c38-9f8b-c9928c6debdd" />
 
 ### Social Settings
 
 <img width="4738" height="2514" alt="General-Setting-Social" src="https://github.com/user-attachments/assets/1c31f2c7-bba7-4e61-b874-970da821c898" />
 
-
 ### Global SEO Settings
 
 <img width="4702" height="2928" alt="General-Setting-SEO" src="https://github.com/user-attachments/assets/f64389dc-f27f-457d-a72d-972e87e8f708" />
 
+### Page-Specific SEO & FAQ
 
-### Page-Specific SEO & FAQ 
-
-<img width="5936" height="2784" alt="Page-Specifc-SEO-FAQ" src="https://github.com/user-attachments/assets/a963bc5d-ddc8-40c9-a881-6e2fdff43d02" />
-
-
-
-
+<img width="5936" height="2784" alt="Page-Specific-SEO-FAQ" src="https://github.com/user-attachments/assets/a963bc5d-ddc8-40c9-a881-6e2fdff43d02" />
 
 ## What The Plugin Does
 
@@ -120,11 +114,7 @@ A typical frontend integration:
 6. Use `/wp-json/headless-seo/v1/llms` to build and serve the frontend-owned `/llms.txt`.
 7. Generate sitemap files in the frontend, because the frontend owns the final public URL structure.
 
-More frontend notes live in:
-
-```text
-how-to-use-on-FrontEnd-recomandation.md
-```
+See the [frontend integration recommendations](frontend-usage-recommendations.md) for a more detailed implementation guide.
 
 ## Local Development
 
@@ -166,10 +156,11 @@ dist/seo-and-social.zip
 
 The upload ZIP contains only the runtime `seo-and-social/` plugin files. Repository docs, scripts, generated manifests, local workflow files, `.git`, `vendor/`, and `dist/` are excluded.
 
+For the complete local environments, automated suites, package checks, and release gates, see the [development and testing guide](docs/development/testing.md). The [QA strategy](docs/qa/test-strategy.md), [manual scenarios](docs/qa/manual-scenarios.md), and [baseline report](docs/qa/reports/test-foundation-baseline.md) document the manual test process and evidence.
 
 ## WordPress Installation
 
-1. Build or download `seo-and-social.zip`.
+1. Build `seo-and-social.zip`, or download it from [GitHub Releases](https://github.com/MCaius/seo-and-social-wordpress-plugin/releases).
 2. In WordPress, go to `Plugins -> Add New Plugin -> Upload Plugin`.
 3. Upload and activate `Seo & Social`.
 4. Open `Seo & Social` in wp-admin as an Administrator.

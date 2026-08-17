@@ -275,4 +275,3 @@ For most frontends:
 6. Render organization schema from `siteSettings.seo`.
 7. Serve `/llms.txt` from the LLMs JSON endpoint's `rendered_txt`.
 8. Generate sitemap in the frontend using final frontend URLs.
-

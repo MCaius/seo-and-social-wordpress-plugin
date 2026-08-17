@@ -4,7 +4,7 @@ Tags: headless, seo, social, schema, rest-api
 Requires at least: 6.0
 Tested up to: 7.0
 Requires PHP: 8.0
-Stable tag: 0.1.0
+Stable tag: 1.1.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,17 +101,20 @@ No. Uninstall is intentionally non-destructive. Administrators can use the manua
 
 No, not by default. Global plugin pages are administrator-only by default. Editors can still use per-content SEO and FAQ meta boxes when they can edit that content.
 
-== Screenshots ==
-
-1. <Screenshot placeholder: Seo & Social admin overview with How to use accordion and tabs>
-2. <Screenshot placeholder: SEO defaults tab showing global metadata, default robots, and OG image fields>
-3. <Screenshot placeholder: Per-content SEO meta box on a page or custom post type>
-4. <Screenshot placeholder: FAQ meta box with collapsible FAQ rows and editor controls>
-5. <Screenshot placeholder: LLMs.txt tab showing structured fields and rendered preview>
-6. <Screenshot placeholder: Example JSON response from /wp-json/headless-seo/v1/site-settings>
-7. <Screenshot placeholder: Example JSON response from /wp-json/headless-seo/v1/llms>
-
 == Changelog ==
 
-= 0.1.0 =
-* Initial public portfolio release.
+= 1.1.0 =
+* Fixed dynamic FAQ rows so every answer receives a unique, independently initialized editor.
+* Added PHPUnit integration coverage for permissions, settings, metadata, REST contracts, output escaping, LLMs data, OG images, uninstall behavior, and the headless boundary.
+* Added Playwright admin end-to-end coverage using plugin-owned test selectors.
+* Added deterministic ZIP verification, packaged-plugin checks, Plugin Check, and WordPress/PHP compatibility gates.
+* Added repeatable manual QA scenarios, a completed baseline report, issue templates, and development/testing documentation.
+* Improved CI so verification runs for pull requests and main while superseded runs are cancelled.
+
+= 1.0.0 =
+* Initial public release.
+
+== Upgrade Notice ==
+
+= 1.1.0 =
+Recommended quality and reliability update. Includes the dynamic FAQ editor fix and expanded automated release verification.

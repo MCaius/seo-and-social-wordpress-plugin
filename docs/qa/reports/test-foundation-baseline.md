@@ -46,7 +46,7 @@ Allowed results: `Pass`, `Fail`, `Partial`, `Blocked`, `Not run`.
 | QA-010 | SEO overrides and global fallback resolution | P0 | Pass | — | — |
 | QA-011 | FAQ rows, enabled state, and ordering | P1 | Pass | Manual editor reload and `faq_items` REST inspection | Complete enabled rows were preserved and returned in position order `10`, `20`, `30`; the disabled and incomplete rows were excluded from the public REST value. A separate UI defect was observed while adding dynamic rows; it is tracked in [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) and documented as `F-001`, but does not invalidate the QA-011 acceptance criteria. |
 | QA-012 | FAQ HTML policy and stored XSS boundary | P0 | Pass | Manual editor reload and `faq_items` REST inspection | With FAQ HTML disabled, submitted markup was escaped or reduced to inert text. With FAQ HTML enabled, allowed formatting such as `<p>` and `<strong>` was preserved while the `<script>` element was removed; the payload remained non-executable text in REST. |
-| QA-013 | Autosave, revisions, and unauthorized metadata changes | P0 | Pass | — | Improvement idea: support restoring plugin metadata together with Page/CPT revisions. |
+| QA-013 | Autosave, revisions, and unauthorized metadata changes | P0 | Pass | — | Improvement idea: support restoring plugin metadata together with Page/CPT revisions; tracked in [#5](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/5). |
 | QA-014 | Public settings and LLMs endpoints enabled | P0 | Pass | — | — |
 | QA-015 | Private endpoints and authenticated administration | P0 | Pass | — | — |
 | QA-016 | Custom REST names | P0 | Pass | — | — |
@@ -100,7 +100,7 @@ Add findings only after execution. Use one entry per observation.
 - Actual: Every dynamic answer uses `sas_faq_answer___index__`; only the first row initializes TinyMCE and later rows remain plain textareas.
 - Evidence: Two manual browser reproductions, sanitized screenshots attached to the GitHub issue, and Playwright regression coverage in `tests/e2e/faq-meta-box.spec.mjs`.
 - GitHub issue: [#1 — Dynamic FAQ rows reuse the same editor ID and only the first row initializes TinyMCE](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1)
-- Release status: Resolved and manually verified on `fix/faq-editor-unique-ids`. Focused FAQ coverage passes `3/3`, the complete Playwright suite passes `18/18`, and the manual browser retest confirms unique initialized TinyMCE editors with persisted values. The fix must be merged before release.
+- Release status: Resolved, manually verified, and merged into `main`. Focused FAQ coverage passes `3/3`, the complete Playwright suite passes `18/18`, and the manual browser retest confirms unique initialized TinyMCE editors with persisted values.
 
 ### F-002 — Schemeless schema-property URLs are normalized automatically
 
@@ -114,7 +114,7 @@ Add findings only after execution. Use one entry per observation.
 - Expected: The interface should make it clear whether a schemeless value will be rejected or normalized.
 - Actual: The value is accepted and automatically normalized by adding `http://`.
 - Evidence: Manual settings reload and `headless-seo/v1/site-settings` REST inspection.
-- GitHub issue: Not opened. Consider future validation feedback or a preview of the normalized value.
+- GitHub issue: [#6 — Validate schema property URLs instead of silently normalizing them](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/6)
 - Release status: Non-blocking observation.
 
 ### F-003 — Exact duplicate schema-property rows are preserved
@@ -129,7 +129,7 @@ Add findings only after execution. Use one entry per observation.
 - Expected: The duplicate policy should be explicit. Repeated keys with different values may be valid, while completely identical rows may be unnecessary.
 - Actual: Both identical structured rows are saved and exposed through the public REST response.
 - Evidence: Manual settings reload and `headless-seo/v1/site-settings` REST inspection.
-- GitHub issue: Not opened. Consider preventing only exact `key + type + value` duplicates while continuing to allow repeated keys with different values.
+- GitHub issue: [#7 — Prevent exact duplicate schema-property rows](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/7)
 - Release status: Non-blocking observation.
 
 ## Exit assessment
@@ -153,4 +153,4 @@ Do not edit the original result table to represent a later fix. Add retests here
 | 16-08-2026 | `QA-007` | `qa-admin-e2e` | Not run | Pass | Manual settings reload and public REST inspection confirmed property type handling and sanitization. Non-blocking URL-normalization and duplicate-row observations are documented as `F-002` and `F-003`. |
 | 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `qa-admin-e2e` | Open | Fail | The dynamic FAQ editor defect remains reproducible: rows reuse the same editor ID and only the first dynamic row initializes TinyMCE. Retest after the fix is required before release. |
 | 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `fix/faq-editor-unique-ids` | Fail | Partial | The regression now requires three distinct editor IDs and initialized TinyMCE instances. Focused FAQ tests pass `3/3`, the complete Playwright suite passes `18/18` with no skipped tests, and PHPUnit passes `66 tests, 262 assertions`. Manual browser retest and issue closure remain pending. |
-| 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `fix/faq-editor-unique-ids` | Partial | Pass | Manual browser retest confirmed that three dynamic FAQ rows receive distinct IDs, initialize independent TinyMCE editors, accept different content, and preserve their values after save and reload. Issue #1 is ready to close after the fix is published. |
+| 16-08-2026 | [#1](https://github.com/MCaius/seo-and-social-wordpress-plugin/issues/1) | `fix/faq-editor-unique-ids` | Partial | Pass | Manual browser retest confirmed that three dynamic FAQ rows receive distinct IDs, initialize independent TinyMCE editors, accept different content, and preserve their values after save and reload. The fix was subsequently merged into `main` and the issue was closed. |

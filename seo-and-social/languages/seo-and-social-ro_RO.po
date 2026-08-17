@@ -5,7 +5,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: Seo & Social 0.1.0\n"
+"Project-Id-Version: Seo & Social 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-06-29 11:12+0300\n"
 "PO-Revision-Date: 2026-06-29 11:00+0300\n"
