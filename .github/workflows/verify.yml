@@ -88,6 +88,47 @@ jobs:
             dist/seo-and-social.manifest.json
           if-no-files-found: error
 
+  e2e:
+    name: Playwright admin E2E
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5 # v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install Node dependencies
+        run: npm ci
+
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - name: Start WordPress E2E environment
+        run: npm run env:e2e:start -- --update
+
+      - name: Run Playwright admin E2E suite
+        run: npm run test:e2e
+
+      - name: Stop WordPress E2E environment
+        if: always()
+        run: npm run env:e2e:stop
+
+      - name: Upload Playwright failure evidence
+        if: failure()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: playwright-failure-evidence
+          path: |
+            playwright-report/
+            test-results/
+          if-no-files-found: ignore
+          retention-days: 7
+
   compatibility:
     needs: verify
     name: Compatibility (${{ matrix.name }})
