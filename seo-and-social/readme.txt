@@ -2,7 +2,7 @@
 Contributors: MCaius
 Tags: headless, seo, social, schema, rest-api
 Requires at least: 6.0
-Tested up to: 7.0
+Tested up to: 7.1
 Requires PHP: 8.0
 Stable tag: 1.1.0
 License: GPLv2 or later
