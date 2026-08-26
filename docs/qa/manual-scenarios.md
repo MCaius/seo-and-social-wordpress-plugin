@@ -70,33 +70,39 @@ Expected: a controlled notice is shown, malformed JSON is removed from public ou
 Risk: incomplete, deleted, or reordered rows are exposed incorrectly.
 
 1. Add two complete extra social links.
-2. Add one incomplete row.
-3. Reorder or remove a complete row and save.
-4. Reload the page and inspect the settings endpoint.
+2. Add rows missing Key, Label, and URL in turn, attempting to save each one.
+3. Confirm that the browser identifies each missing required field and does not submit the form.
+4. Complete the rows, then remove one complete row and save.
+5. Reload the page and inspect the settings endpoint.
 
-Expected: complete saved rows persist in the expected order; incomplete/deleted rows are not exposed.
+Expected: incomplete rows are blocked with the missing required field identified; complete saved rows persist in the expected order; deleted rows are not exposed.
 
 ### QA-007 — Schema property types and sanitization
 
 Risk: structured schema properties change type or expose unsafe values.
 
 1. Add text, URL, list, and JSON properties.
-2. Save valid values and inspect the REST response types.
-3. Try an invalid URL and malformed JSON property.
-4. Add a duplicate property name and observe the stored/public result.
+2. Save valid values, reload the page, and inspect the REST response types.
+3. Add one row without Property key and another without Value, attempting to save each one.
+4. Confirm that the browser identifies each missing required field and does not submit the form.
+5. Try an invalid URL and malformed JSON property.
+6. Add a duplicate property name and observe the stored/public result.
 
-Expected: valid types remain structured, invalid values are controlled, and the response remains deterministic.
+Expected: incomplete rows are blocked with the missing required field identified; complete rows persist after reload; valid types remain structured; invalid values are controlled; and the response remains deterministic.
 
 ### QA-008 — LLMs data enabled, disabled, and dynamic rows
 
 Risk: disabled or draft LLMs content is exposed anonymously.
 
 1. Add site summary, recommended pages, ignored sections, and custom content.
-2. Save with LLMs disabled and request `/llms` anonymously.
-3. Inspect the same data as Administrator.
-4. Enable LLMs and request the endpoint again.
+2. Save, reload the page, and confirm that complete recommended-page and ignored-section rows persist.
+3. Add a recommended page with URL and note but no page title, then attempt to save.
+4. Add an ignored section with a description but no section name, then attempt to save.
+5. Save with LLMs disabled and request `/llms` anonymously.
+6. Inspect the same data as Administrator.
+7. Enable LLMs and request the endpoint again.
 
-Expected: anonymous disabled output contains only the disabled state; administrators can review stored drafts; enabled public output is complete and correctly rendered.
+Expected: complete rows persist after reload; incomplete rows are blocked with the missing required field identified; anonymous disabled output contains only the disabled state; administrators can review stored drafts; enabled public output is complete and correctly rendered.
 
 ### QA-009 — Meta-box registration by post type
 
