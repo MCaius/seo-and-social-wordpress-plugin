@@ -448,6 +448,14 @@ msgstr "Conținut LLMs.txt"
 msgid "Label"
 msgstr "Etichetă"
 
+#: seo-and-social/includes/admin/admin-menu.php:225
+msgid "<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. The note is optional."
+msgstr "<strong>Titlul paginii</strong> și URL-ul sunt obligatorii. Folosește titlul care ar trebui să apară ca text al linkului în llms.txt. Nota este opțională."
+
+#: seo-and-social/includes/admin/admin-menu.php:1113
+msgid "Page title"
+msgstr "Titlul paginii"
+
 #: seo-and-social/includes/admin/admin-menu.php:527
 msgid "Latitude"
 msgstr "Latitudine"
@@ -501,9 +509,8 @@ msgid "OG images regenerated. Generated: %1$d. Failed: %2$d. Skipped: %3$d."
 msgstr "Imagini OG regenerate. Generate: %1$d. Eșuate: %2$d. Sărite: %3$d."
 
 #: seo-and-social/includes/admin/admin-menu.php:349
-msgid "Only rows with key, label, and valid URL are exposed in the public API."
-msgstr ""
-"Doar rândurile cu cheie, etichetă și URL valid sunt expuse în API-ul public."
+msgid "<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use Key as a stable API identifier and Label as the display name."
+msgstr "<strong>Cheia</strong>, <strong>eticheta</strong> și URL-ul sunt obligatorii. Folosește cheia ca identificator API stabil, iar eticheta ca nume afișat."
 
 #: seo-and-social/includes/meta-boxes/faq-meta-box.php:90
 msgid "Open"
@@ -757,9 +764,13 @@ msgstr ""
 "Denti\n"
 "st. Frontendul decide cum randază JSON-LD."
 
-#: seo-and-social/includes/admin/admin-menu.php:1135
-msgid "Section label"
-msgstr "Eticheta secțiunii"
+#: seo-and-social/includes/admin/admin-menu.php:1138
+msgid "Section name"
+msgstr "Numele secțiunii"
+
+#: seo-and-social/includes/admin/admin-menu.php:246
+msgid "<strong>Section name</strong> is required. Identify the section or content type that should be ignored. The description is optional."
+msgstr "<strong>Numele secțiunii</strong> este obligatoriu. Identifică secțiunea sau tipul de conținut care trebuie ignorat. Descrierea este opțională."
 
 #: seo-and-social/includes/admin/admin-menu.php:240
 msgid ""
@@ -957,6 +968,10 @@ msgid ""
 msgstr ""
 "Folosește rânduri structurate pentru date schema care nu au un câmp dedicat."
 
+#: seo-and-social/includes/admin/admin-menu.php:583
+msgid "<strong>Property key</strong> and <strong>Value</strong> are required. Select the type that matches the value."
+msgstr "<strong>Cheia proprietății</strong> și <strong>valoarea</strong> sunt obligatorii. Selectează tipul care corespunde valorii."
+
 #: seo-and-social/includes/admin/admin-menu.php:147
 msgid ""
 "Use the <strong>LLMs.txt</strong> tab to manage structured content that your "
@@ -1071,10 +1086,10 @@ msgstr "URL YouTube"
 msgid "empty/fallback"
 msgstr "gol/fallback"
 
-#: seo-and-social/includes/admin/admin-menu.php:1049
-msgid "key"
-msgstr "cheie"
+#: seo-and-social/includes/admin/admin-menu.php:1052
+msgid "Key"
+msgstr "Cheie"
 
-#: seo-and-social/includes/admin/admin-menu.php:1080
-msgid "propertyKey"
-msgstr "cheieProprietate"
+#: seo-and-social/includes/admin/admin-menu.php:1084
+msgid "Property key"
+msgstr "Cheia proprietății"

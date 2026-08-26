@@ -351,6 +351,14 @@ msgstr ""
 msgid "Label"
 msgstr ""
 
+#: seo-and-social/includes/admin/admin-menu.php:225
+msgid "<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. The note is optional."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:1113
+msgid "Page title"
+msgstr ""
+
 #: seo-and-social/includes/admin/admin-menu.php:527
 msgid "Latitude"
 msgstr ""
@@ -398,7 +406,7 @@ msgid "OG images regenerated. Generated: %1$d. Failed: %2$d. Skipped: %3$d."
 msgstr ""
 
 #: seo-and-social/includes/admin/admin-menu.php:349
-msgid "Only rows with key, label, and valid URL are exposed in the public API."
+msgid "<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use Key as a stable API identifier and Label as the display name."
 msgstr ""
 
 #: seo-and-social/includes/meta-boxes/faq-meta-box.php:90
@@ -608,8 +616,12 @@ msgid ""
 "Dentist. The frontend decides how to render JSON-LD."
 msgstr ""
 
-#: seo-and-social/includes/admin/admin-menu.php:1135
-msgid "Section label"
+#: seo-and-social/includes/admin/admin-menu.php:1138
+msgid "Section name"
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php:246
+msgid "<strong>Section name</strong> is required. Identify the section or content type that should be ignored. The description is optional."
 msgstr ""
 
 #: seo-and-social/includes/admin/admin-menu.php:240
@@ -754,6 +766,10 @@ msgid ""
 "Use structured rows for schema data that does not have a dedicated field."
 msgstr ""
 
+#: seo-and-social/includes/admin/admin-menu.php:583
+msgid "<strong>Property key</strong> and <strong>Value</strong> are required. Select the type that matches the value."
+msgstr ""
+
 #: seo-and-social/includes/admin/admin-menu.php:147
 msgid ""
 "Use the <strong>LLMs.txt</strong> tab to manage structured content that your "
@@ -834,10 +850,10 @@ msgstr ""
 msgid "empty/fallback"
 msgstr ""
 
-#: seo-and-social/includes/admin/admin-menu.php:1049
-msgid "key"
+#: seo-and-social/includes/admin/admin-menu.php:1052
+msgid "Key"
 msgstr ""
 
-#: seo-and-social/includes/admin/admin-menu.php:1080
-msgid "propertyKey"
+#: seo-and-social/includes/admin/admin-menu.php:1084
+msgid "Property key"
 msgstr ""

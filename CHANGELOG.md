@@ -4,6 +4,12 @@ All notable changes to Seo & Social will be documented in this file.
 
 The format is based on Keep a Changelog, and this project uses semantic versioning.
 
+## [Unreleased]
+
+### Fixed
+
+- Required fields are now clearly identified and enforced for extra social links, extra schema properties, recommended pages, and ignored sections, preventing incomplete dynamic rows from being silently discarded.
+
 ## [1.1.0] - 2026-08-17
 
 ### Added
