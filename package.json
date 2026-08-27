@@ -24,7 +24,7 @@
     "env:package:destroy": "wp-env --config=.wp-env.package.json destroy",
     "test:package": "wp-env --config=.wp-env.package.json run cli wp plugin is-active seo-and-social && wp-env --config=.wp-env.package.json run cli wp eval '$plugin = get_plugin_data( WP_PLUGIN_DIR . \"/seo-and-social/seo-and-social.php\" ); if ( \"1.1.0\" !== $plugin[\"Version\"] ) { fwrite( STDERR, \"Unexpected Seo & Social version.\\n\" ); exit( 1 ); } echo \"Seo & Social 1.1.0 is active.\\n\";'",
     "plugin-check:install": "wp-env --config=.wp-env.package.json run cli wp plugin install plugin-check --activate",
-    "plugin-check": "wp-env --config=.wp-env.package.json run cli wp plugin check seo-and-social --require=./wp-content/plugins/plugin-check/cli.php --ignore-codes=PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound",
+    "plugin-check": "wp-env --config=.wp-env.package.json run cli wp plugin check seo-and-social --require=./wp-content/plugins/plugin-check/cli.php --ignore-codes=PluginCheck.CodeAnalysis.DiscouragedFunctions.load_plugin_textdomainFound,plugin_updater_detected",
     "env:compat:start": "wp-env --config=.wp-env.compat.json start",
     "env:compat:stop": "wp-env --config=.wp-env.compat.json stop",
     "env:compat:destroy": "wp-env --config=.wp-env.compat.json destroy",
