@@ -72,10 +72,12 @@ Risk: incomplete, deleted, or reordered rows are exposed incorrectly.
 1. Add two complete extra social links.
 2. Add rows missing Key, Label, and URL in turn, attempting to save each one.
 3. Confirm that the browser identifies each missing required field and does not submit the form.
-4. Complete the rows, then remove one complete row and save.
-5. Reload the page and inspect the settings endpoint.
+4. Enter a schemeless URL and a non-HTTP(S) URL; confirm submission is blocked at the URL field.
+5. Add a second row using the same Key; confirm submission is blocked at the duplicate Key field.
+6. Give the rows unique keys and valid absolute HTTP(S) URLs, then remove one complete row and save.
+7. Reload the page and inspect the settings endpoint.
 
-Expected: incomplete rows are blocked with the missing required field identified; complete saved rows persist in the expected order; deleted rows are not exposed.
+Expected: incomplete and invalid-URL rows are blocked at the relevant field; each Key is unique; complete saved rows persist in the expected order; deleted or server-rejected rows are not exposed.
 
 ### QA-007 — Schema property types and sanitization
 
@@ -85,10 +87,13 @@ Risk: structured schema properties change type or expose unsafe values.
 2. Save valid values, reload the page, and inspect the REST response types.
 3. Add one row without Property key and another without Value, attempting to save each one.
 4. Confirm that the browser identifies each missing required field and does not submit the form.
-5. Try an invalid URL and malformed JSON property.
-6. Add a duplicate property name and observe the stored/public result.
+5. Select URL and try a schemeless value, a malformed URL, and a non-HTTP(S) scheme; confirm each is blocked or removed with clear feedback.
+6. Save valid absolute HTTP and HTTPS values, including a localhost URL, and confirm they persist unchanged.
+7. Add two exact duplicate rows and attempt to save; confirm submission is blocked, the second row receives focus, and its Value field explains that it must be changed or removed.
+8. Add rows with the same property key but a different type or value and confirm they remain in their original order.
+9. Try malformed JSON and inspect the stored/public result.
 
-Expected: incomplete rows are blocked with the missing required field identified; complete rows persist after reload; valid types remain structured; invalid values are controlled; and the response remains deterministic.
+Expected: incomplete rows are blocked with the missing required field identified; URL values require explicit absolute HTTP(S) syntax without silently adding a scheme; complete rows persist after reload; exact duplicates are blocked inline while server-side sanitization remains a fallback; meaningful same-key rows remain ordered; valid types remain structured; invalid values are controlled; and the response remains deterministic.
 
 ### QA-008 — LLMs data enabled, disabled, and dynamic rows
 
@@ -97,12 +102,14 @@ Risk: disabled or draft LLMs content is exposed anonymously.
 1. Add site summary, recommended pages, ignored sections, and custom content.
 2. Save, reload the page, and confirm that complete recommended-page and ignored-section rows persist.
 3. Add a recommended page with URL and note but no page title, then attempt to save.
-4. Add an ignored section with a description but no section name, then attempt to save.
-5. Save with LLMs disabled and request `/llms` anonymously.
-6. Inspect the same data as Administrator.
-7. Enable LLMs and request the endpoint again.
+4. Enter a schemeless or non-HTTP(S) recommended-page URL and confirm submission is blocked at that URL.
+5. Add another recommended page with the same URL and confirm submission is blocked at the duplicate URL.
+6. Add an ignored section with a description but no section name, then attempt to save.
+7. Save with LLMs disabled and request `/llms` anonymously.
+8. Inspect the same data as Administrator.
+9. Enable LLMs and request the endpoint again.
 
-Expected: complete rows persist after reload; incomplete rows are blocked with the missing required field identified; anonymous disabled output contains only the disabled state; administrators can review stored drafts; enabled public output is complete and correctly rendered.
+Expected: complete rows persist after reload; incomplete rows, invalid recommended-page URLs, and duplicate recommended-page URLs are blocked at the relevant field; anonymous disabled output contains only the disabled state; administrators can review stored drafts; enabled public output is complete and correctly rendered.
 
 ### QA-009 — Meta-box registration by post type
 
@@ -132,10 +139,11 @@ Risk: incomplete or disabled FAQ items appear publicly or sorting is unstable.
 
 1. Add complete enabled FAQ rows with positions 30, 10, and 20.
 2. Add a disabled complete row and an incomplete row.
-3. Save and reload the editor.
-4. Inspect `faq_items` in REST.
+3. Open the Code tab for an existing row and a newly added row; confirm the formatting buttons remain compact and readable instead of stretching across the row.
+4. Save and reload the editor.
+5. Inspect `faq_items` in REST.
 
-Expected: stored rows remain editable; public output contains only complete enabled rows sorted 10, 20, 30.
+Expected: stored rows remain editable; Code toolbar controls use the normal compact WordPress layout in existing and dynamic rows; public output contains only complete enabled rows sorted 10, 20, 30.
 
 ### QA-012 — FAQ HTML policy and stored XSS boundary
 

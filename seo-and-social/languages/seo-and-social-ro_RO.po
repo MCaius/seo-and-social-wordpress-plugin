@@ -449,8 +449,8 @@ msgid "Label"
 msgstr "Etichetă"
 
 #: seo-and-social/includes/admin/admin-menu.php:225
-msgid "<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. The note is optional."
-msgstr "<strong>Titlul paginii</strong> și URL-ul sunt obligatorii. Folosește titlul care ar trebui să apară ca text al linkului în llms.txt. Nota este opțională."
+msgid "<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. Enter a unique absolute URL starting with http:// or https://. The note is optional."
+msgstr "<strong>Titlul paginii</strong> și URL-ul sunt obligatorii. Folosește titlul care ar trebui să apară ca text al linkului în llms.txt. Introdu un URL absolut unic care începe cu http:// sau https://. Nota este opțională."
 
 #: seo-and-social/includes/admin/admin-menu.php:1113
 msgid "Page title"
@@ -509,8 +509,8 @@ msgid "OG images regenerated. Generated: %1$d. Failed: %2$d. Skipped: %3$d."
 msgstr "Imagini OG regenerate. Generate: %1$d. Eșuate: %2$d. Sărite: %3$d."
 
 #: seo-and-social/includes/admin/admin-menu.php:349
-msgid "<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use Key as a stable API identifier and Label as the display name."
-msgstr "<strong>Cheia</strong>, <strong>eticheta</strong> și URL-ul sunt obligatorii. Folosește cheia ca identificator API stabil, iar eticheta ca nume afișat."
+msgid "<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use a unique Key as a stable API identifier, Label as the display name, and an absolute URL starting with http:// or https://."
+msgstr "<strong>Cheia</strong>, <strong>eticheta</strong> și URL-ul sunt obligatorii. Folosește o cheie unică drept identificator API stabil, eticheta drept nume afișat și un URL absolut care începe cu http:// sau https://."
 
 #: seo-and-social/includes/meta-boxes/faq-meta-box.php:90
 msgid "Open"
@@ -1093,3 +1093,47 @@ msgstr "Cheie"
 #: seo-and-social/includes/admin/admin-menu.php:1084
 msgid "Property key"
 msgstr "Cheia proprietății"
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "Enter an absolute URL starting with http:// or https://."
+msgstr "Introdu un URL absolut care începe cu http:// sau https://."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but invalid schema property URLs were removed. Use absolute URLs starting with http:// or https://."
+msgstr "Setările au fost salvate, dar URL-urile invalide ale proprietăților schema au fost eliminate. Folosește URL-uri absolute care încep cu http:// sau https://."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but exact duplicate schema properties were removed."
+msgstr "Setările au fost salvate, dar proprietățile schema duplicate identic au fost eliminate."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "URL values must be absolute and start with http:// or https://. Exact duplicate rows must be changed or removed before saving."
+msgstr "Valorile URL trebuie să fie absolute și să înceapă cu http:// sau https://. Rândurile duplicate identic trebuie modificate sau eliminate înainte de salvare."
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "This row duplicates an existing schema property. Change or remove it before saving."
+msgstr "Acest rând duplică o proprietate schema existentă. Modifică-l sau elimină-l înainte de salvare."
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "This key is already used by another social link. Enter a unique key."
+msgstr "Această cheie este deja folosită de un alt link social. Introdu o cheie unică."
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "This URL is already used by another recommended page. Enter a unique URL."
+msgstr "Acest URL este deja folosit de o altă pagină recomandată. Introdu un URL unic."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but invalid extra social link URLs were removed. Use absolute URLs starting with http:// or https://."
+msgstr "Setările au fost salvate, dar URL-urile invalide ale linkurilor sociale suplimentare au fost eliminate. Folosește URL-uri absolute care încep cu http:// sau https://."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but extra social links with duplicate keys were removed."
+msgstr "Setările au fost salvate, dar linkurile sociale suplimentare cu chei duplicate au fost eliminate."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but invalid recommended page URLs were removed. Use absolute URLs starting with http:// or https://."
+msgstr "Setările au fost salvate, dar URL-urile invalide ale paginilor recomandate au fost eliminate. Folosește URL-uri absolute care încep cu http:// sau https://."
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but recommended pages with duplicate URLs were removed."
+msgstr "Setările au fost salvate, dar paginile recomandate cu URL-uri duplicate au fost eliminate."

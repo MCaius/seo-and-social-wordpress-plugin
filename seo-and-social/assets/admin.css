@@ -233,6 +233,10 @@
   padding: 0;
 }
 
+.sas-faq-row .quicktags-toolbar input {
+  width: auto;
+}
+
 .sas-faq-row-header {
   align-items: center;
   background: #f6f7f7;

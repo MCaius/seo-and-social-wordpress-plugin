@@ -143,6 +143,16 @@ class Seo_And_Social_Settings_Integration_Test extends Seo_And_Social_Test_Case 
 							'label' => 'Invalid row',
 							'url' => '',
 						),
+						array(
+							'key' => 'QA Community',
+							'label' => 'Duplicate key',
+							'url' => 'https://example.test/duplicate',
+						),
+						array(
+							'key' => 'invalid-scheme',
+							'label' => 'Invalid URL',
+							'url' => 'ftp://example.test/file',
+						),
 					),
 				),
 			),
@@ -154,5 +164,98 @@ class Seo_And_Social_Settings_Integration_Test extends Seo_And_Social_Test_Case 
 		$this->assertSame( 'qa-community', $result['social']['extra_links'][0]['key'] );
 		$this->assertSame( 'Community', $result['social']['extra_links'][0]['label'] );
 		$this->assertSame( 'https://example.test/community', $result['social']['extra_links'][0]['url'] );
+	}
+
+	/**
+	 * Recommended pages require unique absolute HTTP(S) URLs.
+	 *
+	 * @return void
+	 */
+	public function test_llms_recommended_pages_require_unique_absolute_urls() {
+		$rows = sas_sanitize_llms_recommended_pages(
+			array(
+				array( 'label' => 'First', 'url' => 'https://example.test/page', 'note' => 'First note' ),
+				array( 'label' => 'Duplicate', 'url' => 'https://example.test/page', 'note' => 'Other note' ),
+				array( 'label' => 'Local', 'url' => 'http://localhost:8888/page', 'note' => '' ),
+				array( 'label' => 'Missing scheme', 'url' => 'example.test/page', 'note' => '' ),
+				array( 'label' => 'Invalid scheme', 'url' => 'ftp://example.test/page', 'note' => '' ),
+			)
+		);
+
+		$this->assertSame(
+			array(
+				array( 'label' => 'First', 'url' => 'https://example.test/page', 'note' => 'First note' ),
+				array( 'label' => 'Local', 'url' => 'http://localhost:8888/page', 'note' => '' ),
+			),
+			$rows
+		);
+	}
+
+	/**
+	 * Schema URLs require an explicit absolute HTTP(S) value.
+	 *
+	 * @return void
+	 */
+	public function test_extra_schema_urls_require_absolute_http_or_https() {
+		$rows = sas_sanitize_extra_schema_properties(
+			array(
+				array( 'key' => 'validHttps', 'type' => 'url', 'value' => ' https://example.test/page ' ),
+				array( 'key' => 'validLocal', 'type' => 'url', 'value' => 'http://localhost:8888/page' ),
+				array( 'key' => 'missingScheme', 'type' => 'url', 'value' => 'example.test/page' ),
+				array( 'key' => 'invalidScheme', 'type' => 'url', 'value' => 'ftp://example.test/file' ),
+				array( 'key' => 'missingHost', 'type' => 'url', 'value' => 'https:///page' ),
+			)
+		);
+
+		$this->assertSame(
+			array(
+				array( 'key' => 'validHttps', 'type' => 'url', 'value' => 'https://example.test/page' ),
+				array( 'key' => 'validLocal', 'type' => 'url', 'value' => 'http://localhost:8888/page' ),
+			),
+			$rows
+		);
+	}
+
+	/**
+	 * Exact schema duplicates are removed without collapsing meaningful rows.
+	 *
+	 * @return void
+	 */
+	public function test_extra_schema_properties_remove_only_exact_duplicates() {
+		$rows = sas_sanitize_extra_schema_properties(
+			array(
+				array( 'key' => 'sameKey', 'type' => 'text', 'value' => 'First value' ),
+				array( 'key' => 'sameKey', 'type' => 'text', 'value' => 'First value' ),
+				array( 'key' => 'sameKey', 'type' => 'text', 'value' => 'Second value' ),
+				array( 'key' => 'sameKey', 'type' => 'list', 'value' => "First value\nSecond value" ),
+			)
+		);
+
+		$this->assertCount( 3, $rows );
+		$this->assertSame( 'First value', $rows[0]['value'] );
+		$this->assertSame( 'Second value', $rows[1]['value'] );
+		$this->assertSame( array( 'First value', 'Second value' ), $rows[2]['value'] );
+	}
+
+	/**
+	 * Legacy duplicates and invalid URLs do not reach public schema output.
+	 *
+	 * @return void
+	 */
+	public function test_public_schema_properties_normalize_legacy_rows() {
+		$public = sas_prepare_public_schema_properties(
+			array(
+				array( 'key' => 'payload', 'type' => 'json', 'value' => '{"enabled":true}' ),
+				array( 'key' => 'payload', 'type' => 'json', 'value' => '{"enabled":true}' ),
+				array( 'key' => 'legacyUrl', 'type' => 'url', 'value' => 'example.test/page' ),
+			)
+		);
+
+		$this->assertSame(
+			array(
+				array( 'key' => 'payload', 'type' => 'json', 'value' => array( 'enabled' => true ) ),
+			),
+			$public
+		);
 	}
 }

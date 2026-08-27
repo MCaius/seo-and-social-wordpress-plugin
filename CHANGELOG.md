@@ -9,6 +9,9 @@ The format is based on Keep a Changelog, and this project uses semantic versioni
 ### Fixed
 
 - Required fields are now clearly identified and enforced for extra social links, extra schema properties, recommended pages, and ignored sections, preventing incomplete dynamic rows from being silently discarded.
+- Extra schema property URLs now require an explicit absolute HTTP(S) URL, and exact duplicate schema rows are removed deterministically.
+- Extra social links now require unique keys and explicit absolute HTTP(S) URLs; recommended LLMs pages now require unique absolute HTTP(S) URLs.
+- FAQ Code editor toolbar buttons now retain their compact WordPress layout inside dynamic rows.
 
 ## [1.1.0] - 2026-08-17
 

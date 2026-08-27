@@ -13,6 +13,25 @@
     toggle.textContent = row.classList.contains("is-collapsed") ? "Open" : "Close";
   }
 
+  function initializeFaqEditorTestIds(editor) {
+	const codeTab = document.getElementById(`${editor.id}-html`);
+	const toolbar = document.getElementById(`qt_${editor.id}_toolbar`);
+
+	if (codeTab) {
+	  codeTab.dataset.testid = "sas-faq-code-tab";
+	}
+
+	if (toolbar) {
+	  toolbar.dataset.testid = "sas-faq-code-toolbar";
+
+	  Array.from(toolbar.children).forEach(function (button) {
+		if (button.tagName === "INPUT") {
+		  button.dataset.testid = "sas-faq-code-button";
+		}
+	  });
+	}
+  }
+
   function initializeFaqEditor(editor) {
     if (!editor || editor.dataset.editorInitialized === "true" || !window.wp || !wp.editor) {
       return;
@@ -33,6 +52,10 @@
     });
 
     editor.dataset.editorInitialized = "true";
+	initializeFaqEditorTestIds(editor);
+	window.setTimeout(function () {
+	  initializeFaqEditorTestIds(editor);
+	}, 0);
   }
 
   function initializeMetaBoxTestIds() {
@@ -57,6 +80,152 @@
         metaBoxesToggle.dataset.testid = "sas-toggle-meta-boxes-area";
       }
     });
+  }
+
+  function isAbsoluteHttpUrl(value) {
+    const normalizedValue = value.trim();
+
+    if (!/^https?:\/\/[^/?#\s]+(?:[/?#]|$)/i.test(normalizedValue)) {
+      return false;
+    }
+
+    try {
+      const url = new URL(normalizedValue);
+
+      return (url.protocol === "http:" || url.protocol === "https:") && Boolean(url.hostname);
+    } catch {
+      return false;
+    }
+  }
+
+  function validateSchemaUrlRow(row) {
+    const type = row.querySelector('[data-testid="sas-extra-schema-type"]');
+    const value = row.querySelector('[data-testid="sas-extra-schema-value"]');
+
+    if (!type || !value) {
+      return true;
+    }
+
+    value.setCustomValidity("");
+
+    if (type.value === "url" && value.value.trim() && !isAbsoluteHttpUrl(value.value)) {
+      value.setCustomValidity(sasAdmin.invalidHttpUrl);
+      return false;
+    }
+
+    return true;
+  }
+
+  function schemaRowSignature(row) {
+    const key = row.querySelector('[data-testid="sas-extra-schema-key"]')?.value
+      .trim()
+      .replace(/[^A-Za-z0-9_\-:@.]/g, "");
+    const type = row.querySelector('[data-testid="sas-extra-schema-type"]')?.value || "text";
+    const valueElement = row.querySelector('[data-testid="sas-extra-schema-value"]');
+    let value = valueElement?.value.trim() || "";
+
+    if (!key || !value) {
+      return "";
+    }
+
+    if (type === "list") {
+      value = value.split(/\r\n|\r|\n/).map((item) => item.trim()).filter(Boolean).join("\n");
+    } else if (type === "json") {
+      try {
+        value = JSON.stringify(JSON.parse(value));
+      } catch {
+        return "";
+      }
+    }
+
+    return JSON.stringify([key, type, value]);
+  }
+
+  function findDuplicateSchemaRow(form) {
+    const seen = new Set();
+    let firstDuplicate = null;
+
+    form.querySelectorAll(".sas-schema-row").forEach(function (row) {
+      const value = row.querySelector('[data-testid="sas-extra-schema-value"]');
+      const signature = schemaRowSignature(row);
+
+      if (!value || !signature) {
+        return;
+      }
+
+      if (seen.has(signature)) {
+        value.setCustomValidity(sasAdmin.duplicateSchemaProperty);
+        firstDuplicate = firstDuplicate || row;
+        return;
+      }
+
+      seen.add(signature);
+    });
+
+    return firstDuplicate;
+  }
+
+  function validateAbsoluteUrlInput(input) {
+    input.setCustomValidity("");
+
+    if (input.value.trim() && !isAbsoluteHttpUrl(input.value)) {
+      input.setCustomValidity(sasAdmin.invalidHttpUrl);
+    }
+  }
+
+  function findDuplicateValue(rows, signatureForRow, fieldForRow, message) {
+    const seen = new Set();
+
+    rows.forEach(function (row) {
+      const signature = signatureForRow(row);
+      const field = fieldForRow(row);
+
+      if (!signature || !field) {
+        return;
+      }
+
+      if (seen.has(signature)) {
+        field.setCustomValidity(message);
+        return;
+      }
+
+      seen.add(signature);
+    });
+  }
+
+  function validateSettingsRows(form) {
+    const schemaRows = Array.from(form.querySelectorAll(".sas-schema-row"));
+    const socialRows = Array.from(form.querySelectorAll('[data-testid="sas-extra-social-row"]'));
+    const recommendedRows = Array.from(form.querySelectorAll('[data-testid="sas-llms-recommended-page-row"]'));
+
+    schemaRows.forEach(validateSchemaUrlRow);
+    socialRows.forEach(function (row) {
+      validateAbsoluteUrlInput(row.querySelector('[data-testid="sas-extra-social-url"]'));
+      row.querySelector('[data-testid="sas-extra-social-key"]').setCustomValidity("");
+    });
+    recommendedRows.forEach(function (row) {
+      validateAbsoluteUrlInput(row.querySelector('[data-testid="sas-llms-recommended-page-url"]'));
+    });
+
+    findDuplicateSchemaRow(form);
+    findDuplicateValue(
+      socialRows,
+      (row) => row.querySelector('[data-testid="sas-extra-social-key"]').value.trim().toLowerCase().replace(/\s+/g, "-"),
+      (row) => row.querySelector('[data-testid="sas-extra-social-key"]'),
+      sasAdmin.duplicateSocialKey
+    );
+    findDuplicateValue(
+      recommendedRows,
+      (row) => row.querySelector('[data-testid="sas-llms-recommended-page-url"]').value.trim(),
+      (row) => row.querySelector('[data-testid="sas-llms-recommended-page-url"]'),
+      sasAdmin.duplicateRecommendedUrl
+    );
+
+    const invalidField = Array.from(form.querySelectorAll("input, select, textarea")).find(function (field) {
+      return field.validity && field.validity.customError;
+    });
+
+    return invalidField ? { field: invalidField, row: invalidField.closest(".sas-row") } : null;
   }
 
   $(document).on("click", ".sas-info-button", function () {
@@ -126,6 +295,14 @@
     }
   });
 
+  $(document).on("input change", ".sas-schema-row input, .sas-schema-row select, .sas-schema-row textarea, [data-testid=\"sas-extra-social-row\"] input, [data-testid=\"sas-llms-recommended-page-row\"] input", function () {
+    const form = this.closest("form");
+
+    if (form) {
+      validateSettingsRows(form);
+    }
+  });
+
   $(document).on("click", "[data-sas-media-url-target]", function () {
     const button = $(this);
     const urlTarget = $("#" + button.data("sasMediaUrlTarget"));
@@ -180,7 +357,19 @@
     }
   });
 
-  $(document).on("submit", "form", function () {
+  $(document).on("submit", "form", function (event) {
+    if (this.classList.contains("sas-settings-form")) {
+      const invalid = validateSettingsRows(this);
+
+      if (invalid) {
+        event.preventDefault();
+
+        invalid.field.reportValidity();
+        invalid.field.focus();
+        return;
+      }
+    }
+
     if (window.tinyMCE && tinyMCE.triggerSave) {
       tinyMCE.triggerSave();
     }
