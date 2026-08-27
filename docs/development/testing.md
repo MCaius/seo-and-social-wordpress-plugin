@@ -253,9 +253,9 @@ every release blocker explicitly, and run the compatibility smoke test.
 ## Release preparation checklist
 
 1. Create `release/<version>` from an up-to-date, clean `main` branch.
-2. Align the version in the plugin header, `readme.txt`, `package.json`,
-   `package-lock.json`, package/compatibility smoke checks, and translation
-   metadata.
+2. Align the version in the plugin header, `SAS_VERSION`, `readme.txt`,
+	`package.json`, `package-lock.json`, package/compatibility smoke checks, and
+	translation metadata.
 3. Add the release notes to `CHANGELOG.md` and the WordPress changelog in
    `seo-and-social/readme.txt`.
 4. Confirm the manual QA report is complete and that all blocking findings are
@@ -267,4 +267,8 @@ every release blocker explicitly, and run the compatibility smoke test.
 7. Merge the release pull request, then create the matching `v<version>` tag on
    the resulting `main` commit.
 8. Push the tag and verify that the GitHub release contains the ZIP and manifest
-   produced by the successful release workflow.
+	produced by the successful release workflow.
+9. On a disposable site running the previous updater-enabled version, refresh
+	WordPress updates and confirm the new stable version is offered from the
+	verified `seo-and-social.zip` asset. Complete the update and confirm plugin
+	activation, version, settings, and saved post metadata.

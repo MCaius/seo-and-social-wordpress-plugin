@@ -11,6 +11,7 @@ const zipPath = join(distDir, `${pluginSlug}.zip`);
 const manifestPath = join(distDir, `${pluginSlug}.manifest.json`);
 const extractionDir = join(distDir, "package");
 const requiredFiles = new Set([
+  `${pluginSlug}/includes/helpers/updater.php`,
   `${pluginSlug}/readme.txt`,
   `${pluginSlug}/seo-and-social.php`,
   `${pluginSlug}/uninstall.php`,

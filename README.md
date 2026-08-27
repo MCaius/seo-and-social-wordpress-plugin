@@ -167,6 +167,8 @@ For the complete local environments, automated suites, package checks, and relea
 5. Configure Settings first, then fill Social, SEO, and LLMs.txt fields.
 6. Edit pages/posts/CPT items to add local SEO overrides or FAQ rows.
 
+The first version that includes the GitHub updater must be installed manually on existing sites. After that, newer stable GitHub Releases that contain the verified `seo-and-social.zip` asset appear in the standard WordPress Plugins and Updates screens. Drafts, prereleases, missing assets, and packages outside the allow-listed repository are ignored.
+
 ## Security Notes
 
 - Global plugin pages are Administrator-only by default.

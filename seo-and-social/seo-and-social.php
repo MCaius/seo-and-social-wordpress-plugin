@@ -5,9 +5,11 @@
  * Version: 1.1.0
  * Requires at least: 6.0
  * Requires PHP: 8.0
- * Author: Caius
+ * Author: MCaius
+ * Author URI: https://github.com/MCaius
  * License: GPL-2.0-or-later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Update URI: https://github.com/MCaius/seo-and-social-wordpress-plugin
  * Text Domain: seo-and-social
  * Domain Path: /languages
  *
@@ -21,6 +23,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 define( 'SAS_PLUGIN_FILE', __FILE__ );
 define( 'SAS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'SAS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
+define( 'SAS_VERSION', '1.1.0' );
 define( 'SAS_OPTION_NAME', 'sas_settings' );
 define( 'SAS_TEXT_DOMAIN', 'seo-and-social' );
 define( 'SAS_SEO_META_KEY', '_sas_seo_overrides' );
@@ -31,6 +34,7 @@ $sas_files = array(
 	'includes/helpers/sanitization.php',
 	'includes/helpers/og-image.php',
 	'includes/helpers/assets.php',
+	'includes/helpers/updater.php',
 	'includes/admin/admin-menu.php',
 	'includes/meta-boxes/seo-meta-box.php',
 	'includes/meta-boxes/faq-meta-box.php',
@@ -59,6 +63,8 @@ add_action( 'rest_api_init', 'sas_register_settings_endpoint' );
 add_action( 'rest_api_init', 'sas_register_content_rest_fields' );
 add_filter( 'rest_authentication_errors', 'sas_allow_public_settings_endpoint', 1000 );
 add_filter( 'map_meta_cap', 'sas_map_plugin_access_capability', 10, 4 );
+add_filter( 'update_plugins_github.com', 'sas_filter_github_plugin_update', 10, 4 );
+add_action( 'delete_site_transient_update_plugins', 'sas_clear_github_release_cache' );
 
 /**
  * Load plugin translations when language files are added later.
