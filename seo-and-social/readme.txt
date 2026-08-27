@@ -47,6 +47,8 @@ Core ideas:
 5. Enable the desired post types for SEO and FAQ meta boxes.
 6. Connect your frontend to the REST API endpoints.
 
+The first updater-enabled version must be installed manually on existing sites. Future stable GitHub Releases with the verified `seo-and-social.zip` asset can then be installed from the standard WordPress Plugins screen.
+
 == REST API ==
 
 Default global settings endpoint:

@@ -282,3 +282,17 @@ Risk: the new QA environment differs from current CI assumptions or Romanian UI 
 3. Confirm notices, labels, and dynamic-row controls remain understandable.
 
 Expected: current regression scripts pass when executed later under the verification instructions; the translated admin workflow has no missing critical strings or broken controls.
+
+### QA-025 — GitHub release discovery and native plugin update
+
+Risk: WordPress installs an untrusted or malformed package, misses a stable release, or loses saved plugin data during an update.
+
+1. Install the previous updater-enabled plugin version on a disposable WordPress site and save representative global settings plus SEO/FAQ post metadata.
+2. Publish a newer stable GitHub Release whose tag matches the plugin version and whose assets include the CI-verified `seo-and-social.zip`.
+3. Refresh the WordPress Updates screen and confirm the new version appears for Seo & Social.
+4. Install the update using the standard WordPress action.
+5. Confirm the plugin remains active, reports the expected version, and preserves the saved settings and post metadata.
+6. Repeat update discovery with a draft, a prerelease, a malformed tag, a missing expected ZIP asset, and an asset URL outside the allow-listed repository.
+7. Simulate an unavailable or invalid GitHub API response and confirm wp-admin and the active plugin continue working without an update offer.
+
+Expected: only a newer stable release with the exact verified asset from the allow-listed GitHub repository is offered; the native update succeeds without losing data; unsafe, incomplete, unavailable, and non-newer releases fail safely.

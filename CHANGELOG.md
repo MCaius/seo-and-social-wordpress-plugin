@@ -6,6 +6,10 @@ The format is based on Keep a Changelog, and this project uses semantic versioni
 
 ## [Unreleased]
 
+### Added
+
+- Native WordPress update discovery for stable GitHub Releases using the verified `seo-and-social.zip` release asset, with strict repository validation and cached failure handling.
+
 ### Fixed
 
 - Required fields are now clearly identified and enforced for extra social links, extra schema properties, recommended pages, and ignored sections, preventing incomplete dynamic rows from being silently discarded.

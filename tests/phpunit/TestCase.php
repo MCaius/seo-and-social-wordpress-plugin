@@ -15,6 +15,7 @@ abstract class Seo_And_Social_Test_Case extends WP_UnitTestCase {
 		parent::set_up();
 
 		delete_option( SAS_OPTION_NAME );
+		delete_site_transient( SAS_GITHUB_RELEASE_CACHE_KEY );
 		wp_set_current_user( 0 );
 		$_POST = array();
 		$_GET = array();
@@ -37,6 +38,7 @@ abstract class Seo_And_Social_Test_Case extends WP_UnitTestCase {
 		remove_all_filters( 'sas_public_settings_rate_limit_window' );
 		remove_all_filters( 'sas_trusted_proxy_ip_headers' );
 		delete_option( SAS_OPTION_NAME );
+		delete_site_transient( SAS_GITHUB_RELEASE_CACHE_KEY );
 		$_POST = array();
 		$_GET = array();
 		$_REQUEST = array();
