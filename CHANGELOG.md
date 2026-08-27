@@ -6,6 +6,8 @@ The format is based on Keep a Changelog, and this project uses semantic versioni
 
 ## [Unreleased]
 
+## [1.2.0] - 2026-08-27
+
 ### Added
 
 - Native WordPress update discovery for stable GitHub Releases using the verified `seo-and-social.zip` release asset, with strict repository validation and cached failure handling.

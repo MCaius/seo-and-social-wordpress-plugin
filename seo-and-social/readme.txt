@@ -4,7 +4,7 @@ Tags: headless, seo, social, schema, rest-api
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.1.0
+Stable tag: 1.2.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,12 @@ No, not by default. Global plugin pages are administrator-only by default. Edito
 
 == Changelog ==
 
+= 1.2.0 =
+* Added native WordPress update discovery for stable GitHub Releases containing the verified plugin ZIP.
+* Added strict validation and clearer notices for dynamic social, schema, LLMs.txt, and ignored-section rows.
+* Enforced unique social keys, schema rows, and recommended-page URLs, with absolute HTTP(S) URL validation.
+* Improved the FAQ Code editor toolbar layout inside dynamic rows.
+
 = 1.1.0 =
 * Fixed dynamic FAQ rows so every answer receives a unique, independently initialized editor.
 * Added PHPUnit integration coverage for permissions, settings, metadata, REST contracts, output escaping, LLMs data, OG images, uninstall behavior, and the headless boundary.
@@ -117,6 +123,9 @@ No, not by default. Global plugin pages are administrator-only by default. Edito
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.2.0 =
+Adds native updates from stable GitHub Releases and improves validation and usability across dynamic settings and FAQ editing.
 
 = 1.1.0 =
 Recommended quality and reliability update. Includes the dynamic FAQ editor fix and expanded automated release verification.
