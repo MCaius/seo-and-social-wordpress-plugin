@@ -52,6 +52,10 @@ function sas_enqueue_admin_assets( $hook_suffix ) {
 		array(
 			'chooseImage' => __( 'Choose image', 'seo-and-social' ),
 			'useImage' => __( 'Use this image', 'seo-and-social' ),
+			'invalidHttpUrl' => __( 'Enter an absolute URL starting with http:// or https://.', 'seo-and-social' ),
+			'duplicateSchemaProperty' => __( 'This row duplicates an existing schema property. Change or remove it before saving.', 'seo-and-social' ),
+			'duplicateSocialKey' => __( 'This key is already used by another social link. Enter a unique key.', 'seo-and-social' ),
+			'duplicateRecommendedUrl' => __( 'This URL is already used by another recommended page. Enter a unique URL.', 'seo-and-social' ),
 			'confirmDeleteAllData' => __( 'This will permanently delete all Seo & Social settings, all SEO/FAQ post meta saved by this plugin, and all generated WebP OG images. Original media files will not be deleted. This cannot be undone. Continue?', 'seo-and-social' ),
 			'confirmDeleteOgImages' => __( 'This will delete all generated WebP OG images created by Seo & Social. Settings, SEO/FAQ post meta, and original media files will not be deleted. Continue?', 'seo-and-social' ),
 		)

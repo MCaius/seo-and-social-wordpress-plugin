@@ -55,6 +55,30 @@ function sas_sanitize_schema_property_key( $key ) {
 }
 
 /**
+ * Sanitize an explicit absolute HTTP(S) URL.
+ *
+ * @param mixed $url Raw URL.
+ * @return string
+ */
+function sas_sanitize_absolute_http_url( $url ) {
+	$url = trim( (string) $url );
+
+	if ( $url === '' ) {
+		return '';
+	}
+
+	$parts = wp_parse_url( $url );
+	$scheme = is_array( $parts ) && isset( $parts['scheme'] ) ? strtolower( $parts['scheme'] ) : '';
+	$host = is_array( $parts ) && isset( $parts['host'] ) ? trim( $parts['host'] ) : '';
+
+	if ( ! in_array( $scheme, array( 'http', 'https' ), true ) || $host === '' ) {
+		return '';
+	}
+
+	return esc_url_raw( $url, array( 'http', 'https' ) );
+}
+
+/**
  * Decode stored JSON for public output.
  *
  * @param string $json Stored JSON.
@@ -84,6 +108,7 @@ function sas_sanitize_extra_social_links( $rows ) {
 	}
 
 	$clean = array();
+	$seen_keys = array();
 
 	foreach ( $rows as $row ) {
 		if ( ! is_array( $row ) ) {
@@ -92,11 +117,13 @@ function sas_sanitize_extra_social_links( $rows ) {
 
 		$key = isset( $row['key'] ) ? sanitize_title( $row['key'] ) : '';
 		$label = isset( $row['label'] ) ? sanitize_text_field( $row['label'] ) : '';
-		$url = isset( $row['url'] ) ? esc_url_raw( $row['url'] ) : '';
+		$url = isset( $row['url'] ) ? sas_sanitize_absolute_http_url( $row['url'] ) : '';
 
-		if ( ! $key || ! $label || ! $url ) {
+		if ( ! $key || ! $label || ! $url || isset( $seen_keys[ $key ] ) ) {
 			continue;
 		}
+
+		$seen_keys[ $key ] = true;
 
 		$clean[] = array(
 			'key' => $key,
@@ -120,6 +147,7 @@ function sas_sanitize_extra_schema_properties( $rows ) {
 	}
 
 	$clean = array();
+	$seen = array();
 	$allowed_types = array( 'text', 'url', 'list', 'json' );
 
 	foreach ( $rows as $row ) {
@@ -136,9 +164,9 @@ function sas_sanitize_extra_schema_properties( $rows ) {
 		}
 
 		if ( $type === 'url' ) {
-			$value = esc_url_raw( $raw_value );
+			$value = sas_sanitize_absolute_http_url( $raw_value );
 		} elseif ( $type === 'list' ) {
-			$lines = preg_split( '/\r\n|\r|\n/', (string) $raw_value );
+			$lines = is_array( $raw_value ) ? $raw_value : preg_split( '/\r\n|\r|\n/', (string) $raw_value );
 			$value = array_values(
 				array_filter(
 					array_map( 'sanitize_text_field', $lines ),
@@ -156,6 +184,14 @@ function sas_sanitize_extra_schema_properties( $rows ) {
 		if ( $value === '' || $value === array() ) {
 			continue;
 		}
+
+		$signature = wp_json_encode( array( $key, $type, $value ), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+
+		if ( isset( $seen[ $signature ] ) ) {
+			continue;
+		}
+
+		$seen[ $signature ] = true;
 
 		$clean[] = array(
 			'key' => $key,
@@ -176,7 +212,7 @@ function sas_sanitize_extra_schema_properties( $rows ) {
 function sas_prepare_public_schema_properties( $rows ) {
 	$public = array();
 
-	foreach ( (array) $rows as $row ) {
+	foreach ( sas_sanitize_extra_schema_properties( $rows ) as $row ) {
 		if ( ! is_array( $row ) || empty( $row['key'] ) || empty( $row['type'] ) ) {
 			continue;
 		}
@@ -213,6 +249,7 @@ function sas_sanitize_llms_recommended_pages( $rows ) {
 	}
 
 	$clean = array();
+	$seen_urls = array();
 
 	foreach ( $rows as $row ) {
 		if ( ! is_array( $row ) ) {
@@ -220,12 +257,14 @@ function sas_sanitize_llms_recommended_pages( $rows ) {
 		}
 
 		$label = isset( $row['label'] ) ? sanitize_text_field( $row['label'] ) : '';
-		$url = isset( $row['url'] ) ? esc_url_raw( $row['url'] ) : '';
+		$url = isset( $row['url'] ) ? sas_sanitize_absolute_http_url( $row['url'] ) : '';
 		$note = isset( $row['note'] ) ? sas_sanitize_textarea( $row['note'] ) : '';
 
-		if ( ! $label || ! $url ) {
+		if ( ! $label || ! $url || isset( $seen_urls[ $url ] ) ) {
 			continue;
 		}
+
+		$seen_urls[ $url ] = true;
 
 		$clean[] = array(
 			'label' => $label,

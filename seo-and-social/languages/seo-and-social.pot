@@ -352,7 +352,7 @@ msgid "Label"
 msgstr ""
 
 #: seo-and-social/includes/admin/admin-menu.php:225
-msgid "<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. The note is optional."
+msgid "<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. Enter a unique absolute URL starting with http:// or https://. The note is optional."
 msgstr ""
 
 #: seo-and-social/includes/admin/admin-menu.php:1113
@@ -406,7 +406,7 @@ msgid "OG images regenerated. Generated: %1$d. Failed: %2$d. Skipped: %3$d."
 msgstr ""
 
 #: seo-and-social/includes/admin/admin-menu.php:349
-msgid "<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use Key as a stable API identifier and Label as the display name."
+msgid "<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use a unique Key as a stable API identifier, Label as the display name, and an absolute URL starting with http:// or https://."
 msgstr ""
 
 #: seo-and-social/includes/meta-boxes/faq-meta-box.php:90
@@ -856,4 +856,48 @@ msgstr ""
 
 #: seo-and-social/includes/admin/admin-menu.php:1084
 msgid "Property key"
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "Enter an absolute URL starting with http:// or https://."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but invalid schema property URLs were removed. Use absolute URLs starting with http:// or https://."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but exact duplicate schema properties were removed."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "URL values must be absolute and start with http:// or https://. Exact duplicate rows must be changed or removed before saving."
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "This row duplicates an existing schema property. Change or remove it before saving."
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "This key is already used by another social link. Enter a unique key."
+msgstr ""
+
+#: seo-and-social/includes/helpers/assets.php
+msgid "This URL is already used by another recommended page. Enter a unique URL."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but invalid extra social link URLs were removed. Use absolute URLs starting with http:// or https://."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but extra social links with duplicate keys were removed."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but invalid recommended page URLs were removed. Use absolute URLs starting with http:// or https://."
+msgstr ""
+
+#: seo-and-social/includes/admin/admin-menu.php
+msgid "Settings saved, but recommended pages with duplicate URLs were removed."
 msgstr ""

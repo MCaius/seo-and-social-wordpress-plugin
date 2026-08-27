@@ -68,7 +68,25 @@ test.describe('Seo & Social admin settings', () => {
     await expect(urlInput).toBeFocused();
     expect(await urlInput.evaluate((input) => input.validity.valueMissing)).toBe(true);
 
+    await urlInput.fill(`example.test/community-${suffix}`);
+    await page.getByTestId('sas-save-settings').click();
+    await expect(urlInput).toBeFocused();
+    expect(await urlInput.evaluate((input) => input.validity.customError)).toBe(true);
+
     await urlInput.fill(socialUrl);
+    await page.getByTestId('sas-add-extra-social-link').click();
+
+    const duplicateSocialRow = page.getByTestId('sas-extra-social-row').last();
+    const duplicateSocialKey = duplicateSocialRow.getByTestId('sas-extra-social-key');
+
+    await duplicateSocialKey.fill(socialKey);
+    await duplicateSocialRow.getByTestId('sas-extra-social-label').fill('Duplicate social key');
+    await duplicateSocialRow.getByTestId('sas-extra-social-url').fill(`https://example.test/duplicate-${suffix}`);
+    await page.getByTestId('sas-save-settings').click();
+    await expect(duplicateSocialKey).toBeFocused();
+    expect(await duplicateSocialKey.evaluate((input) => input.validity.customError)).toBe(true);
+
+    await duplicateSocialRow.getByTestId('sas-remove-extra-social-row').click();
     await page.getByTestId('sas-save-settings').click();
     await expect(page.getByTestId('sas-notice-saved')).toBeVisible();
     await page.reload();
@@ -118,6 +136,68 @@ test.describe('Seo & Social admin settings', () => {
     expect(await page.getByTestId('sas-extra-schema-value').evaluateAll((inputs) => inputs.map((input) => input.value))).toContain(propertyValue);
   });
 
+	test('validates schema URLs and blocks exact duplicate rows', async ({ page }) => {
+    const suffix = Date.now();
+    const propertyKey = `qaUrl${suffix}`;
+    const firstUrl = `https://example.test/schema-${suffix}`;
+    const secondUrl = `https://example.test/schema-${suffix}-alternate`;
+
+    await page.goto(`${adminPage}&tab=seo`);
+    await page.getByTestId('sas-add-extra-schema-property').click();
+
+    const firstRow = page.getByTestId('sas-extra-schema-row').last();
+    const firstValue = firstRow.getByTestId('sas-extra-schema-value');
+
+    await firstRow.getByTestId('sas-extra-schema-key').fill(propertyKey);
+    await firstRow.getByTestId('sas-extra-schema-type').selectOption('url');
+    await firstValue.fill(`example.test/schema-${suffix}`);
+    await page.getByTestId('sas-save-settings').click();
+
+    await expect(firstValue).toBeFocused();
+    expect(await firstValue.evaluate((input) => input.validity.customError)).toBe(true);
+    await expect(page.getByTestId('sas-notice-saved')).toHaveCount(0);
+
+    await firstValue.fill(firstUrl);
+
+    let duplicateRow;
+
+    for (const value of [firstUrl, secondUrl]) {
+      await page.getByTestId('sas-add-extra-schema-property').click();
+	  const rowIndex = (await page.getByTestId('sas-extra-schema-row').count()) - 1;
+	  const row = page.getByTestId('sas-extra-schema-row').nth(rowIndex);
+
+      await row.getByTestId('sas-extra-schema-key').fill(propertyKey);
+      await row.getByTestId('sas-extra-schema-type').selectOption('url');
+      await row.getByTestId('sas-extra-schema-value').fill(value);
+
+      if (value === firstUrl) {
+        duplicateRow = row;
+      }
+    }
+
+    await page.getByTestId('sas-save-settings').click();
+
+    const duplicateValue = duplicateRow.getByTestId('sas-extra-schema-value');
+
+    await expect(duplicateValue).toBeFocused();
+    await expect(duplicateValue).toHaveJSProperty(
+      'validationMessage',
+      'This row duplicates an existing schema property. Change or remove it before saving.',
+    );
+    await expect(page.getByTestId('sas-notice-schema-duplicate')).toHaveCount(0);
+
+    await duplicateRow.getByTestId('sas-remove-extra-schema-row').click();
+    await page.getByTestId('sas-save-settings').click();
+    await expect(page.getByTestId('sas-notice-saved')).toBeVisible();
+    await page.reload();
+
+	const savedKeys = await page.getByTestId('sas-extra-schema-key').evaluateAll((inputs) => inputs.map((input) => input.value));
+	const savedValues = await page.getByTestId('sas-extra-schema-value').evaluateAll((inputs) => inputs.map((input) => input.value));
+	const matchingValues = savedValues.filter((value, index) => savedKeys[index] === propertyKey);
+
+    expect(matchingValues).toEqual([firstUrl, secondUrl]);
+  });
+
   test('validates and persists LLMs dynamic rows', async ({ page }) => {
     const suffix = Date.now();
     const recommendedLabel = `Recommended page ${suffix}`;
@@ -139,6 +219,26 @@ test.describe('Seo & Social admin settings', () => {
     await expect(page.getByTestId('sas-notice-saved')).toHaveCount(0);
 
     await recommendedLabelInput.fill(recommendedLabel);
+    const recommendedUrlInput = recommendedRow.getByTestId('sas-llms-recommended-page-url');
+
+    await recommendedUrlInput.fill(`example.test/recommended-${suffix}`);
+    await page.getByTestId('sas-save-settings').click();
+    await expect(recommendedUrlInput).toBeFocused();
+    expect(await recommendedUrlInput.evaluate((input) => input.validity.customError)).toBe(true);
+
+    await recommendedUrlInput.fill(recommendedUrl);
+    await page.getByTestId('sas-add-llms-recommended-page').click();
+
+    const duplicateRecommendedRow = page.getByTestId('sas-llms-recommended-page-row').last();
+    const duplicateRecommendedUrl = duplicateRecommendedRow.getByTestId('sas-llms-recommended-page-url');
+
+    await duplicateRecommendedRow.getByTestId('sas-llms-recommended-page-label').fill('Duplicate recommended URL');
+    await duplicateRecommendedUrl.fill(recommendedUrl);
+    await page.getByTestId('sas-save-settings').click();
+    await expect(duplicateRecommendedUrl).toBeFocused();
+    expect(await duplicateRecommendedUrl.evaluate((input) => input.validity.customError)).toBe(true);
+
+    await duplicateRecommendedRow.getByTestId('sas-remove-llms-recommended-page-row').click();
     await page.getByTestId('sas-add-llms-ignored-section').click();
 
     const ignoredRow = page.getByTestId('sas-llms-ignored-section-row').last();

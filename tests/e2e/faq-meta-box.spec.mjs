@@ -178,6 +178,37 @@ test.describe('FAQ meta box', () => {
     expect(saved.answer).not.toContain('<script');
   });
 
+  test('keeps Code editor toolbar buttons compact in existing and added rows', async ({ page }) => {
+    await openEditor(page);
+    await page.getByTestId('sas-add-faq-item').click();
+
+    const editorIndexes = [0, (await page.getByTestId('sas-faq-answer').count()) - 1];
+
+    for (const [toolbarIndex, index] of editorIndexes.entries()) {
+      const row = page.getByTestId('sas-faq-row').nth(index);
+	  const codeTab = page.getByTestId('sas-faq-code-tab').nth(toolbarIndex);
+
+	  if (!(await codeTab.isVisible())) {
+        await row.getByTestId('sas-toggle-faq-row').press('Enter');
+      }
+
+	  await expect(codeTab).toBeVisible();
+	  await codeTab.click();
+
+	  const toolbar = page.getByTestId('sas-faq-code-toolbar').nth(toolbarIndex);
+	  const buttons = toolbar.getByTestId('sas-faq-code-button');
+
+      await expect(toolbar).toBeVisible();
+      expect(await buttons.count()).toBeGreaterThan(1);
+	  expect(await toolbar.evaluate((element) => {
+		const toolbarWidth = element.getBoundingClientRect().width;
+		return Array.from(element.children)
+		  .filter((item) => item.tagName === 'INPUT')
+		  .every((item) => item.getBoundingClientRect().width < toolbarWidth / 2);
+      })).toBe(true);
+    }
+  });
+
   test('removes every FAQ row from editor storage and REST output', async ({ page, request }) => {
     await openEditor(page);
 

@@ -69,6 +69,30 @@ function sas_render_admin_page() {
 			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-json-error">
 				<p><?php echo esc_html__( 'Settings saved, but one or more invalid JSON values were removed from public output.', 'seo-and-social' ); ?></p>
 			</div>
+		<?php elseif ( $message === 'schema_url_error' ) : ?>
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-schema-url-error">
+				<p><?php echo esc_html__( 'Settings saved, but invalid schema property URLs were removed. Use absolute URLs starting with http:// or https://.', 'seo-and-social' ); ?></p>
+			</div>
+		<?php elseif ( $message === 'schema_duplicate' ) : ?>
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-schema-duplicate">
+				<p><?php echo esc_html__( 'Settings saved, but exact duplicate schema properties were removed.', 'seo-and-social' ); ?></p>
+			</div>
+		<?php elseif ( $message === 'social_url_error' ) : ?>
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-social-url-error">
+				<p><?php echo esc_html__( 'Settings saved, but invalid extra social link URLs were removed. Use absolute URLs starting with http:// or https://.', 'seo-and-social' ); ?></p>
+			</div>
+		<?php elseif ( $message === 'social_duplicate' ) : ?>
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-social-duplicate">
+				<p><?php echo esc_html__( 'Settings saved, but extra social links with duplicate keys were removed.', 'seo-and-social' ); ?></p>
+			</div>
+		<?php elseif ( $message === 'llms_url_error' ) : ?>
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-llms-url-error">
+				<p><?php echo esc_html__( 'Settings saved, but invalid recommended page URLs were removed. Use absolute URLs starting with http:// or https://.', 'seo-and-social' ); ?></p>
+			</div>
+		<?php elseif ( $message === 'llms_duplicate' ) : ?>
+			<div class="notice notice-warning is-dismissible" data-testid="sas-notice-llms-duplicate">
+				<p><?php echo esc_html__( 'Settings saved, but recommended pages with duplicate URLs were removed.', 'seo-and-social' ); ?></p>
+			</div>
 		<?php elseif ( $message === 'deleted' ) : ?>
 			<div class="notice notice-success is-dismissible" data-testid="sas-notice-deleted">
 				<p><?php echo esc_html__( 'All Seo & Social plugin data was deleted.', 'seo-and-social' ); ?></p>
@@ -222,7 +246,7 @@ function sas_render_llms_tab( $settings ) {
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'Allowed / recommended pages', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
 			<p class="description"><?php echo esc_html__( 'Pages the frontend should include as recommended resources in llms.txt.', 'seo-and-social' ); ?></p>
-			<p class="description"><?php echo wp_kses_post( __( '<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. The note is optional.', 'seo-and-social' ) ); ?></p>
+			<p class="description"><?php echo wp_kses_post( __( '<strong>Page title</strong> and URL are required. Use the title that should appear as the link text in llms.txt. Enter a unique absolute URL starting with http:// or https://. The note is optional.', 'seo-and-social' ) ); ?></p>
 			<div class="sas-repeatable" data-sas-repeater="llms-recommended-pages">
 				<div class="sas-repeatable-rows" data-sas-rows>
 					<?php foreach ( $llms['recommended_pages'] as $index => $row ) : ?>
@@ -352,7 +376,7 @@ function sas_render_social_tab( $settings ) {
 	<details class="sas-panel" open>
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'Extra social links', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
-		<p class="description"><?php echo wp_kses_post( __( '<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use Key as a stable API identifier and Label as the display name.', 'seo-and-social' ) ); ?></p>
+		<p class="description"><?php echo wp_kses_post( __( '<strong>Key</strong>, <strong>Label</strong>, and URL are required. Use a unique Key as a stable API identifier, Label as the display name, and an absolute URL starting with http:// or https://.', 'seo-and-social' ) ); ?></p>
 		<div class="sas-repeatable" data-sas-repeater="extra-social-links">
 			<div class="sas-repeatable-rows" data-sas-rows>
 				<?php foreach ( $social['extra_links'] as $index => $row ) : ?>
@@ -581,6 +605,7 @@ function sas_render_seo_tab( $settings ) {
 		<div class="sas-panel-content">
 		<p class="description"><?php echo esc_html__( 'Use structured rows for schema data that does not have a dedicated field.', 'seo-and-social' ); ?></p>
 		<p class="description"><?php echo wp_kses_post( __( '<strong>Property key</strong> and <strong>Value</strong> are required. Select the type that matches the value.', 'seo-and-social' ) ); ?></p>
+		<p class="description"><?php echo esc_html__( 'URL values must be absolute and start with http:// or https://. Exact duplicate rows must be changed or removed before saving.', 'seo-and-social' ); ?></p>
 		<div class="sas-repeatable" data-sas-repeater="extra-schema-properties">
 			<div class="sas-repeatable-rows" data-sas-rows>
 				<?php foreach ( $seo['extra_schema_properties'] as $index => $row ) : ?>
@@ -748,6 +773,12 @@ function sas_handle_save_settings() {
 	}
 
 	$had_invalid_json = $active_tab === 'seo' && sas_settings_payload_has_invalid_json( $raw );
+	$had_invalid_schema_url = $active_tab === 'seo' && sas_settings_payload_has_invalid_schema_url( $raw );
+	$had_duplicate_schema_property = $active_tab === 'seo' && sas_settings_payload_has_duplicate_schema_property( $raw );
+	$had_invalid_social_url = $active_tab === 'social' && sas_settings_payload_has_invalid_social_url( $raw );
+	$had_duplicate_social_key = $active_tab === 'social' && sas_settings_payload_has_duplicate_social_key( $raw );
+	$had_invalid_llms_url = $active_tab === 'llms' && sas_settings_payload_has_invalid_llms_url( $raw );
+	$had_duplicate_llms_url = $active_tab === 'llms' && sas_settings_payload_has_duplicate_llms_url( $raw );
 	$settings = sas_sanitize_settings( $raw, sas_get_settings(), $active_tab );
 
 	update_option( SAS_OPTION_NAME, $settings, false );
@@ -756,7 +787,23 @@ function sas_handle_save_settings() {
 		sas_get_optimized_og_image( (int) $settings['seo']['default_og_image_id'], true );
 	}
 
-	$message = $had_invalid_json ? 'json_error' : 'saved';
+	if ( $had_invalid_json ) {
+		$message = 'json_error';
+	} elseif ( $had_invalid_schema_url ) {
+		$message = 'schema_url_error';
+	} elseif ( $had_duplicate_schema_property ) {
+		$message = 'schema_duplicate';
+	} elseif ( $had_invalid_social_url ) {
+		$message = 'social_url_error';
+	} elseif ( $had_duplicate_social_key ) {
+		$message = 'social_duplicate';
+	} elseif ( $had_invalid_llms_url ) {
+		$message = 'llms_url_error';
+	} elseif ( $had_duplicate_llms_url ) {
+		$message = 'llms_duplicate';
+	} else {
+		$message = 'saved';
+	}
 	$redirect = add_query_arg(
 		array(
 			'page' => 'seo-and-social',
@@ -890,6 +937,156 @@ function sas_settings_payload_has_invalid_json( $raw ) {
 		if ( ! empty( $row['value'] ) && sas_sanitize_json_string( $row['value'] ) === '' ) {
 			return true;
 		}
+	}
+
+	return false;
+}
+
+/**
+ * Detect invalid schema URL values before sanitization removes them.
+ *
+ * @param mixed $raw Raw settings.
+ * @return bool
+ */
+function sas_settings_payload_has_invalid_schema_url( $raw ) {
+	if ( ! is_array( $raw ) ) {
+		return false;
+	}
+
+	foreach ( (array) ( $raw['seo']['extra_schema_properties'] ?? array() ) as $row ) {
+		if ( ! is_array( $row ) || ( $row['type'] ?? '' ) !== 'url' ) {
+			continue;
+		}
+
+		$value = trim( (string) ( $row['value'] ?? '' ) );
+
+		if ( $value !== '' && sas_sanitize_absolute_http_url( $value ) === '' ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Detect exact duplicate schema rows before sanitization removes them.
+ *
+ * @param mixed $raw Raw settings.
+ * @return bool
+ */
+function sas_settings_payload_has_duplicate_schema_property( $raw ) {
+	if ( ! is_array( $raw ) ) {
+		return false;
+	}
+
+	$seen = array();
+
+	foreach ( (array) ( $raw['seo']['extra_schema_properties'] ?? array() ) as $row ) {
+		$clean = sas_sanitize_extra_schema_properties( array( $row ) );
+
+		if ( empty( $clean ) ) {
+			continue;
+		}
+
+		$signature = wp_json_encode( $clean[0], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE );
+
+		if ( isset( $seen[ $signature ] ) ) {
+			return true;
+		}
+
+		$seen[ $signature ] = true;
+	}
+
+	return false;
+}
+
+/**
+ * Detect invalid extra social link URLs before sanitization removes them.
+ *
+ * @param mixed $raw Raw settings.
+ * @return bool
+ */
+function sas_settings_payload_has_invalid_social_url( $raw ) {
+	foreach ( (array) ( is_array( $raw ) ? ( $raw['social']['extra_links'] ?? array() ) : array() ) as $row ) {
+		$url = is_array( $row ) ? trim( (string) ( $row['url'] ?? '' ) ) : '';
+
+		if ( $url !== '' && sas_sanitize_absolute_http_url( $url ) === '' ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Detect duplicate extra social link keys before sanitization removes them.
+ *
+ * @param mixed $raw Raw settings.
+ * @return bool
+ */
+function sas_settings_payload_has_duplicate_social_key( $raw ) {
+	$seen = array();
+
+	foreach ( (array) ( is_array( $raw ) ? ( $raw['social']['extra_links'] ?? array() ) : array() ) as $row ) {
+		$clean = sas_sanitize_extra_social_links( array( $row ) );
+
+		if ( empty( $clean ) ) {
+			continue;
+		}
+
+		$key = $clean[0]['key'];
+
+		if ( isset( $seen[ $key ] ) ) {
+			return true;
+		}
+
+		$seen[ $key ] = true;
+	}
+
+	return false;
+}
+
+/**
+ * Detect invalid recommended page URLs before sanitization removes them.
+ *
+ * @param mixed $raw Raw settings.
+ * @return bool
+ */
+function sas_settings_payload_has_invalid_llms_url( $raw ) {
+	foreach ( (array) ( is_array( $raw ) ? ( $raw['llms']['recommended_pages'] ?? array() ) : array() ) as $row ) {
+		$url = is_array( $row ) ? trim( (string) ( $row['url'] ?? '' ) ) : '';
+
+		if ( $url !== '' && sas_sanitize_absolute_http_url( $url ) === '' ) {
+			return true;
+		}
+	}
+
+	return false;
+}
+
+/**
+ * Detect duplicate recommended page URLs before sanitization removes them.
+ *
+ * @param mixed $raw Raw settings.
+ * @return bool
+ */
+function sas_settings_payload_has_duplicate_llms_url( $raw ) {
+	$seen = array();
+
+	foreach ( (array) ( is_array( $raw ) ? ( $raw['llms']['recommended_pages'] ?? array() ) : array() ) as $row ) {
+		$clean = sas_sanitize_llms_recommended_pages( array( $row ) );
+
+		if ( empty( $clean ) ) {
+			continue;
+		}
+
+		$url = $clean[0]['url'];
+
+		if ( isset( $seen[ $url ] ) ) {
+			return true;
+		}
+
+		$seen[ $url ] = true;
 	}
 
 	return false;
@@ -1114,7 +1311,7 @@ function sas_render_llms_recommended_page_row( $index, $row ) {
 		<input type="text" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Page title', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-llms-recommended-page-label">
 		<input type="url" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https:// *" required aria-required="true" data-testid="sas-llms-recommended-page-url">
 		<textarea name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][note]" rows="2" placeholder="<?php echo esc_attr__( 'Optional note', 'seo-and-social' ); ?>" data-testid="sas-llms-recommended-page-note"><?php echo esc_textarea( $row['note'] ); ?></textarea>
-		<button type="button" class="button-link-delete" data-sas-remove-row><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+		<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-llms-recommended-page-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }
