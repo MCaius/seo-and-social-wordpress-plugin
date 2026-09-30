@@ -346,6 +346,7 @@ function sas_render_social_tab( $settings ) {
 	<details class="sas-panel" open>
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'Social links', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
+		<div class="sas-field-grid">
 		<?php
 		sas_text_field(
 			'sas_settings[social][email]',
@@ -370,6 +371,7 @@ function sas_render_social_tab( $settings ) {
 		sas_text_field( 'sas_settings[social][tiktok_url]', __( 'TikTok URL', 'seo-and-social' ), $social['tiktok_url'], array( 'type' => 'url' ) );
 		sas_text_field( 'sas_settings[social][youtube_url]', __( 'YouTube URL', 'seo-and-social' ), $social['youtube_url'], array( 'type' => 'url' ) );
 		?>
+		</div>
 		</div>
 	</details>
 
@@ -419,6 +421,7 @@ function sas_render_seo_tab( $settings ) {
 	<details class="sas-panel" open>
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'SEO defaults', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
+		<div class="sas-field-grid">
 		<?php
 		sas_text_field(
 			'sas_settings[seo][site_name]',
@@ -436,6 +439,9 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'Fallback title when content does not provide a custom SEO title.', 'seo-and-social' ),
 			)
 		);
+		?>
+		</div>
+		<?php
 		sas_textarea_field(
 			'sas_settings[seo][default_meta_description]',
 			__( 'Default meta description', 'seo-and-social' ),
@@ -483,6 +489,7 @@ function sas_render_seo_tab( $settings ) {
 	<details class="sas-panel" open>
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'Organization schema data', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
+		<div class="sas-field-grid">
 		<?php
 		sas_text_field(
 			'sas_settings[seo][schema_type]',
@@ -501,6 +508,9 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'The public business or organization name used in Organization or LocalBusiness schema.', 'seo-and-social' ),
 			)
 		);
+		?>
+		</div>
+		<?php
 		sas_text_field(
 			'sas_settings[seo][logo_url]',
 			__( 'Logo URL', 'seo-and-social' ),
@@ -511,6 +521,9 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'Logo image URL for structured data. Use a clear brand mark from the Media Library when possible.', 'seo-and-social' ),
 			)
 		);
+		?>
+		<div class="sas-field-grid">
+		<?php
 		sas_text_field(
 			'sas_settings[seo][website_url]',
 			__( 'Website URL', 'seo-and-social' ),
@@ -528,6 +541,10 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'Street address or public location address used in local business schema.', 'seo-and-social' ),
 			)
 		);
+		?>
+		</div>
+		<div class="sas-field-grid">
+		<?php
 		sas_text_field(
 			'sas_settings[seo][city]',
 			__( 'City', 'seo-and-social' ),
@@ -552,6 +569,10 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'Postal or ZIP code for the organization address.', 'seo-and-social' ),
 			)
 		);
+		?>
+		</div>
+		<div class="sas-field-grid">
+		<?php
 		sas_text_field(
 			'sas_settings[seo][latitude]',
 			__( 'Latitude', 'seo-and-social' ),
@@ -568,6 +589,10 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'Optional geographic longitude for LocalBusiness schema. Use decimal degrees, for example -74.0060.', 'seo-and-social' ),
 			)
 		);
+		?>
+		</div>
+		<div class="sas-field-grid">
+		<?php
 		sas_text_field(
 			'sas_settings[seo][opening_hours]',
 			__( 'Opening hours', 'seo-and-social' ),
@@ -586,6 +611,9 @@ function sas_render_seo_tab( $settings ) {
 				'info' => __( 'Optional price range indicator for local business schema, such as $, $$, or $$$.', 'seo-and-social' ),
 			)
 		);
+		?>
+		</div>
+		<?php
 		sas_textarea_field(
 			'sas_settings[seo][custom_schema_json]',
 			__( 'Custom schema JSON', 'seo-and-social' ),
@@ -637,6 +665,7 @@ function sas_render_settings_tab( $settings ) {
 	<details class="sas-panel" open>
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'Plugin behavior', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
+		<div class="sas-option-grid">
 		<?php
 		sas_checkbox_field( 'sas_settings[settings][enable_seo_meta_box]', __( 'Enable SEO meta box', 'seo-and-social' ), $behavior['enable_seo_meta_box'] );
 		sas_checkbox_field( 'sas_settings[settings][enable_faq_meta_box]', __( 'Enable FAQ meta box', 'seo-and-social' ), $behavior['enable_faq_meta_box'] );
@@ -651,6 +680,7 @@ function sas_render_settings_tab( $settings ) {
 		sas_checkbox_field( 'sas_settings[settings][enable_content_rest_fields]', __( 'Enable REST fields on content items', 'seo-and-social' ), $behavior['enable_content_rest_fields'] );
 		sas_checkbox_field( 'sas_settings[settings][faq_allow_html]', __( 'Allow basic HTML in FAQ answers', 'seo-and-social' ), $behavior['faq_allow_html'] );
 		?>
+		</div>
 		</div>
 	</details>
 
@@ -697,6 +727,7 @@ function sas_render_settings_tab( $settings ) {
 	<details class="sas-panel" open>
 		<summary class="sas-panel-summary"><?php echo esc_html__( 'REST names', 'seo-and-social' ); ?></summary>
 		<div class="sas-panel-content">
+		<div class="sas-field-grid">
 		<?php
 		sas_text_field(
 			'sas_settings[settings][rest_namespace]',
@@ -733,6 +764,7 @@ function sas_render_settings_tab( $settings ) {
 			)
 		);
 		?>
+		</div>
 		</div>
 	</details>
 
@@ -1245,12 +1277,22 @@ function sas_render_extra_social_row( $index, $row ) {
 			'url' => '',
 		)
 	);
+	$row_id = '__INDEX__' === $index ? '__INDEX__' : sanitize_key( (string) $index );
 	?>
 	<div class="sas-row" data-testid="sas-extra-social-row">
-		<input type="text" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'Key', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-extra-social-key">
-		<input type="text" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Label', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-extra-social-label">
-		<input type="url" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https:// *" required aria-required="true" data-testid="sas-extra-social-url">
-		<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-extra-social-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+		<label class="sas-row-field" for="sas_extra_social_<?php echo esc_attr( $row_id ); ?>_key">
+			<span class="sas-row-label"><?php echo esc_html__( 'Key', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="text" id="sas_extra_social_<?php echo esc_attr( $row_id ); ?>_key" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'Key', 'seo-and-social' ); ?>" required aria-required="true" data-testid="sas-extra-social-key">
+		</label>
+		<label class="sas-row-field" for="sas_extra_social_<?php echo esc_attr( $row_id ); ?>_label">
+			<span class="sas-row-label"><?php echo esc_html__( 'Label', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="text" id="sas_extra_social_<?php echo esc_attr( $row_id ); ?>_label" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Label', 'seo-and-social' ); ?>" required aria-required="true" data-testid="sas-extra-social-label">
+		</label>
+		<label class="sas-row-field" for="sas_extra_social_<?php echo esc_attr( $row_id ); ?>_url">
+			<span class="sas-row-label"><?php echo esc_html__( 'URL', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="url" id="sas_extra_social_<?php echo esc_attr( $row_id ); ?>_url" name="sas_settings[social][extra_links][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https://" required aria-required="true" data-testid="sas-extra-social-url">
+		</label>
+		<button type="button" class="button-link-delete sas-row-remove" data-sas-remove-row data-testid="sas-remove-extra-social-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }
@@ -1276,16 +1318,27 @@ function sas_render_extra_schema_row( $index, $row ) {
 	if ( is_array( $value ) ) {
 		$value = implode( "\n", $value );
 	}
+
+	$row_id = '__INDEX__' === $index ? '__INDEX__' : sanitize_key( (string) $index );
 	?>
 	<div class="sas-row sas-schema-row" data-testid="sas-extra-schema-row">
-		<input type="text" name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'Property key', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-extra-schema-key">
-		<select name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][type]" data-testid="sas-extra-schema-type">
-			<?php foreach ( array( 'text', 'url', 'list', 'json' ) as $type ) : ?>
-				<option value="<?php echo esc_attr( $type ); ?>" <?php selected( $row['type'], $type ); ?>><?php echo esc_html( $type ); ?></option>
-			<?php endforeach; ?>
-		</select>
-		<textarea name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][value]" rows="3" placeholder="<?php echo esc_attr__( 'Value', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-extra-schema-value"><?php echo esc_textarea( $value ); ?></textarea>
-		<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-extra-schema-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+		<label class="sas-row-field" for="sas_extra_schema_<?php echo esc_attr( $row_id ); ?>_key">
+			<span class="sas-row-label"><?php echo esc_html__( 'Property key', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="text" id="sas_extra_schema_<?php echo esc_attr( $row_id ); ?>_key" name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][key]" value="<?php echo esc_attr( $row['key'] ); ?>" placeholder="<?php echo esc_attr__( 'Property key', 'seo-and-social' ); ?>" required aria-required="true" data-testid="sas-extra-schema-key">
+		</label>
+		<label class="sas-row-field" for="sas_extra_schema_<?php echo esc_attr( $row_id ); ?>_type">
+			<span class="sas-row-label"><?php echo esc_html__( 'Type', 'seo-and-social' ); ?></span>
+			<select id="sas_extra_schema_<?php echo esc_attr( $row_id ); ?>_type" name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][type]" data-testid="sas-extra-schema-type">
+				<?php foreach ( array( 'text', 'url', 'list', 'json' ) as $type ) : ?>
+					<option value="<?php echo esc_attr( $type ); ?>" <?php selected( $row['type'], $type ); ?>><?php echo esc_html( $type ); ?></option>
+				<?php endforeach; ?>
+			</select>
+		</label>
+		<label class="sas-row-field" for="sas_extra_schema_<?php echo esc_attr( $row_id ); ?>_value">
+			<span class="sas-row-label"><?php echo esc_html__( 'Value', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<textarea id="sas_extra_schema_<?php echo esc_attr( $row_id ); ?>_value" name="sas_settings[seo][extra_schema_properties][<?php echo esc_attr( $index ); ?>][value]" rows="3" placeholder="<?php echo esc_attr__( 'Value', 'seo-and-social' ); ?>" required aria-required="true" data-testid="sas-extra-schema-value"><?php echo esc_textarea( $value ); ?></textarea>
+		</label>
+		<button type="button" class="button-link-delete sas-row-remove" data-sas-remove-row data-testid="sas-remove-extra-schema-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }
@@ -1306,12 +1359,22 @@ function sas_render_llms_recommended_page_row( $index, $row ) {
 			'note' => '',
 		)
 	);
+	$row_id = '__INDEX__' === $index ? '__INDEX__' : sanitize_key( (string) $index );
 	?>
 	<div class="sas-row sas-llms-page-row" data-testid="sas-llms-recommended-page-row">
-		<input type="text" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Page title', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-llms-recommended-page-label">
-		<input type="url" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https:// *" required aria-required="true" data-testid="sas-llms-recommended-page-url">
-		<textarea name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][note]" rows="2" placeholder="<?php echo esc_attr__( 'Optional note', 'seo-and-social' ); ?>" data-testid="sas-llms-recommended-page-note"><?php echo esc_textarea( $row['note'] ); ?></textarea>
-		<button type="button" class="button-link-delete" data-sas-remove-row data-testid="sas-remove-llms-recommended-page-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+		<label class="sas-row-field" for="sas_llms_page_<?php echo esc_attr( $row_id ); ?>_label">
+			<span class="sas-row-label"><?php echo esc_html__( 'Page title', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="text" id="sas_llms_page_<?php echo esc_attr( $row_id ); ?>_label" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Page title', 'seo-and-social' ); ?>" required aria-required="true" data-testid="sas-llms-recommended-page-label">
+		</label>
+		<label class="sas-row-field" for="sas_llms_page_<?php echo esc_attr( $row_id ); ?>_url">
+			<span class="sas-row-label"><?php echo esc_html__( 'URL', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="url" id="sas_llms_page_<?php echo esc_attr( $row_id ); ?>_url" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][url]" value="<?php echo esc_attr( $row['url'] ); ?>" placeholder="https://" required aria-required="true" data-testid="sas-llms-recommended-page-url">
+		</label>
+		<label class="sas-row-field" for="sas_llms_page_<?php echo esc_attr( $row_id ); ?>_note">
+			<span class="sas-row-label"><?php echo esc_html__( 'Optional note', 'seo-and-social' ); ?></span>
+			<textarea id="sas_llms_page_<?php echo esc_attr( $row_id ); ?>_note" name="sas_settings[llms][recommended_pages][<?php echo esc_attr( $index ); ?>][note]" rows="2" placeholder="<?php echo esc_attr__( 'Optional note', 'seo-and-social' ); ?>" data-testid="sas-llms-recommended-page-note"><?php echo esc_textarea( $row['note'] ); ?></textarea>
+		</label>
+		<button type="button" class="button-link-delete sas-row-remove" data-sas-remove-row data-testid="sas-remove-llms-recommended-page-row"><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }
@@ -1331,11 +1394,18 @@ function sas_render_llms_ignored_section_row( $index, $row ) {
 			'note' => '',
 		)
 	);
+	$row_id = '__INDEX__' === $index ? '__INDEX__' : sanitize_key( (string) $index );
 	?>
 	<div class="sas-row sas-llms-ignored-row" data-testid="sas-llms-ignored-section-row">
-		<input type="text" name="sas_settings[llms][ignored_sections][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Section name', 'seo-and-social' ); ?> *" required aria-required="true" data-testid="sas-llms-ignored-section-label">
-		<textarea name="sas_settings[llms][ignored_sections][<?php echo esc_attr( $index ); ?>][note]" rows="2" placeholder="<?php echo esc_attr__( 'Reason or description', 'seo-and-social' ); ?>" data-testid="sas-llms-ignored-section-note"><?php echo esc_textarea( $row['note'] ); ?></textarea>
-		<button type="button" class="button-link-delete" data-sas-remove-row><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
+		<label class="sas-row-field" for="sas_llms_ignored_<?php echo esc_attr( $row_id ); ?>_label">
+			<span class="sas-row-label"><?php echo esc_html__( 'Section name', 'seo-and-social' ); ?> <span aria-hidden="true">*</span></span>
+			<input type="text" id="sas_llms_ignored_<?php echo esc_attr( $row_id ); ?>_label" name="sas_settings[llms][ignored_sections][<?php echo esc_attr( $index ); ?>][label]" value="<?php echo esc_attr( $row['label'] ); ?>" placeholder="<?php echo esc_attr__( 'Section name', 'seo-and-social' ); ?>" required aria-required="true" data-testid="sas-llms-ignored-section-label">
+		</label>
+		<label class="sas-row-field" for="sas_llms_ignored_<?php echo esc_attr( $row_id ); ?>_note">
+			<span class="sas-row-label"><?php echo esc_html__( 'Reason or description', 'seo-and-social' ); ?></span>
+			<textarea id="sas_llms_ignored_<?php echo esc_attr( $row_id ); ?>_note" name="sas_settings[llms][ignored_sections][<?php echo esc_attr( $index ); ?>][note]" rows="2" placeholder="<?php echo esc_attr__( 'Reason or description', 'seo-and-social' ); ?>" data-testid="sas-llms-ignored-section-note"><?php echo esc_textarea( $row['note'] ); ?></textarea>
+		</label>
+		<button type="button" class="button-link-delete sas-row-remove" data-sas-remove-row><?php echo esc_html__( 'Remove', 'seo-and-social' ); ?></button>
 	</div>
 	<?php
 }
@@ -1357,6 +1427,7 @@ function sas_info_button( $id, $info ) {
 		class="sas-info-button"
 		aria-expanded="false"
 		aria-controls="<?php echo esc_attr( $id . '_info' ); ?>"
+		aria-label="<?php echo esc_attr__( 'Field information', 'seo-and-social' ); ?>"
 		title="<?php echo esc_attr__( 'Field information', 'seo-and-social' ); ?>"
 	>?</button>
 	<?php

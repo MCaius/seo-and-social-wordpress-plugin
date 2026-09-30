@@ -84,15 +84,16 @@ function sas_render_faq_row( $index, $item ) {
 	$label = $item['question'] !== '' ? $item['question'] : __( 'New question', 'seo-and-social' );
 	$editor_index = '__INDEX__' === $index ? $index : sanitize_key( (string) $index );
 	$editor_id    = 'sas_faq_answer_' . $editor_index;
+	$body_id      = $editor_id . '_body';
 	?>
 	<div class="sas-row sas-faq-row is-collapsed" data-testid="sas-faq-row">
-		<button type="button" class="sas-faq-row-header" data-sas-toggle-faq-row data-testid="sas-toggle-faq-row">
+		<button type="button" class="sas-faq-row-header" aria-controls="<?php echo esc_attr( $body_id ); ?>" aria-expanded="false" data-sas-toggle-faq-row data-testid="sas-toggle-faq-row">
 			<strong class="sas-faq-row-title"><?php echo esc_html( $label ); ?></strong>
 			<span class="sas-faq-row-toggle"><?php echo esc_html__( 'Open', 'seo-and-social' ); ?></span>
 		</button>
 
-		<div class="sas-faq-row-body">
-			<p>
+		<div id="<?php echo esc_attr( $body_id ); ?>" class="sas-faq-row-body" data-testid="sas-faq-row-body">
+			<p class="sas-faq-field">
 				<label for="<?php echo esc_attr( $editor_id . '_question' ); ?>"><strong><?php echo esc_html__( 'Question', 'seo-and-social' ); ?></strong></label>
 				<input
 					type="text"
@@ -104,7 +105,7 @@ function sas_render_faq_row( $index, $item ) {
 				>
 			</p>
 
-			<p>
+			<p class="sas-faq-field">
 				<label for="<?php echo esc_attr( $editor_id ); ?>"><strong><?php echo esc_html__( 'Answer', 'seo-and-social' ); ?></strong></label>
 				<textarea
 					id="<?php echo esc_attr( $editor_id ); ?>"

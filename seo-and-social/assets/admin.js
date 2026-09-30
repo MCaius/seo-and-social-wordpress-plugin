@@ -5,12 +5,18 @@
 
   function updateFaqRowToggle(row) {
     const toggle = row.querySelector(".sas-faq-row-toggle");
+    const button = row.querySelector("[data-sas-toggle-faq-row]");
+    const expanded = !row.classList.contains("is-collapsed");
 
     if (!toggle) {
       return;
     }
 
-    toggle.textContent = row.classList.contains("is-collapsed") ? "Open" : "Close";
+    toggle.textContent = expanded ? "Close" : "Open";
+
+    if (button) {
+      button.setAttribute("aria-expanded", expanded ? "true" : "false");
+    }
   }
 
   function initializeFaqEditorTestIds(editor) {

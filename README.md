@@ -18,6 +18,7 @@ The implementation focuses on:
 - A layered QA workflow covering PHPUnit integration, Playwright admin E2E, package verification, compatibility checks, and documented manual testing.
 
 ## Seo & Social Plugin Walkthrough
+> **Note:** This walkthrough was recorded with an earlier version of the admin interface. The plugin workflow and core functionality remain the same; see the screenshots below for the current UI.
 
 [Watch the plugin walkthrough](https://github.com/user-attachments/assets/0b1adc56-9d54-4366-b7a4-8fd6f281fb83).
 
@@ -25,19 +26,19 @@ The implementation focuses on:
 
 ### General Settings
 
-<img width="2518" height="2892" alt="General-Settings" src="https://github.com/user-attachments/assets/2d6ebe96-bbba-4c38-9f8b-c9928c6debdd" />
+![General Settings](docs/images/general-settings.png)
 
 ### Social Settings
 
-<img width="4738" height="2514" alt="General-Setting-Social" src="https://github.com/user-attachments/assets/1c31f2c7-bba7-4e61-b874-970da821c898" />
+![Social Settings and REST API output](docs/images/social-settings-api.png)
 
 ### Global SEO Settings
 
-<img width="4702" height="2928" alt="General-Setting-SEO" src="https://github.com/user-attachments/assets/f64389dc-f27f-457d-a72d-972e87e8f708" />
+![Global SEO Settings and REST API output](docs/images/global-seo-settings-api.png)
 
 ### Page-Specific SEO & FAQ
 
-<img width="5936" height="2784" alt="Page-Specific-SEO-FAQ" src="https://github.com/user-attachments/assets/a963bc5d-ddc8-40c9-a881-6e2fdff43d02" />
+![Page-Specific SEO & FAQ and REST API output](docs/images/page-specific-seo-faq-api.png)
 
 ## What The Plugin Does
 

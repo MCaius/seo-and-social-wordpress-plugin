@@ -1,45 +1,129 @@
 .sas-admin-page {
-  max-width: 1120px;
+  --sas-accent: #2271b1;
+  --sas-accent-soft: #eaf3fa;
+  --sas-border: #dcdcde;
+  --sas-border-strong: #c3c4c7;
+  --sas-surface-soft: #f7f8fa;
+  max-width: 1200px;
+  padding-bottom: 24px;
+}
+
+.sas-meta-box {
+  --sas-accent: #2271b1;
+  --sas-accent-soft: #eaf3fa;
+  --sas-border: #dcdcde;
+  --sas-border-strong: #c3c4c7;
+  --sas-surface-soft: #f7f8fa;
+}
+
+.sas-admin-page *,
+.sas-meta-box * {
+  box-sizing: border-box;
+}
+
+.sas-admin-page .nav-tab-wrapper {
+  background: #fff;
+  border: 1px solid var(--sas-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  max-width: 100%;
+  padding: 4px;
+  width: max-content;
+}
+
+.sas-admin-page .nav-tab {
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: #3c434a;
+  font-weight: 600;
+  margin-left: 0;
+  padding: 9px 16px;
+}
+
+.sas-admin-page .nav-tab:hover,
+.sas-admin-page .nav-tab:focus {
+  background: var(--sas-surface-soft);
+  color: var(--sas-accent);
+}
+
+.sas-admin-page .nav-tab.nav-tab-active {
+  background: var(--sas-accent);
+  box-shadow: 0 1px 2px rgba(34, 113, 177, 0.24);
+  color: #fff;
 }
 
 .sas-settings-form {
-  margin-top: 16px;
+  margin-top: 18px;
+}
+
+.sas-settings-form > .submit {
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.sas-settings-form > .submit .button-primary {
+  border-radius: 6px;
+  font-weight: 600;
+  min-height: 40px;
+  padding: 0 20px;
 }
 
 .sas-howto {
   background: #fff;
-  border: 1px solid #dcdcde;
-  border-radius: 4px;
-  margin: 18px 0;
-  padding: 14px 16px;
+  border: 1px solid var(--sas-border);
+  border-radius: 10px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  margin: 20px 0;
+  padding: 16px 18px;
 }
 
 .sas-howto > summary,
-.sas-howto-toggle > summary {
+.sas-howto-toggle > summary,
+.sas-panel-summary {
   align-items: center;
   cursor: pointer;
-  display: inline-flex;
+  display: flex;
   font-weight: 600;
   gap: 8px;
   list-style: none;
 }
 
 .sas-howto > summary::-webkit-details-marker,
-.sas-howto-toggle > summary::-webkit-details-marker {
+.sas-howto-toggle > summary::-webkit-details-marker,
+.sas-panel-summary::-webkit-details-marker {
   display: none;
 }
 
 .sas-howto > summary::before,
-.sas-howto-toggle > summary::before {
+.sas-howto-toggle > summary::before,
+.sas-panel-summary::before {
+  color: #50575e;
   content: "\25B8";
   display: inline-block;
-  font-size: 26px;
+  flex: 0 0 auto;
+  font-size: 18px;
   line-height: 1;
 }
 
 .sas-howto[open] > summary::before,
-.sas-howto-toggle[open] > summary::before {
+.sas-howto-toggle[open] > summary::before,
+.sas-panel[open] > .sas-panel-summary::before {
   content: "\25BE";
+}
+
+.sas-howto > summary:focus-visible,
+.sas-howto-toggle > summary:focus-visible,
+.sas-panel-summary:focus-visible,
+.sas-info-button:focus-visible,
+.sas-faq-row-header:focus-visible,
+.sas-admin-page .button-link-delete:focus-visible,
+.sas-meta-box .button-link-delete:focus-visible {
+  box-shadow: 0 0 0 2px #fff, 0 0 0 4px #2271b1;
+  outline: 2px solid transparent;
 }
 
 .sas-howto-content {
@@ -58,7 +142,7 @@
 
 .sas-howto-toggle-content {
   max-width: 900px;
-  padding: 8px 0 0 34px;
+  padding: 8px 0 0 26px;
 }
 
 .sas-howto-toggle-content p {
@@ -67,154 +151,313 @@
 
 .sas-panel {
   background: #fff;
-  border: 1px solid #dcdcde;
+  border: 1px solid var(--sas-border);
+  border-radius: 10px;
   box-sizing: border-box;
-  margin: 16px 0;
-  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.045);
+  margin: 20px 0;
+  overflow: hidden;
 }
 
 .sas-panel-summary {
-  align-items: center;
-  cursor: pointer;
-  display: inline-flex;
-  font-size: 1.3em;
-  font-weight: 600;
-  gap: 8px;
+  background: #fbfbfc;
+  box-shadow: inset 4px 0 0 #72aee6;
+  font-size: 1.2em;
   line-height: 1.4;
-  list-style: none;
+  min-height: 58px;
+  padding: 16px 22px;
+  width: 100%;
 }
 
-.sas-panel-summary::-webkit-details-marker {
-  display: none;
-}
-
-.sas-panel-summary::before {
-  content: "\25B8";
-  display: inline-block;
-  font-size: 24px;
-  line-height: 1;
-}
-
-.sas-panel[open] > .sas-panel-summary::before {
-  content: "\25BE";
+.sas-panel-summary:hover {
+  background: var(--sas-surface-soft);
 }
 
 .sas-panel-content {
-  margin-top: 16px;
+  border-top: 1px solid #e6e7e8;
+  padding: 24px;
 }
 
-.sas-field {
-  margin: 0 0 18px;
-  max-width: 860px;
+.sas-panel-content > :first-child {
+  margin-top: 0;
+}
+
+.sas-panel-content > :last-child {
+  margin-bottom: 0;
+}
+
+.sas-field-grid,
+.sas-meta-field-grid {
+  display: grid;
+  gap: 24px 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-bottom: 24px;
+  max-width: 940px;
+}
+
+.sas-option-grid {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 940px;
+}
+
+.sas-admin-page .sas-field,
+.sas-meta-box .sas-field {
+  margin: 0 0 24px;
+  max-width: 940px;
+  min-width: 0;
+}
+
+.sas-admin-page .sas-field-grid .sas-field,
+.sas-admin-page .sas-option-grid .sas-field,
+.sas-meta-box .sas-meta-field-grid .sas-field {
+  margin-bottom: 0;
+  max-width: none;
+}
+
+.sas-admin-page .sas-option-grid .sas-checkbox-field {
+  background: var(--sas-surface-soft);
+  border: 1px solid #e0e2e5;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+
+.sas-admin-page .sas-option-grid .sas-checkbox-field:hover,
+.sas-admin-page .sas-option-grid .sas-checkbox-field:focus-within {
+  background: #fff;
+  border-color: #a7aaad;
 }
 
 .sas-label-row {
   align-items: center;
   display: flex;
   gap: 8px;
-  margin-bottom: 6px;
+  margin-bottom: 9px;
 }
 
 .sas-label-row label,
-.sas-field > label {
+.sas-field > label,
+.sas-row-label {
+  color: #2c3338;
   font-weight: 600;
 }
 
 .sas-input-row {
   align-items: center;
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  max-width: 940px;
 }
 
-.sas-field textarea.large-text {
-  max-width: 860px;
+.sas-input-row .regular-text {
+  flex: 1 1 360px;
+  min-width: 0;
+}
+
+.sas-admin-page .sas-field .regular-text,
+.sas-meta-box .sas-field .regular-text,
+.sas-admin-page .sas-field textarea,
+.sas-meta-box .sas-field textarea {
+  max-width: 100%;
+  width: 100%;
+}
+
+.sas-admin-page input[type="text"],
+.sas-admin-page input[type="email"],
+.sas-admin-page input[type="url"],
+.sas-admin-page input[type="number"],
+.sas-admin-page select,
+.sas-meta-box input[type="text"],
+.sas-meta-box input[type="email"],
+.sas-meta-box input[type="url"],
+.sas-meta-box input[type="number"],
+.sas-meta-box select {
+  border-color: #b6bac0;
+  border-radius: 6px;
+  box-shadow: none;
+  min-height: 40px;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+
+.sas-admin-page select,
+.sas-meta-box select {
+  padding-right: 32px;
+}
+
+.sas-admin-page textarea,
+.sas-meta-box textarea {
+  border-color: #b6bac0;
+  border-radius: 6px;
+  box-shadow: none;
+  line-height: 1.5;
+  padding: 10px 12px;
+}
+
+.sas-admin-page input[type="text"]:focus,
+.sas-admin-page input[type="email"]:focus,
+.sas-admin-page input[type="url"]:focus,
+.sas-admin-page input[type="number"]:focus,
+.sas-admin-page select:focus,
+.sas-admin-page textarea:focus,
+.sas-meta-box input[type="text"]:focus,
+.sas-meta-box input[type="email"]:focus,
+.sas-meta-box input[type="url"]:focus,
+.sas-meta-box input[type="number"]:focus,
+.sas-meta-box select:focus,
+.sas-meta-box textarea:focus {
+  border-color: var(--sas-accent);
+  box-shadow: 0 0 0 1px var(--sas-accent), 0 0 0 4px rgba(34, 113, 177, 0.12);
+  outline: 2px solid transparent;
+}
+
+.sas-admin-page .button,
+.sas-input-row > .button,
+.sas-repeatable > .button {
+  border-radius: 6px;
+  min-height: 36px;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.sas-repeatable > .button {
+  background: #fff;
+  border-color: #72aee6;
+  color: var(--sas-accent);
+  font-weight: 600;
+  justify-self: start;
+}
+
+.sas-repeatable > .button:hover,
+.sas-repeatable > .button:focus {
+  background: var(--sas-accent-soft);
+  border-color: var(--sas-accent);
+  color: #135e96;
+}
+
+.sas-admin-page .sas-field > select,
+.sas-meta-box .sas-field > select {
+  min-width: min(100%, 240px);
 }
 
 .sas-info-button {
   align-items: center;
-  background: #f6f7f7;
-  border: 1px solid #8c8f94;
+  background: var(--sas-accent-soft);
+  border: 1px solid #9ec2dd;
   border-radius: 50%;
   color: #1d2327;
   cursor: pointer;
   display: inline-flex;
-  font-size: 11px;
+  flex: 0 0 26px;
+  font-size: 12px;
   font-weight: 700;
-  height: 20px;
+  height: 26px;
   justify-content: center;
   line-height: 1;
   padding: 0;
-  width: 20px;
+  width: 26px;
 }
 
 .sas-info-button:hover,
 .sas-info-button:focus,
 .sas-info-button[aria-expanded="true"] {
-  background: #2271b1;
-  border-color: #2271b1;
+  background: var(--sas-accent);
+  border-color: var(--sas-accent);
   color: #fff;
 }
 
 .sas-info-panel {
-  background: #f6f7f7;
-  border-left: 3px solid #2271b1;
+  background: var(--sas-accent-soft);
+  border-left: 3px solid var(--sas-accent);
   margin: 8px 0 0;
-  max-width: 760px;
-  padding: 8px 10px;
+  max-width: 820px;
+  padding: 10px 12px;
 }
 
 .sas-warning-note {
   background: #fff8e5;
   border-left: 3px solid #dba617;
-  margin: -8px 0 18px;
-  max-width: 760px;
-  padding: 8px 10px;
+  margin: -8px 0 20px;
+  max-width: 820px;
+  padding: 9px 11px;
 }
 
 .sas-repeatable {
   display: grid;
   gap: 12px;
+  margin-top: 18px;
 }
 
 .sas-repeatable-rows {
   display: grid;
-  gap: 10px;
+  gap: 14px;
 }
 
 .sas-row {
-  align-items: start;
-  background: #f6f7f7;
-  border: 1px solid #dcdcde;
+  align-items: end;
+  background: var(--sas-surface-soft);
+  border: 1px solid #dfe2e6;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.025);
   display: grid;
-  gap: 10px;
-  grid-template-columns: minmax(120px, 1fr) minmax(160px, 1fr) minmax(220px, 2fr) auto;
-  padding: 12px;
+  gap: 12px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 2fr) auto;
+  padding: 16px;
 }
 
 .sas-schema-row {
-  grid-template-columns: minmax(150px, 1fr) 120px minmax(280px, 2fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(100px, 0.6fr) minmax(0, 2fr) auto;
 }
 
 .sas-llms-page-row {
-  grid-template-columns: minmax(160px, 1fr) minmax(220px, 1.4fr) minmax(240px, 1.6fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr) minmax(0, 1.6fr) auto;
 }
 
 .sas-llms-ignored-row {
-  grid-template-columns: minmax(180px, 1fr) minmax(320px, 2fr) auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 2fr) auto;
+}
+
+.sas-row-field {
+  display: block;
+  min-width: 0;
+}
+
+.sas-row-label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.sas-row-label span[aria-hidden="true"] {
+  color: #b32d2e;
 }
 
 .sas-row input,
 .sas-row select,
 .sas-row textarea {
-  box-sizing: border-box;
+  margin: 0;
+  max-width: 100%;
   width: 100%;
 }
 
-.sas-row label span {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 4px;
+.sas-row-remove {
+  align-self: center;
+  background: #fff;
+  border: 1px solid #dba8a8;
+  border-radius: 6px;
+  color: #b32d2e;
+  justify-self: end;
+  margin: 24px 2px 0 4px;
+  min-height: 36px;
+  padding: 7px 12px;
+  text-decoration: none;
+}
+
+.sas-row-remove:hover,
+.sas-row-remove:focus {
+  background: #fcf0f1;
+  border-color: #b32d2e;
+  color: #8a2424;
 }
 
 .sas-inline-check {
@@ -226,10 +469,14 @@
 }
 
 .sas-faq-row {
+  align-items: stretch;
   background: #fff;
+  border-color: #dfe2e6;
+  border-radius: 8px;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.025);
   display: block;
-  gap: 0;
   margin: 0 0 14px;
+  overflow: hidden;
   padding: 0;
 }
 
@@ -239,21 +486,21 @@
 
 .sas-faq-row-header {
   align-items: center;
-  background: #f6f7f7;
+  background: var(--sas-surface-soft);
   border: 0;
   color: #1d2327;
   cursor: pointer;
   display: flex;
   justify-content: space-between;
-  min-height: 44px;
-  padding: 10px 12px;
+  min-height: 50px;
+  padding: 12px 16px;
   text-align: left;
   width: 100%;
 }
 
 .sas-faq-row-header:hover,
 .sas-faq-row-header:focus {
-  background: #f0f0f1;
+  background: var(--sas-accent-soft);
 }
 
 .sas-faq-row-title {
@@ -264,19 +511,24 @@
 }
 
 .sas-faq-row-toggle {
-  color: #2271b1;
+  color: var(--sas-accent);
   flex: 0 0 auto;
   font-size: 12px;
   font-weight: 600;
 }
 
 .sas-faq-row-body {
-  border-top: 1px solid #dcdcde;
-  padding: 12px;
+  border-top: 1px solid #e3e5e7;
+  padding: 18px;
 }
 
-.sas-faq-row-body p {
-  margin-top: 0;
+.sas-faq-field {
+  margin: 0 0 16px;
+}
+
+.sas-faq-field > label {
+  display: inline-block;
+  margin-bottom: 6px;
 }
 
 .sas-faq-row.is-collapsed .sas-faq-row-body {
@@ -288,44 +540,86 @@
   display: flex;
   flex-wrap: wrap;
   gap: 16px;
-  margin: 0 0 12px;
+  margin: 0 0 14px;
 }
 
 .sas-faq-row-options label {
-  max-width: 160px;
+  max-width: 180px;
+}
+
+.sas-faq-row-options label span {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.sas-faq-row [data-sas-remove-row] {
+  background: #fff;
+  border: 1px solid #dba8a8;
+  border-radius: 6px;
+  color: #b32d2e;
+  min-height: 36px;
+  padding: 7px 12px;
+  text-decoration: none;
+}
+
+.sas-faq-row [data-sas-remove-row]:hover,
+.sas-faq-row [data-sas-remove-row]:focus {
+  background: #fcf0f1;
+  border-color: #b32d2e;
+  color: #8a2424;
 }
 
 .sas-check-grid {
   display: grid;
-  gap: 10px;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 12px;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
 }
 
 .sas-check-grid label {
-  background: #f6f7f7;
-  border: 1px solid #dcdcde;
+  align-items: center;
+  background: var(--sas-surface-soft);
+  border: 1px solid #e0e2e5;
+  border-radius: 8px;
   display: flex;
   gap: 8px;
-  padding: 10px;
+  min-height: 48px;
+  padding: 12px 14px;
+}
+
+.sas-check-grid label:hover,
+.sas-check-grid label:focus-within {
+  background: #fff;
+  border-color: #a7aaad;
 }
 
 .sas-check-grid code {
+  background: #fff;
+  border: 1px solid #e0e2e5;
+  border-radius: 4px;
   margin-left: auto;
+  overflow-wrap: anywhere;
+  padding: 2px 5px;
 }
 
 .sas-danger-zone {
   border-left: 4px solid #b32d2e;
 }
 
+.sas-danger-zone > .sas-panel-summary {
+  box-shadow: inset 4px 0 0 #b32d2e;
+}
+
 .sas-danger-zone p {
-  max-width: 760px;
+  max-width: 820px;
 }
 
 .sas-llms-preview {
-  background: #f6f7f7;
-  border: 1px solid #dcdcde;
+  background: var(--sas-surface-soft);
+  border: 1px solid #dfe2e6;
+  border-radius: 8px;
   box-sizing: border-box;
-  max-width: 900px;
+  max-width: 940px;
   overflow: auto;
   padding: 14px;
   white-space: pre-wrap;
@@ -335,16 +629,95 @@
   font-weight: 600;
 }
 
-@media (max-width: 900px) {
+.sas-meta-box > .description {
+  margin: 0 0 18px;
+}
+
+@media (max-width: 782px) {
+  .sas-admin-page .nav-tab-wrapper {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: thin;
+  }
+
+  .sas-admin-page .nav-tab {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .sas-panel-summary {
+    min-height: 48px;
+    padding: 12px 16px;
+  }
+
+  .sas-panel-content {
+    padding: 16px;
+  }
+
+  .sas-field-grid,
+  .sas-meta-field-grid,
+  .sas-option-grid,
   .sas-row,
   .sas-schema-row,
   .sas-llms-page-row,
-  .sas-llms-ignored-row,
-  .sas-faq-row {
-    grid-template-columns: 1fr;
+  .sas-llms-ignored-row {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sas-row-remove {
+    justify-self: start;
+    margin: 0;
   }
 
   .sas-inline-check {
     padding-top: 0;
+  }
+
+  .sas-howto-toggle-content {
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .sas-howto {
+    padding: 12px;
+  }
+
+  .sas-panel {
+    margin: 12px 0;
+  }
+
+  .sas-panel-summary {
+    font-size: 1.1em;
+    padding: 11px 12px;
+  }
+
+  .sas-panel-content,
+  .sas-faq-row-body {
+    padding: 14px 12px;
+  }
+
+  .sas-input-row {
+    align-items: stretch;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sas-input-row .button {
+    justify-self: start;
+  }
+
+  .sas-check-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sas-faq-row-options {
+    align-items: stretch;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sas-faq-row-options label {
+    max-width: none;
   }
 }

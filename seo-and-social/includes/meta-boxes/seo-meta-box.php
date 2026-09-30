@@ -52,7 +52,10 @@ function sas_render_seo_meta_box( $post ) {
 	<div class="sas-meta-box" data-testid="sas-seo-meta-box">
 		<p class="description"><?php echo esc_html__( 'Fill in only the fields that should override global Seo & Social settings.', 'seo-and-social' ); ?></p>
 
-		<?php sas_meta_text_field( 'sas_seo[seo_title]', 'sas_seo_title', __( 'SEO title', 'seo-and-social' ), $seo['seo_title'], __( 'Overrides the frontend SEO title for this content item.', 'seo-and-social' ) ); ?>
+		<div class="sas-meta-field-grid">
+			<?php sas_meta_text_field( 'sas_seo[seo_title]', 'sas_seo_title', __( 'SEO title', 'seo-and-social' ), $seo['seo_title'], __( 'Overrides the frontend SEO title for this content item.', 'seo-and-social' ) ); ?>
+			<?php sas_meta_text_field( 'sas_seo[canonical_url]', 'sas_seo_canonical_url', __( 'Canonical URL', 'seo-and-social' ), $seo['canonical_url'], __( 'Optional canonical URL override.', 'seo-and-social' ), 'url' ); ?>
+		</div>
 		<?php sas_meta_textarea_field( 'sas_seo[seo_description]', 'sas_seo_description', __( 'SEO description', 'seo-and-social' ), $seo['seo_description'], __( 'Overrides the frontend SEO description for this content item.', 'seo-and-social' ) ); ?>
 
 		<div class="sas-field">
@@ -70,22 +73,22 @@ function sas_render_seo_meta_box( $post ) {
 			<?php sas_info_panel( 'sas_seo_og_image_url', __( 'Image for social sharing. The frontend decides how to render it.', 'seo-and-social' ) ); ?>
 		</div>
 
-		<?php sas_meta_text_field( 'sas_seo[canonical_url]', 'sas_seo_canonical_url', __( 'Canonical URL', 'seo-and-social' ), $seo['canonical_url'], __( 'Optional canonical URL override.', 'seo-and-social' ), 'url' ); ?>
-
-		<div class="sas-field">
-			<div class="sas-label-row">
-				<label for="sas_seo_robots"><?php echo esc_html__( 'Robots', 'seo-and-social' ); ?></label>
-				<?php sas_info_button( 'sas_seo_robots', __( 'Leave empty to let the frontend use its default robots behavior.', 'seo-and-social' ) ); ?>
+		<div class="sas-meta-field-grid">
+			<div class="sas-field">
+				<div class="sas-label-row">
+					<label for="sas_seo_robots"><?php echo esc_html__( 'Robots', 'seo-and-social' ); ?></label>
+					<?php sas_info_button( 'sas_seo_robots', __( 'Leave empty to let the frontend use its default robots behavior.', 'seo-and-social' ) ); ?>
+				</div>
+				<select id="sas_seo_robots" name="sas_seo[robots]" data-testid="sas_seo_robots">
+					<?php foreach ( sas_get_robots_options() as $value => $label ) : ?>
+						<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $seo['robots'], $value ); ?>><?php echo esc_html( $label ); ?></option>
+					<?php endforeach; ?>
+				</select>
+				<?php sas_info_panel( 'sas_seo_robots', __( 'Leave empty to let the frontend use its default robots behavior.', 'seo-and-social' ) ); ?>
 			</div>
-			<select id="sas_seo_robots" name="sas_seo[robots]" data-testid="sas_seo_robots">
-				<?php foreach ( sas_get_robots_options() as $value => $label ) : ?>
-					<option value="<?php echo esc_attr( $value ); ?>" <?php selected( $seo['robots'], $value ); ?>><?php echo esc_html( $label ); ?></option>
-				<?php endforeach; ?>
-			</select>
-			<?php sas_info_panel( 'sas_seo_robots', __( 'Leave empty to let the frontend use its default robots behavior.', 'seo-and-social' ) ); ?>
+			<?php sas_meta_text_field( 'sas_seo[schema_type]', 'sas_seo_schema_type', __( 'Schema type', 'seo-and-social' ), $seo['schema_type'], __( 'Schema.org type for this content item, such as WebPage, AboutPage, ContactPage, or FAQPage.', 'seo-and-social' ) ); ?>
 		</div>
 
-		<?php sas_meta_text_field( 'sas_seo[schema_type]', 'sas_seo_schema_type', __( 'Schema type', 'seo-and-social' ), $seo['schema_type'], __( 'Schema.org type for this content item, such as WebPage, AboutPage, ContactPage, or FAQPage.', 'seo-and-social' ) ); ?>
 		<?php sas_meta_textarea_field( 'sas_seo[custom_schema_json]', 'sas_seo_custom_schema_json', __( 'Custom schema JSON', 'seo-and-social' ), $seo['custom_schema_json'], __( 'Optional valid JSON for advanced frontend schema handling. Invalid JSON is not exposed.', 'seo-and-social' ), 6 ); ?>
 		<p class="sas-warning-note"><?php echo esc_html__( 'Invalid JSON is automatically deleted and will not be saved, to prevent breaking the API.', 'seo-and-social' ); ?></p>
 	</div>
