@@ -47,6 +47,72 @@ class Seo_And_Social_Settings_Integration_Test extends Seo_And_Social_Test_Case 
 	}
 
 	/**
+	 * REST-enabled headless CPTs are available but remain opt-in.
+	 *
+	 * @return void
+	 */
+	public function test_headless_post_type_is_available_but_not_enabled_by_default() {
+		register_post_type(
+			'sas_headless',
+			array(
+				'label' => 'Headless content',
+				'public' => false,
+				'show_ui' => true,
+				'show_in_rest' => true,
+			)
+		);
+		register_post_type(
+			'sas_no_ui',
+			array(
+				'label' => 'Non-editable content',
+				'public' => false,
+				'show_ui' => false,
+				'show_in_rest' => true,
+			)
+		);
+		register_post_type(
+			'sas_no_rest',
+			array(
+				'label' => 'Non-REST content',
+				'public' => false,
+				'show_ui' => true,
+				'show_in_rest' => false,
+			)
+		);
+
+		try {
+			$available = sas_get_available_post_types();
+
+			$this->assertArrayHasKey( 'post', $available );
+			$this->assertArrayHasKey( 'page', $available );
+			$this->assertArrayHasKey( 'sas_headless', $available );
+			$this->assertArrayNotHasKey( 'sas_no_ui', $available );
+			$this->assertArrayNotHasKey( 'sas_no_rest', $available );
+			$this->assertArrayNotHasKey( 'revision', $available );
+			$this->assertNotContains( 'sas_headless', sas_get_default_post_types() );
+			$this->assertNotContains( 'sas_headless', sas_get_enabled_post_types( 'seo' ) );
+			$this->assertNotContains( 'sas_headless', sas_get_enabled_post_types( 'faq' ) );
+
+			$settings = sas_get_default_settings();
+			$settings['settings']['seo_post_types'][] = 'sas_headless';
+			$settings['settings']['faq_post_types'][] = 'sas_headless';
+			$settings = sas_sanitize_settings(
+				array( 'settings' => $settings['settings'] ),
+				$settings,
+				'settings'
+			);
+			$this->set_plugin_settings( $settings );
+
+			$this->assertContains( 'sas_headless', sas_get_enabled_post_types( 'seo' ) );
+			$this->assertContains( 'sas_headless', sas_get_enabled_post_types( 'faq' ) );
+		} finally {
+			unregister_post_type( 'sas_headless' );
+			unregister_post_type( 'sas_no_ui' );
+			unregister_post_type( 'sas_no_rest' );
+		}
+	}
+
+	/**
 	 * Saving Social must not erase other settings tabs.
 	 *
 	 * @return void

@@ -151,12 +151,23 @@ function sas_get_settings() {
 }
 
 /**
- * Get public post types for settings checkboxes.
+ * Get post types available for per-content features.
  *
  * @return array
  */
 function sas_get_available_post_types() {
-	$post_types = get_post_types( array( 'public' => true ), 'objects' );
+	$post_types = get_post_types( array(), 'objects' );
+
+	$post_types = array_filter(
+		$post_types,
+		static function ( $post_type ) {
+			if ( $post_type->public ) {
+				return true;
+			}
+
+			return ! $post_type->_builtin && $post_type->show_ui && $post_type->show_in_rest;
+		}
+	);
 
 	foreach ( array( 'post', 'page' ) as $required_post_type ) {
 		if ( ! isset( $post_types[ $required_post_type ] ) ) {

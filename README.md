@@ -64,6 +64,12 @@ The plugin is intentionally headless:
 
 Global settings are stored in one WordPress option array. Per-content SEO and FAQ values are stored as post meta. Generated OG WebP files are derived files in uploads and are tied back to the selected source attachment.
 
+### Supported Post Types
+
+Public post types continue to be supported as before. The SEO and FAQ post-type settings also offer custom post types registered for headless use with `public => false`, `show_ui => true`, and `show_in_rest => true`.
+
+Eligible headless post types are opt-in and are not enabled automatically. Once enabled, the existing SEO and FAQ meta boxes and `seo_overrides`, `seo_resolved`, and `faq_items` REST fields work normally. Seo & Social only discovers these post types; it does not change their visibility or any WordPress registration properties.
+
 ## Access Model
 
 Administrators can access the global Seo & Social admin pages by default.

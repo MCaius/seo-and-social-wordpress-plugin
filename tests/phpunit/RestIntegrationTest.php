@@ -211,6 +211,66 @@ class Seo_And_Social_Rest_Integration_Test extends Seo_And_Social_Test_Case {
 	}
 
 	/**
+	 * Enabled headless CPTs expose the existing SEO and FAQ REST contracts.
+	 *
+	 * @return void
+	 */
+	public function test_headless_post_type_exposes_content_fields_after_enablement() {
+		register_post_type(
+			'sas_headless',
+			array(
+				'label' => 'Headless content',
+				'public' => false,
+				'show_ui' => true,
+				'show_in_rest' => true,
+				'supports' => array( 'title', 'editor' ),
+			)
+		);
+
+		try {
+			$administrator = self::factory()->user->create( array( 'role' => 'administrator' ) );
+			wp_set_current_user( $administrator );
+			$settings = sas_get_default_settings();
+			$settings['settings']['seo_post_types'][] = 'sas_headless';
+			$settings['settings']['faq_post_types'][] = 'sas_headless';
+			$this->set_plugin_settings( $settings );
+			$post_id = self::factory()->post->create(
+				array(
+					'post_type' => 'sas_headless',
+					'post_status' => 'publish',
+				)
+			);
+			update_post_meta( $post_id, SAS_SEO_META_KEY, array( 'seo_title' => 'Headless REST title' ) );
+			update_post_meta(
+				$post_id,
+				SAS_FAQ_META_KEY,
+				array(
+					array(
+						'question' => 'Headless question?',
+						'answer' => 'Headless answer',
+						'enabled' => true,
+						'position' => 1,
+					),
+				)
+			);
+			$this->initialize_rest_server();
+
+			$request = new WP_REST_Request( 'GET', '/wp/v2/sas_headless/' . $post_id );
+			$response = rest_get_server()->dispatch( $request );
+			$data = $response->get_data();
+
+			$this->assertSame( 200, $response->get_status() );
+			$this->assertArrayHasKey( 'seo_overrides', $data );
+			$this->assertArrayHasKey( 'seo_resolved', $data );
+			$this->assertArrayHasKey( 'faq_items', $data );
+			$this->assertSame( 'Headless REST title', $data['seo_overrides']['seo_title'] );
+			$this->assertSame( 'Headless question?', $data['faq_items'][0]['question'] );
+		} finally {
+			unregister_post_type( 'sas_headless' );
+		}
+	}
+
+	/**
 	 * Disabled content fields do not alter WordPress content responses.
 	 *
 	 * @return void
