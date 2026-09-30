@@ -19,6 +19,8 @@
     "test:e2e": "npm run test:e2e:selectors && playwright test",
     "test:e2e:headed": "npm run test:e2e:selectors && playwright test --headed",
     "test:e2e:report": "playwright show-report",
+    "screenshots:readme": "node scripts/capture-readme-screenshots.mjs",
+    "screenshots:readme:compose": "node scripts/compose-readme-screenshots.mjs",
     "env:package:start": "wp-env --config=.wp-env.package.json start",
     "env:package:stop": "wp-env --config=.wp-env.package.json stop",
     "env:package:destroy": "wp-env --config=.wp-env.package.json destroy",

@@ -122,6 +122,16 @@ test.describe('FAQ meta box', () => {
     }
 
     await expect(page.getByTestId('sas-faq-row')).toHaveCount(3);
+    const firstToggle = page.getByTestId('sas-toggle-faq-row').first();
+    const firstBody = page.getByTestId('sas-faq-row-body').first();
+    const controlledBodyId = await firstToggle.getAttribute('aria-controls');
+    expect(controlledBodyId).toBeTruthy();
+    await expect(firstBody).toHaveAttribute('id', controlledBodyId);
+    await expect(firstToggle).toHaveAttribute('aria-expanded', 'true');
+    await firstToggle.press('Enter');
+    await expect(firstToggle).toHaveAttribute('aria-expanded', 'false');
+    await firstToggle.press('Enter');
+    await expect(firstToggle).toHaveAttribute('aria-expanded', 'true');
 
     const editorIds = await page.getByTestId('sas-faq-answer').evaluateAll(
       (editors) => editors.map((editor) => editor.id),

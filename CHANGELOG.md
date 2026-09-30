@@ -10,6 +10,10 @@ The format is based on Keep a Changelog, and this project uses semantic versioni
 
 - Opt-in SEO and FAQ support for non-public headless custom post types with an admin UI and REST API exposure.
 
+### Changed
+
+- Improved the WordPress Admin settings and SEO/FAQ meta boxes with clearer field grouping, responsive layouts, visible repeatable-field labels, and more consistent keyboard focus and expanded-state feedback.
+
 ## [1.2.0] - 2026-08-27
 
 ### Added
