@@ -9,6 +9,48 @@ require_once __DIR__ . '/TestCase.php';
 
 class Seo_And_Social_Content_Meta_Integration_Test extends Seo_And_Social_Test_Case {
 	/**
+	 * Headless CPT meta boxes are registered only after explicit enablement.
+	 *
+	 * @return void
+	 */
+	public function test_headless_post_type_meta_boxes_are_opt_in() {
+		global $wp_meta_boxes;
+
+		register_post_type(
+			'sas_headless',
+			array(
+				'label' => 'Headless content',
+				'public' => false,
+				'show_ui' => true,
+				'show_in_rest' => true,
+			)
+		);
+
+		try {
+			$this->set_plugin_settings( sas_get_default_settings() );
+			sas_register_seo_meta_boxes( 'sas_headless' );
+			sas_register_faq_meta_boxes( 'sas_headless' );
+
+			$this->assertFalse( isset( $wp_meta_boxes['sas_headless']['normal']['default']['sas_seo_overrides'] ) );
+			$this->assertFalse( isset( $wp_meta_boxes['sas_headless']['normal']['high']['sas_faq_items'] ) );
+
+			$settings = sas_get_default_settings();
+			$settings['settings']['seo_post_types'][] = 'sas_headless';
+			$settings['settings']['faq_post_types'][] = 'sas_headless';
+			$this->set_plugin_settings( $settings );
+			sas_register_seo_meta_boxes( 'sas_headless' );
+			sas_register_faq_meta_boxes( 'sas_headless' );
+
+			$this->assertTrue( isset( $wp_meta_boxes['sas_headless']['normal']['default']['sas_seo_overrides'] ) );
+			$this->assertTrue( isset( $wp_meta_boxes['sas_headless']['normal']['high']['sas_faq_items'] ) );
+		} finally {
+			remove_meta_box( 'sas_seo_overrides', 'sas_headless', 'normal' );
+			remove_meta_box( 'sas_faq_items', 'sas_headless', 'normal' );
+			unregister_post_type( 'sas_headless' );
+		}
+	}
+
+	/**
 	 * WordPress autosave requests must preserve existing SEO and FAQ metadata.
 	 *
 	 * @runInSeparateProcess

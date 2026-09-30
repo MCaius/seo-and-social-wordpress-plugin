@@ -35,9 +35,10 @@
   },
   "devDependencies": {
     "@playwright/test": "^1.62.1",
-    "@wordpress/env": "^11.13.0"
+    "@wordpress/env": "^11.16.0"
   },
   "overrides": {
-    "adm-zip": "0.6.0"
+    "brace-expansion": "2.1.7",
+    "fast-uri": "3.1.8"
   }
 }
