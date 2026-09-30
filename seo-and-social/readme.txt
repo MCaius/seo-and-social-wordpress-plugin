@@ -4,7 +4,7 @@ Tags: headless, seo, social, schema, rest-api
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 8.0
-Stable tag: 1.2.0
+Stable tag: 1.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -105,6 +105,10 @@ No, not by default. Global plugin pages are administrator-only by default. Edito
 
 == Changelog ==
 
+= 1.3.0 =
+* Added opt-in SEO and FAQ support for non-public headless custom post types that expose an admin UI and REST API.
+* Modernized the WordPress Admin settings and SEO/FAQ meta boxes with clearer grouping, responsive layouts, accessible repeatable fields, and synchronized expanded states.
+
 = 1.2.0 =
 * Added native WordPress update discovery for stable GitHub Releases containing the verified plugin ZIP.
 * Added strict validation and clearer notices for dynamic social, schema, LLMs.txt, and ignored-section rows.
@@ -123,6 +127,9 @@ No, not by default. Global plugin pages are administrator-only by default. Edito
 * Initial public release.
 
 == Upgrade Notice ==
+
+= 1.3.0 =
+Adds opt-in support for eligible headless custom post types and modernizes the WordPress Admin interface without changing existing REST contracts.
 
 = 1.2.0 =
 Adds native updates from stable GitHub Releases and improves validation and usability across dynamic settings and FAQ editing.
