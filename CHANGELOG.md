@@ -6,6 +6,8 @@ The format is based on Keep a Changelog, and this project uses semantic versioni
 
 ## [Unreleased]
 
+## [1.3.0] - 2026-09-30
+
 ### Added
 
 - Opt-in SEO and FAQ support for non-public headless custom post types with an admin UI and REST API exposure.
